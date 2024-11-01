@@ -618,7 +618,7 @@ body.nav-active {
 
 .accordion-btn ion-icon {
   font-size: 1.5rem;
-  color: var(--blue-crayola);
+  color: var(--violet-blue-crayola);
   transition: var(--transition-1);
 }
 
@@ -811,7 +811,7 @@ body.nav-active {
   .container {
     max-width: 540px;
     width: 100%;
-    margin-inline: auto;
+    margin: 0 auto;
   }
 
   /**
@@ -1130,16 +1130,28 @@ ion-icon {
 
 .container .content {
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 .container .content .left-side {
-  width: 35%;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 15px;
   position: relative;
+}
+.container .content .left-side .contact-info {
+  display: flex;
+  margin-top: 30px;
+}
+.container .content .left-side .faqs h4 {
+  margin: 10px 0;
+}
+.container .content .left-side .faqs .accordion-card span {
+  color: var(--black-coral) !important;
+  font-size: 15px;
+  transition: all 0.5s;
+  text-align: left;
 }
 .content .left-side::before {
   content: "";
@@ -1169,7 +1181,7 @@ ion-icon {
   color: #afafb6;
 }
 .container .content .right-side {
-  width: 65%;
+  width: 50%;
   margin-left: 75px;
 }
 .content .right-side .topic-text {
@@ -1248,5 +1260,8 @@ ion-icon {
   .container .content .right-side {
     width: 100%;
     margin-left: 0;
+  }
+  .container .content .left-side .contact-info {
+    flex-direction: column;
   }
 }

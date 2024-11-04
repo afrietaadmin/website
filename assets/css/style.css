@@ -1085,10 +1085,6 @@ ion-icon {
    * STATS
    */
 
-  .stats .container {
-    max-width: 70%;
-  }
-
   .stats-card {
     padding: 60px;
   }
@@ -1236,7 +1232,7 @@ ion-icon {
 @media (max-width: 950px) {
   .container {
     width: 90%;
-    padding: 30px 40px 40px 35px;
+    padding: 10px 20px 20px 15px;
   }
   .container .content .right-side {
     width: 75%;
@@ -1244,9 +1240,13 @@ ion-icon {
   }
 }
 @media (max-width: 820px) {
+  br {
+      display: none;
+    }
   .container {
     margin: 40px 0;
     height: 100%;
+      margin: 0 auto;
   }
   .container .content {
     flex-direction: column-reverse;
@@ -1267,4 +1267,48 @@ ion-icon {
   .container .content .left-side .contact-info {
     flex-direction: column;
   }
+}
+.text-center {
+  text-align: center;
+}
+
+.d-inline {
+  display: inline-block;
+  margin-top: 20px;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+  padding: 55px 30px;
+  color: var(--white) ;
+}
+
+.mySwiper {
+    overflow: hidden;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: transparent;
+}
+
+.swiper-button-next,
+.swiper-button-prev{
+  color: #ee06ee !important;
+}
+
+.mob-btn {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-700);
+  background-color: var(--white);
+    color: var(--charcoal);  max-width: max-content;
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition-1);
+  will-change: transform;
+}
+
+.mob-btn:is(:hover, :focus-visible) {
+  transform: translateY(-4px);
 }

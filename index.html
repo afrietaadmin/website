@@ -29,7 +29,8 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap"
       rel="stylesheet"
     />
-
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- 
     - custom css link
   -->
@@ -94,12 +95,12 @@
               <a href="#" class="navbar-link">Home</a>
             </li>
 
+            
+                        <li>
+                          <a href="#services" class="navbar-link">Services</a>
+                        </li>
             <li>
               <a href="#about" class="navbar-link">About</a>
-            </li>
-
-            <li>
-              <a href="#services" class="navbar-link">Services</a>
             </li>
 
             <li>
@@ -122,41 +123,17 @@
           </div>
 
           <ul class="social-list">
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-twitter"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-facebook"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-dribbble"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-instagram"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-youtube"></ion-icon>
-              </a>
-            </li>
+            <a href="#" class="mob-btn">
+              <div class="d-flex">
+                   <ion-icon name="logo-whatsapp"></ion-icon>Chat with Us
+                 </div>
+               </a>
           </ul>
         </nav>
 
         <a href="#" class="btn btn-primary">
           <div class="d-flex">
-            <ion-icon name="logo-whatsapp"></ion-icon> Get Started
+            <ion-icon name="logo-whatsapp"></ion-icon>Chat with Us
           </div>
         </a>
 
@@ -194,7 +171,7 @@
               </p>
 
               <div class="btn-wrapper">
-                <a href="#services" class="btn btn-primary">Explore Now</a>
+                <a href="#locations" class="btn btn-primary">Explore Now</a>
 
                 <a href="#contact" class="btn btn-outline">Contact Us</a>
               </div>
@@ -275,7 +252,7 @@
         - #SERVICE
       -->
 
-        <section class="section service" aria-labelledby="service-label">
+        <section id="services" class="section service" aria-labelledby="service-label">
           <div class="container">
             <p class="section-subtitle" id="service-label">What We Do?</p>
 
@@ -469,7 +446,7 @@
       -->
 
         <section
-          id="services"
+          id="about"
           class="section feature"
           aria-labelledby="feature-label"
         >
@@ -552,11 +529,30 @@
         <section class="stats" aria-label="our stats">
           <div class="container">
             <div
-              class="stats-card has-bg-image"
-              style="background-image: url('./assets/images/hero4.jpg')"
+            style="background-image: url('./assets/images/hero4.jpg')"
+            class="swiper"
             >
-              
-          </div>
+               <!-- Swiper -->
+               <div class=" mySwiper">
+                 <div class="swiper-wrapper">
+                   <div class="swiper-slide">
+                    <p>Hi there. We are very pleased with the excellent services of Afrieta. What is very satisfying to us as consumers is <br>  the onsite services provided as well as their commitment to ensuring our internet is always functional.  <br> Thank you for your service and we highly recommend Afrieta.</p>
+                    <h3>- Loshy Naidoo</h3>
+                   </div>
+                   <div class="swiper-slide">
+                    <p>Thank you Afrieta Team for the prompt services and professionalism. Whenever there is an issue, <br> it is resolved speedily. Afrieta internet services really practice excellency and services. <br> Well done....Keep it up! I will definitely recommend Afrieta internet.</p>
+                    <h3>- Lee-Anne Kyster</h3>
+                   </div>
+                   <div class="swiper-slide">
+                    <p>I gave Afrieta 5 stars for their amazing service. I've been using their services for three months now <br> and I have absolutely no issues with their speed and internet connection. <br> Great for my daily usage. I would recommend them.</p>
+                    <h3>- Thendo Netshidzivhe</h3>
+                   </div>
+                  </div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+               <div class="text-center"> <a href="https://www.google.com/search?q=afrieta&oq=afrieta&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTITCAEQLhiDARjHARixAxjRAxiABDINCAIQLhjHARjRAxiABDIGCAMQRRg8MgYIBBBFGDwyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgyODYzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#" class="btn btn-primary d-inline" target="_blank">Discover Why We're Rated 5 Stars</a></div>
+              </div>
           </div>
         </section>
 
@@ -640,6 +636,7 @@
                     <h6 class="topic">Quick Support</h6>
                     <div class="text-one"><a href="mailto:admin@afrieta.com">admin@afrieta.com</a></div>
                     <div class="text-two"><a href="tel:+27168800300">+(27) 16 880 0300</a></div>
+                    <div class="text-two"><a href="#">Chat with Us</a></div>
                   </div>
                 </div>
 
@@ -880,5 +877,17 @@
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
   </body>
 </html>

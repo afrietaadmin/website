@@ -58,7 +58,7 @@
    * spacing
    */
 
-  --section-padding: 90px;
+  --section-padding: 10px;
 
   /**
    * box shadow
@@ -102,6 +102,10 @@
 
 li {
   list-style: none;
+}
+
+h6 {
+  color: var(--charcoal);
 }
 
 a,
@@ -719,7 +723,7 @@ body.nav-active {
 }
 
 .project .section-title {
-  margin-block-end: 50px;
+  margin-block-end: 20px;
 }
 
 .project-card {
@@ -728,6 +732,7 @@ body.nav-active {
   overflow: hidden;
   box-shadow: var(--shadow-2);
   height: 100%;
+  text-align: center;
 }
 
 .project-card .card-content {
@@ -837,7 +842,7 @@ body.nav-active {
      * spacing
      */
 
-    --section-padding: 120px;
+    --section-padding: 40px;
   }
 
   /**
@@ -1133,22 +1138,20 @@ ion-icon {
   justify-content: space-between;
 }
 .container .content .left-side {
-  width: 50%;
+  width: 65%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
   position: relative;
 }
 .container .content .left-side .contact-info {
   display: flex;
-  margin-top: 30px;
 }
 .container .content .left-side .faqs h4 {
   margin: 10px 0;
 }
 .container .content .left-side .faqs .accordion-card span {
-  color: var(--black-coral) !important;
+  color: var(--charcoa) !important;
   font-size: 15px;
   transition: all 0.5s;
   text-align: left;
@@ -1177,11 +1180,11 @@ ion-icon {
 }
 .content .left-side .details .text-one,
 .content .left-side .details .text-two {
-  font-size: 14px;
-  color: #afafb6;
+  font-size: 15px;
+  color: var(--black-coral);
 }
 .container .content .right-side {
-  width: 50%;
+  width: 35%;
   margin-left: 75px;
 }
 .content .right-side .topic-text {

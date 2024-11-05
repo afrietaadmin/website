@@ -55,7 +55,7 @@ window.addEventListener("scroll", function () {
 
 const sliders = document.querySelectorAll("[data-slider]");
 
-const initSlider = function(currentSlider) {
+const initSlider = function (currentSlider) {
 
   const sldierContainer = currentSlider.querySelector("[data-slider-container]");
   const sliderPrevBtn = currentSlider.querySelector("[data-slider-prev]");
@@ -89,7 +89,7 @@ const initSlider = function(currentSlider) {
    * PREVIOUS SLIDE
    */
 
-   const slidePrev = function () {
+  const slidePrev = function () {
 
     if (currentSlidePos <= 0) {
       currentSlidePos = sldierContainer.childElementCount - 1;
@@ -141,3 +141,48 @@ const initAccordion = function (currentAccordion) {
 }
 
 for (let i = 0, len = accordions.length; i < len; i++) { initAccordion(accordions[i]); }
+
+function openModal(service) {
+  const modal = document.getElementById("serviceModal");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDescription = document.getElementById("modal-description");
+
+  // Set modal content based on the service type
+  if (service === "wifi") {
+    modalTitle.innerHTML = "<h4>Bad Wi-Fi Doesn’t Just Slow You Down—It Holds You Back</h4>";
+    modalDescription.innerHTML =
+      `
+     <p> When Wi-Fi isn’t tailored to your home, it leads to everyday frustrations that interfere with the things that matter most. Here’s what poorly optimized Wi-Fi often means:</p>
+<ul class="default">
+<li><strong>Dead Zones & Weak Signals:</strong> Standard setups can leave parts of your home with weak or no signal. This means that while one room might be fine, other spaces—like a home office or living room—struggle to stay connected.</li>
+<li><strong>Lag & Buffering:</strong>  Ever had a movie stop to buffer right</li>
+</ul>
+      `;
+  } else if (service === "fibre") {
+    modalTitle.innerHTML = "<h4>Connectivity Built to Meet Your Needs, No Matter Where You Are</h4>";
+    modalDescription.innerHTML =
+      `<p>At Afrieta, we offer two ways to bring fast, dependable internet directly to your home, tailored to fit where you live and how you use the internet.</p>
+
+     <ul class="default">
+     <li><strong>Fiber Connection:</strong> If your home is in a fiber-ready area, we bring a high-speed fiber connection directly to you. Fiber is perfect for households that need the ultimate in speed and stability, handling everything from streaming in ultra-high-definition to gaming without a hitch.</li>
+     </ul>
+      `;
+  }
+
+
+
+  // Show the modal
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("serviceModal").style.display = "none";
+}
+
+// Close modal when clicking outside of it
+window.onclick = function (event) {
+  const modal = document.getElementById("serviceModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};

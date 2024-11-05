@@ -582,15 +582,21 @@ body.nav-active {
   margin-block: 16px 10px;
 }
 
-.service-card .btn-text {
+ .btn-text, .btn-text1 {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
+  text-decoration: underline;
   margin-block-start: 10px;
-  color: var(--violet-blue-crayola);
   font-weight: var(--fw-700);
   transition: var(--transition-1);
+  color: #ee06ee;
+}
+ .btn-text1 {
+  color: var(--violet-blue-crayola);
+  text-decoration: none;
+  width: 100%;
 }
 
 .service-card .btn-text:is(:hover, :focus-visible) {
@@ -868,8 +874,8 @@ body.nav-active {
   }
 
   .header.active .btn {
-    background-color: var(--violet-blue-crayola);
-    border-color: var(--violet-blue-crayola);
+    background-color: #ee06ee;
+    border-color: #ee06ee;
     color: var(--white);
   }
 
@@ -1078,7 +1084,7 @@ ion-icon {
    */
 
   .service .grid-list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   /**
@@ -1134,7 +1140,7 @@ ion-icon {
   justify-content: space-between;
 }
 .container .content .left-side {
-  width: 65%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1179,56 +1185,7 @@ ion-icon {
   font-size: 15px;
   color: var(--black-coral);
 }
-.container .content .right-side {
-  width: 35%;
-  margin-left: 75px;
-}
-.content .right-side .topic-text {
-  font-size: 23px;
-  font-weight: 600;
-  color: var(--charcoal);
-}
-.right-side .input-box {
-  height: 50px;
-  width: 100%;
-  margin: 12px 0;
-}
-.right-side .input-box input,
-.right-side .input-box textarea {
-  height: 100%;
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  background: #f0f1f8;
-  border-radius: 6px;
-  padding: 0 15px;
-  resize: none;
-}
-.right-side .message-box {
-  min-height: 110px;
-}
-.right-side .input-box textarea {
-  padding-top: 6px;
-}
-.right-side .button {
-  display: inline-block;
-  margin-top: 12px;
-}
-.right-side .button input[type="button"] {
-  color: #fff;
-  font-size: 18px;
-  outline: none;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  background: var(--violet-blue-crayola);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.button input[type="button"]:hover {
-  background: var(--blue-crayola);
-}
+
 @media (max-width: 950px) {
   .container {
     width: 90%;
@@ -1282,6 +1239,10 @@ ion-icon {
   padding: 55px 30px;
   color: var(--white) ;
 }
+.swiper h2 {
+  color: var(--white) ;
+  margin-bottom: 30px;
+}
 
 .mySwiper {
     overflow: hidden;
@@ -1311,4 +1272,9 @@ ion-icon {
 
 .mob-btn:is(:hover, :focus-visible) {
   transform: translateY(-4px);
+}
+
+#services .btn {
+  background: #ee06ee;
+  color: #fff;
 }

@@ -1082,6 +1082,10 @@ ion-icon {
 .container .content .left-side .contact-info {
   display: flex;
 }
+.container .content .left-side .faqs {
+  display: flex;
+  align-items: center;
+}
 .container .content .left-side .faqs h4 {
   margin: 10px 0;
 }
@@ -1126,6 +1130,9 @@ ion-icon {
   }
 }
 @media (max-width: 820px) {
+  .container .content .left-side .faqs {
+    flex-direction: column-reverse;
+  }
   br {
     display: none;
   }

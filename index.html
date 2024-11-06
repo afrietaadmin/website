@@ -165,14 +165,21 @@
               </h1>
 
               <p class="hero-text">
-               Afrieta offers a personalized experience built around your lifestyle needs, starting at R449/Month. More than just bits and jargon, enjoy a highly rated service tailored for streaming, gaming, and working from home.
-
+                Afrieta offers a personalized experience built around your
+                lifestyle needs, starting at R449/Month. More than just bits and
+                jargon, enjoy a highly rated service tailored for streaming,
+                gaming, and working from home.
               </p>
 
               <div class="btn-wrapper">
                 <a href="#locations" class="btn btn-primary">Locations</a>
 
-                <a href="http://wa.link/a7sfoi" target="_blank" class=" btn btn-outline">Chat with Us</a>
+                <a
+                  href="http://wa.link/a7sfoi"
+                  target="_blank"
+                  class="btn btn-outline"
+                  >Chat with Us</a
+                >
               </div>
             </div>
 
@@ -251,55 +258,70 @@
         - #SERVICE
       -->
 
-<section id="services" class="section service" aria-labelledby="service-label">
-  <div class="container">
-    <p class="section-subtitle" id="service-label">What We Do?</p>
-    <h2 class="h2 section-title">
-      The service we offer is specifically designed to meet your internet needs.
-    </h2>
-    <ul class="grid-list">
-      <li>
-        <div class="service-card">
-          <div class="card-icon">
-            <ion-icon name="wifi" aria-hidden="true"></ion-icon>
+        <section
+          id="services"
+          class="section service"
+          aria-labelledby="service-label"
+        >
+          <div class="container">
+            <p class="section-subtitle" id="service-label">What We Do?</p>
+            <h2 class="h2 section-title">
+              The service we offer is specifically designed to meet your
+              internet needs.
+            </h2>
+            <ul class="grid-list">
+              <li>
+                <div class="service-card">
+                  <div class="card-icon">
+                    <ion-icon name="wifi" aria-hidden="true"></ion-icon>
+                  </div>
+                  <h3 class="h4 card-title">WIFI</h3>
+                  <p class="card-text">
+                    Experience the freedom of wireless internet connectivity
+                    with Afrieta. Our wireless solutions utilize the latest
+                    technology to provide you with seamless connectivity
+                    throughout your home or office.
+                  </p>
+                  <button class="btn-text1" onclick="openModal('wifi')">
+                    <span class="span">Read More...</span>
+                  </button>
+                </div>
+              </li>
+              <li>
+                <div class="service-card">
+                  <div class="card-icon">
+                    <ion-icon
+                      name="shield-checkmark-outline"
+                      aria-hidden="true"
+                    ></ion-icon>
+                  </div>
+                  <h3 class="h4 card-title">Fibre Optic Internet</h3>
+                  <p class="card-text">
+                    For lightning-fast speeds and unparalleled reliability, our
+                    fibre optic internet service is the ultimate choice. With
+                    dedicated fibre connections, you can enjoy blazing-fast
+                    download and upload speeds.
+                  </p>
+                  <button class="btn-text1" onclick="openModal('fibre')">
+                    <span class="span">Read More...</span>
+                  </button>
+                </div>
+              </li>
+            </ul>
+            <a href="#locations" class="btn btn-primary d-inline"
+              >Get Started</a
+            >
           </div>
-          <h3 class="h4 card-title">WIFI</h3>
-          <p class="card-text">
-            Experience the freedom of wireless internet connectivity with Afrieta. Our wireless solutions utilize the latest technology to provide you with seamless connectivity throughout your home or office.
-          </p>
-          <button class="btn-text1" onclick="openModal('wifi')">
-            <span class="span">Read More...</span>
-          </button>
-        </div>
-      </li>
-      <li>
-        <div class="service-card">
-          <div class="card-icon">
-            <ion-icon name="shield-checkmark-outline" aria-hidden="true"></ion-icon>
+        </section>
+
+        <!-- Modal Structure -->
+        <div id="serviceModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
           </div>
-          <h3 class="h4 card-title">Fibre Optic Internet</h3>
-          <p class="card-text">
-            For lightning-fast speeds and unparalleled reliability, our fibre optic internet service is the ultimate choice. With dedicated fibre connections, you can enjoy blazing-fast download and upload speeds.
-          </p>
-          <button class="btn-text1" onclick="openModal('fibre')">
-            <span class="span">Read More...</span>
-          </button>
         </div>
-      </li>
-    </ul>
-    <a href="#locations" class="btn btn-primary d-inline">Get Started</a>
-  </div>
-</section>
-
-<!-- Modal Structure -->
-<div id="serviceModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h3 id="modal-title"></h3>
-    <p id="modal-description"></p>
-  </div>
-</div>
-
 
         <!-- 
         - #STATS
@@ -308,10 +330,12 @@
         <section class="stats" aria-label="our stats">
           <div class="container">
             <div
-            style="background-image: url('./assets/images/hero4.jpg')"
-            class="swiper"
+              style="background-image: url('./assets/images/hero4.jpg')"
+              class="swiper"
             >
-            <h2 class="h2 section-title text-center">Discover Why We're Rated 5 Stars</h2>
+              <h2 class="h2 section-title text-center">
+                Discover Why We're Rated 5 Stars
+              </h2>
               <!-- Swiper -->
               <div class="mySwiper">
                 <div class="swiper-wrapper">
@@ -348,46 +372,74 @@
                     </p>
                     <h3>- Thendo Netshidzivhe</h3>
                   </div>
-                    <div class="swiper-slide">
-                      <p>
-                       Great service. Always helpful. Goes the extra mile to come to our homes when we have issues. <br> Also, speed is excellent and internet never has problems. Highly recommended.
-                      </p>
-                      <h3>- Kotwals Boksburg</h3>
-                    </div>
-                    <div class="swiper-slide">
-                      <p>
-                       Excellent service. Shahin is always so helpful, polite and respectful. One of the most reliable <br> internet service providers that I’ve ever used. Reasonable pricing, invoicing always <br> done on time and very fast internet. Communication when there are problems is <br> always provides and issues are always resolved in good time. <br>
-                        Will definitely recommend AFRIETA to others. Extremely happy 😊
-                      </p>
-                      <h3>- Hethel Chouhan</h3>
-                    </div>
-                    <div class="swiper-slide">
-                      <p>
-                       There service is awesome. The wifi is absolutely free from trouble. There is no buffering.  <br> It's smooth sailing I've never had a problem and if you do there turn around time is quick. You don't have to stress.
-                      </p>
-                      <h3>- Mohammed Mogalia</h3>
-                    </div>
-                    <div class="swiper-slide">
-                      <p>
-                       Ordered the 5mb package and it's so much better than Telkom's 10mb line. Also had a special <br> request to do installation on a Sunday and it was done. Really happy with <br> the service and also it's always better to support local. Keep it up.
-                      </p>
-                      <h3>- Asjad Shaikh</h3>
-                    </div>
-                    <div class="swiper-slide">
-                      <p>
-                       Ive been a subscriber close to 2years and I must say 5 star service and ive already recommend <br> you services to many . Even your support services beyond par..keep up the good work.
-                      </p>
-                      <h3>- Roger Morley</h3>
-                    </div>
+                  <div class="swiper-slide">
+                    <p>
+                      Great service. Always helpful. Goes the extra mile to come
+                      to our homes when we have issues. <br />
+                      Also, speed is excellent and internet never has problems.
+                      Highly recommended.
+                    </p>
+                    <h3>- Kotwals Boksburg</h3>
+                  </div>
+                  <div class="swiper-slide">
+                    <p>
+                      Excellent service. Shahin is always so helpful, polite and
+                      respectful. One of the most reliable <br />
+                      internet service providers that I’ve ever used. Reasonable
+                      pricing, invoicing always <br />
+                      done on time and very fast internet. Communication when
+                      there are problems is <br />
+                      always provides and issues are always resolved in good
+                      time. <br />
+                      Will definitely recommend AFRIETA to others. Extremely
+                      happy 😊
+                    </p>
+                    <h3>- Hethel Chouhan</h3>
+                  </div>
+                  <div class="swiper-slide">
+                    <p>
+                      There service is awesome. The wifi is absolutely free from
+                      trouble. There is no buffering. <br />
+                      It's smooth sailing I've never had a problem and if you do
+                      there turn around time is quick. You don't have to stress.
+                    </p>
+                    <h3>- Mohammed Mogalia</h3>
+                  </div>
+                  <div class="swiper-slide">
+                    <p>
+                      Ordered the 5mb package and it's so much better than
+                      Telkom's 10mb line. Also had a special <br />
+                      request to do installation on a Sunday and it was done.
+                      Really happy with <br />
+                      the service and also it's always better to support local.
+                      Keep it up.
+                    </p>
+                    <h3>- Asjad Shaikh</h3>
+                  </div>
+                  <div class="swiper-slide">
+                    <p>
+                      Ive been a subscriber close to 2years and I must say 5
+                      star service and ive already recommend <br />
+                      you services to many . Even your support services beyond
+                      par..keep up the good work.
+                    </p>
+                    <h3>- Roger Morley</h3>
+                  </div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
               </div>
               <div class="text-center">
-                <a href="https://www.google.com/search?q=afrieta&oq=afrieta&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTITCAEQLhiDARjHARixAxjRAxiABDINCAIQLhjHARjRAxiABDIGCAMQRRg8MgYIBBBFGDwyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgyODYzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#" class="btn-text">
+                <a
+                  href="https://www.google.com/search?q=afrieta&oq=afrieta&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTITCAEQLhiDARjHARixAxjRAxiABDINCAIQLhjHARjRAxiABDIGCAMQRRg8MgYIBBBFGDwyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgyODYzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#"
+                  class="btn-text"
+                >
                   <span class="span">Our Community's Words </span>
 
-                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                  <ion-icon
+                    name="arrow-forward-outline"
+                    aria-hidden="true"
+                  ></ion-icon>
                 </a>
               </div>
             </div>
@@ -488,9 +540,16 @@
                     <ion-icon name="mail-unread"></ion-icon>
                     <h6 class="topic">Quick Support</h6>
                     <div class="text-one">
-                      <a href="mailto:admin@afrieta.com"><strong>Admin</strong> - admin@afrieta.com</a>
+                      <a href="mailto:admin@afrieta.com"
+                        ><strong>Admin</strong> - admin@afrieta.com</a
+                      >
                     </div>
-                    <div class="text-two"><a href="http://wa.link/a7sfoi" target="_blank"><strong>Technical &amp; Sales</strong> - Chat with Us</a></div>
+                    <div class="text-two">
+                      <a href="http://wa.link/a7sfoi" target="_blank"
+                        ><strong>Technical &amp; Sales</strong> - Chat with
+                        Us</a
+                      >
+                    </div>
                   </div>
                 </div>
 
@@ -562,7 +621,12 @@
                         </h3>
 
                         <p class="accordion-content">
-                      Signing up for AFRIETA ISP services is simple. You can either visit our website or call our customer service hotline to speak with a representative. They will walk you through the registration process, help you choose the best plan, and assist with scheduling the installation.
+                          Signing up for AFRIETA ISP services is simple. You can
+                          either visit our website or call our customer service
+                          hotline to speak with a representative. They will walk
+                          you through the registration process, help you choose
+                          the best plan, and assist with scheduling the
+                          installation.
                         </p>
                       </div>
                     </li>
@@ -672,6 +736,12 @@
                       </div>
                     </li>
                   </ul>
+                  <img
+                    src="assets/images/faq.jpg"
+                    alt="FAQ image"
+                    width="500"
+                    height="500"
+                  />
                 </div>
               </div>
             </div>
@@ -686,9 +756,9 @@
 
     <footer class="footer">
       <p>&copy; 2024 Afrieta Pty Ltd. All rights reserved.</p>
-        <div class="text-two">
-          <a href="tel:+27168800300" class="underline">+(27) 16 880 0300</a>
-        </div>
+      <div class="text-two">
+        <a href="tel:+27168800300" class="underline">+(27) 16 880 0300</a>
+      </div>
     </footer>
 
     <!-- 

@@ -1081,6 +1081,7 @@ ion-icon {
 }
 .container .content .left-side .contact-info {
   display: flex;
+  justify-content: center;
 }
 .container .content .left-side .faqs {
   display: flex;

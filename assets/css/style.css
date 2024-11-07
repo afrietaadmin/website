@@ -1079,10 +1079,21 @@ ion-icon {
   flex-direction: column;
   position: relative;
 }
-.container .content .left-side .contact-info {
+
+.contact-info-cards {
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Ensures the cards are evenly spaced */
+  gap: 10px; /* Adjusts spacing between cards */
 }
+
+.card {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
 .container .content .left-side .faqs {
   display: flex;
   align-items: center;

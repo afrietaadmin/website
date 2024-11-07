@@ -1,6 +1,4 @@
-'use strict';
-
-
+"use strict";
 
 /**
  * add event listener on multiple elements
@@ -10,9 +8,7 @@ const addEventOnElements = function (elements, eventType, callback) {
   for (let i = 0, len = elements.length; i < len; i++) {
     elements[i].addEventListener(eventType, callback);
   }
-}
-
-
+};
 
 /**
  * NAVBAR TOGGLE FOR MOBILE
@@ -26,11 +22,9 @@ const toggleNavbar = function () {
   navbar.classList.toggle("active");
   overlay.classList.toggle("active");
   document.body.classList.toggle("nav-active");
-}
+};
 
 addEventOnElements(navTogglers, "click", toggleNavbar);
-
-
 
 /**
  * HEADER
@@ -47,8 +41,6 @@ window.addEventListener("scroll", function () {
   }
 });
 
-
-
 /**
  * SLIDER
  */
@@ -56,8 +48,9 @@ window.addEventListener("scroll", function () {
 const sliders = document.querySelectorAll("[data-slider]");
 
 const initSlider = function (currentSlider) {
-
-  const sldierContainer = currentSlider.querySelector("[data-slider-container]");
+  const sldierContainer = currentSlider.querySelector(
+    "[data-slider-container]"
+  );
   const sliderPrevBtn = currentSlider.querySelector("[data-slider-prev]");
   const sliderNextBtn = currentSlider.querySelector("[data-slider-next]");
 
@@ -65,7 +58,7 @@ const initSlider = function (currentSlider) {
 
   const moveSliderItem = function () {
     sldierContainer.style.transform = `translateX(-${sldierContainer.children[currentSlidePos].offsetLeft}px)`;
-  }
+  };
 
   /**
    * NEXT SLIDE
@@ -81,7 +74,7 @@ const initSlider = function (currentSlider) {
     }
 
     moveSliderItem();
-  }
+  };
 
   sliderNextBtn.addEventListener("click", slideNext);
 
@@ -90,7 +83,6 @@ const initSlider = function (currentSlider) {
    */
 
   const slidePrev = function () {
-
     if (currentSlidePos <= 0) {
       currentSlidePos = sldierContainer.childElementCount - 1;
     } else {
@@ -98,7 +90,7 @@ const initSlider = function (currentSlider) {
     }
 
     moveSliderItem();
-  }
+  };
 
   sliderPrevBtn.addEventListener("click", slidePrev);
 
@@ -107,12 +99,11 @@ const initSlider = function (currentSlider) {
     sliderNextBtn.style.display = "none";
     sliderPrevBtn.style.display = "none";
   }
+};
 
+for (let i = 0, len = sliders.length; i < len; i++) {
+  initSlider(sliders[i]);
 }
-
-for (let i = 0, len = sliders.length; i < len; i++) { initSlider(sliders[i]); }
-
-
 
 /**
  * ACCORDION
@@ -123,7 +114,6 @@ const accordions = document.querySelectorAll("[data-accordion]");
 let lastActiveAccordion = accordions[0];
 
 const initAccordion = function (currentAccordion) {
-
   const accordionBtn = currentAccordion.querySelector("[data-accordion-btn]");
 
   const expandAccordion = function () {
@@ -134,13 +124,14 @@ const initAccordion = function (currentAccordion) {
     currentAccordion.classList.toggle("expanded");
 
     lastActiveAccordion = currentAccordion;
-  }
+  };
 
   accordionBtn.addEventListener("click", expandAccordion);
+};
 
+for (let i = 0, len = accordions.length; i < len; i++) {
+  initAccordion(accordions[i]);
 }
-
-for (let i = 0, len = accordions.length; i < len; i++) { initAccordion(accordions[i]); }
 
 function openModal(service) {
   const modal = document.getElementById("serviceModal");
@@ -149,27 +140,34 @@ function openModal(service) {
 
   // Set modal content based on the service type
   if (service === "wifi") {
-    modalTitle.innerHTML = "<h4>Bad Wi-Fi Doesn’t Just Slow You Down—It Holds You Back</h4>";
-    modalDescription.innerHTML =
-      `
+    modalTitle.innerHTML =
+      "<h4>Bad Wi-Fi Doesn’t Just Slow You Down—It Holds You Back</h4>";
+    modalDescription.innerHTML = `
      <p> When Wi-Fi isn’t tailored to your home, it leads to everyday frustrations that interfere with the things that matter most. Here’s what poorly optimized Wi-Fi often means:</p>
 <ul class="default">
 <li><strong>Dead Zones & Weak Signals:</strong> Standard setups can leave parts of your home with weak or no signal. This means that while one room might be fine, other spaces—like a home office or living room—struggle to stay connected.</li>
-<li><strong>Lag & Buffering:</strong>  Ever had a movie stop to buffer right</li>
-</ul>
+<li><strong>Lag & Buffering:</strong>  Ever had a movie stop to buffer right in the middle of an intense scene or a video call freeze just as you're trying to make an important point? Lag and buffering can disrupt your entertainment and productivity making what should be enjoyable or efficient tasks frustrating and time-consuming.</li>
+<li><strong>Limited Device Support:</strong> As smart devices multiply, poorly optimized Wi-Fi struggles, leading to slow responses and frequent disconnections </li>
+<li><strong>Stress & Frustration:</strong> Persistent connectivity issues can be frustrating, stressful and limit your ability to enjoy or complete tasks efficiently. </li>
+
+</ul><p>To truly optimize your Wi-Fi experience, it’s essential to have a setup designed for your home’s specific needs, ensuring fast, reliable, and secure connections throughout.</p>
       `;
   } else if (service === "fibre") {
-    modalTitle.innerHTML = "<h4>Connectivity Built to Meet Your Needs, No Matter Where You Are</h4>";
-    modalDescription.innerHTML =
-      `<p>At Afrieta, we offer two ways to bring fast, dependable internet directly to your home, tailored to fit where you live and how you use the internet.</p>
+    modalTitle.innerHTML =
+      "<h4>Connectivity Built to Meet Your Needs, No Matter Where You Are</h4>";
+    modalDescription.innerHTML = `<p>At Afrieta, we offer different ways to bring fast, dependable internet directly to your home, tailored to fit where you live and how you use the internet.</p>
 
      <ul class="default">
      <li><strong>Fiber Connection:</strong> If your home is in a fiber-ready area, we bring a high-speed fiber connection directly to you. Fiber is perfect for households that need the ultimate in speed and stability, handling everything from streaming in ultra-high-definition to gaming without a hitch.</li>
+     <li><strong>Wireless Connection:</strong> Wireless Connection: For homes not yet in fiber-ready areas, our advanced wireless solution ensures you still get fast and reliable internet access. Our wireless technology is designed to deliver consistent speeds and broad coverage, so you can enjoy seamless connectivity, whether you’re working from home, streaming your favorite shows, or staying connected with friends and family.
+
+</li>
+     <li><strong>Customized Support:</strong> At Afrieta, we understand that every household has unique needs. Our team works closely with you to find the best solution for your location and lifestyle, ensuring you’re always connected with the speed and reliability you deserve. Whether it’s fiber or wireless, our mission is to keep you online without interruptions.
+.</li>
+<p>Discover the Afrieta difference and experience connectivity that’s truly built around you</p>
      </ul>
       `;
   }
-
-
 
   // Show the modal
   modal.style.display = "block";

@@ -415,10 +415,6 @@ body.nav-active {
   transition: var(--transition-1);
 }
 
-.contact-link:is(:hover, :focus-visible) {
-  color: var(--violet-blue-crayola);
-}
-
 .overlay {
   position: fixed;
   top: 0;

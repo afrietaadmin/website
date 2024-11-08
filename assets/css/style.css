@@ -1135,8 +1135,8 @@ ion-icon {
   color: var(--black-coral);
 }
 
-.project {
-  padding-block: unset;
+#contact {
+  padding-bottom: 0;
 }
 
 @media (max-width: 950px) {

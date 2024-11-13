@@ -1188,6 +1188,19 @@ ion-icon {
   .service-card {
     padding: 20px;
   }
+  .d-flex, .usecases .swiper-slide {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .left {
+    max-width: 100% !important;
+    text-align: center !important;
+    margin-bottom: 15px;
+  }
+  .left img, .left h4 {
+    display: inline-block;
+  }
 }
 .text-center {
   text-align: center;
@@ -1286,6 +1299,7 @@ ion-icon {
   display: flex;
   gap: 8px;
   justify-content: center;
+  align-items: center;
   margin-top: 20px;
 }
 

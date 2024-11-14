@@ -1093,8 +1093,7 @@ ion-icon {
 .usecases {
   border: 1px solid #ddd;
   background-color: #f9f9f9;
-  color: var(--charcoal)
-
+  color: var(--charcoal);
 }
 
 .container .content .left-side .faqs {
@@ -1188,7 +1187,8 @@ ion-icon {
   .service-card {
     padding: 20px;
   }
-  .d-flex, .usecases .swiper-slide {
+  .btn-container,
+  .usecases .swiper-slide {
     flex-direction: column;
     text-align: center;
   }
@@ -1198,7 +1198,8 @@ ion-icon {
     text-align: center !important;
     margin-bottom: 15px;
   }
-  .left img, .left h4 {
+  .left img,
+  .left h4 {
     display: inline-block;
   }
 }
@@ -1215,7 +1216,8 @@ ion-icon {
   height: 100%;
   padding: 55px 30px;
 }
-.swiper1, .swiper1 h2 {
+.swiper1,
+.swiper1 h2 {
   color: var(--white);
   margin-bottom: 30px;
 }
@@ -1250,7 +1252,8 @@ ion-icon {
   transform: translateY(-4px);
 }
 
-.text-center .btn , #services .btn{
+.text-center .btn,
+#services .btn {
   background: #ee06ee;
   color: #fff;
 }
@@ -1290,12 +1293,11 @@ ion-icon {
   margin-left: 30px !important;
 }
 
-
 .mt-60 {
   margin-top: 60px;
 }
 
-.d-flex {
+.btn-container {
   display: flex;
   gap: 8px;
   justify-content: center;
@@ -1306,4 +1308,7 @@ ion-icon {
 .usecases img {
   width: 90px !important;
   height: 90px !important;
+}
+.underline {
+  text-decoration: underline;
 }

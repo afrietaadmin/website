@@ -1313,6 +1313,21 @@ ion-icon {
   width: 90px !important;
   height: 90px !important;
 }
+.dark img {
+  filter: invert(1) brightness(2);
+}
 .underline {
   text-decoration: underline;
+}
+
+.dark {
+  padding-bottom: 0 !important;
+}
+.dark h2,
+.dark p {
+  color: var(--white);
+}
+.dark h3,
+.dark p {
+  color: #f3eded;
 }

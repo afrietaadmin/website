@@ -1216,6 +1216,10 @@ ion-icon {
   height: 100%;
   padding: 55px 30px;
 }
+
+.usecases {
+  padding-bottom: 0;
+}
 .swiper1,
 .swiper1 h2 {
   color: var(--white);

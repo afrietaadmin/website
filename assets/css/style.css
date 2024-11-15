@@ -1359,17 +1359,19 @@ ion-icon {
   }
 
   .read-more {
-    display: inline;
-    /* Show 'Read More' link on mobile */
+    font-weight: 700;
+    margin-top: 10px;
+    display: inline-block;
+    color: rgb(38, 38, 38);
   }
   .swiper-slide {
     font-size: 16px;
     padding: 5px !important;
   }
-            .swiper-button-next:after,
-            .swiper-button-prev:after {
-              font-size: 30px !important;
-            }
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 30px !important;
+  }
 }
 
 /* On larger screens, show all content and hide 'Read More' link */
@@ -1383,12 +1385,4 @@ ion-icon {
     display: none;
     /* Hide 'Read More' link */
   }
-}
-
-.usecases .underline {
-  font-weight: 700;
-  margin-top: 10px;
-  display: inline-block;
-  color: rgb(38, 38, 38);
-  text-decoration: none;
 }

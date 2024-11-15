@@ -1350,3 +1350,45 @@ ion-icon {
   align-self: center;
   font-weight: 600;
 }
+
+/* Only show 'Read More' on mobile (less than 768px) */
+@media (max-width: 767px) {
+  .more-content {
+    display: none;
+    /* Hide additional content on mobile */
+  }
+
+  .read-more {
+    display: inline;
+    /* Show 'Read More' link on mobile */
+  }
+  .swiper-slide {
+    font-size: 16px;
+    padding: 5px !important;
+  }
+            .swiper-button-next:after,
+            .swiper-button-prev:after {
+              font-size: 30px !important;
+            }
+}
+
+/* On larger screens, show all content and hide 'Read More' link */
+@media (min-width: 768px) {
+  .more-content {
+    display: block;
+    /* Show additional content */
+  }
+
+  .read-more {
+    display: none;
+    /* Hide 'Read More' link */
+  }
+}
+
+.usecases .underline {
+  font-weight: 700;
+  margin-top: 10px;
+  display: inline-block;
+  color: rgb(38, 38, 38);
+  text-decoration: none;
+}

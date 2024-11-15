@@ -1336,7 +1336,7 @@ ion-icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 22px !important;
+  padding: 22px;
   gap: 10px;
   background-color: #f9f9f9;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -1384,5 +1384,11 @@ ion-icon {
   .read-more {
     display: none;
     /* Hide 'Read More' link */
+  }
+}
+@media (max-width: 400px) {
+  .project .grid-list {
+    display: flex;
+    flex-direction: column;
   }
 }

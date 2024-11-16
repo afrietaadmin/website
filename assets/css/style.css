@@ -1392,3 +1392,7 @@ ion-icon {
     flex-direction: column;
   }
 }
+
+.accordion-content .d-inline {
+  margin-top: 0;
+}

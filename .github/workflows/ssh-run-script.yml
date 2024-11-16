@@ -26,6 +26,4 @@ jobs:
         port: 2222
         script: |
           cd /home/laravel
-          chmod +x ./update_afrieta.sh
           ./update_afrieta.sh
-        debug: true

@@ -24,6 +24,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 2222
           script: |
-            git config --global --add safe.directory /home/laravel/projects/website
             cd /home/laravel
             ./update_afrieta.sh

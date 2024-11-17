@@ -1425,6 +1425,7 @@ ul {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  text-align: center;
 }
 
 .modal-content {
@@ -1434,7 +1435,6 @@ ul {
   border: 1px solid #888;
   width: 80%;
   border-radius: 10px;
-  text-align: center;
 }
 
 .modal-content ul {

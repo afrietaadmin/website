@@ -644,45 +644,21 @@
                   </div>
                 </li>
               </a>
-              <a
-                target="_blank"
-                href="https://milparkmews.afrieta.com/"
-                class="card-title"
-              >
-                <li>
-                  <div class="project-card">
-                    <div class="card-content">
-                      <h3 class="h3">Milpark Mews</h3>
-                    </div>
-                  </div>
-                </li>
-              </a>
-              <a
-                target="_blank"
-                href="https://signup.afrieta.com/"
-                class="card-title"
-              >
-                <li>
-                  <div class="project-card">
-                    <div class="card-content">
-                      <h3 class="h3">Roshnee</h3>
-                    </div>
-                  </div>
-                </li>
-              </a>
-              <a
-                target="_blank"
-                href="https://signup.afrieta.com/"
-                class="card-title"
-              >
-                <li>
-                  <div class="project-card">
-                    <div class="card-content">
-                      <h3 class="h3">Rustervaal</h3>
-                    </div>
-                  </div>
-                </li>
-              </a>
+              <li>
+                <div class="project-card mod" onclick="showPlans('Milpark')">
+                  <h3 class="h3">Milpark Mews</h3>
+                </div>
+              </li>
+              <li>
+                <div class="project-card mod" onclick="showPlans('Roshnee')">
+                  <h3 class="h3">Roshnee</h3>
+                </div>
+              </li>
+              <li>
+                <div class="project-card mod" onclick="showPlans('Rustervaal')">
+                  <h3 class="h3">Rustervaal</h3>
+                </div>
+              </li>
               <a
                 target="_blank"
                 href="http://fibre.afrieta.com"
@@ -712,6 +688,14 @@
             </div>
           </div>
         </section>
+        <!-- Modal -->
+        <div id="planModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title"></h3>
+            <ul id="plan-list"></ul>
+          </div>
+        </div>
         <!-- 
         - #STATS
       -->
@@ -1048,15 +1032,8 @@
                         </h3>
 
                         <p class="accordion-content">
-                          The installation time for AFRIETA Community Internet
-                          services can vary depending on various factors,
-                          including the type of service you choose and the
-                          availability of technicians in your area. In general,
-                          we strive to schedule installations as soon as
-                          possible, and our team will provide you with an
-                          estimated installation timeframe during the sign-up
-                          process. change to on average and providing equipmemt
-                          is available - 3-4 business days
+                          On average, providing equipment is available - 3-4
+                          business days
                         </p>
                       </div>
                     </li>

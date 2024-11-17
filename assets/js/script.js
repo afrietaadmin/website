@@ -184,3 +184,85 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
+const plans = {
+  Milpark: [
+    {
+      name: "30Mbps/30Mbps Fibre Uncapped",
+      price: "R489",
+      link: "https://milparkmews.afrieta.com/",
+    },
+    {
+      name: "60Mbps/60Mbps Fibre Uncapped",
+      price: "R589",
+      link: "https://milparkmews.afrieta.com/",
+    },
+  ],
+  Roshnee: [
+    {
+      name: "20Mbps/20Mbps Advanced Wireless",
+      price: "R449",
+      link: "https://signup.afrieta.com/",
+    },
+    {
+      name: "25Mbps/25Mbps Advanced Wireless",
+      price: "R580",
+      link: "https://signup.afrieta.com/",
+    },
+    {
+      name: "50Mbps/25Mbps Advanced Wireless",
+      price: "R750",
+      link: "https://signup.afrieta.com/",
+    },
+  ],
+  Rustervaal: [
+    {
+      name: "20Mbps/20Mbps Advanced Wireless",
+      price: "R449",
+      link: "https://signup.afrieta.com/",
+    },
+    {
+      name: "25Mbps/25Mbps Advanced Wireless",
+      price: "R580",
+      link: "https://signup.afrieta.com/",
+    },
+    {
+      name: "50Mbps/25Mbps Advanced Wireless",
+      price: "R750",
+      link: "https://signup.afrieta.com/",
+    },
+  ],
+};
+
+function showPlans(location) {
+  const modal = document.getElementById("planModal");
+  const title = document.getElementById("modal-title");
+  const list = document.getElementById("plan-list");
+
+  // Set modal title
+  title.textContent = "Packages";
+
+  // Populate the plan list
+  list.innerHTML = "";
+  plans[location].forEach((plan) => {
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `<a href="${plan.link}" target="_blank">${plan.name} - <strong>${plan.price}</strong></a>`;
+    list.appendChild(listItem);
+  });
+
+  // Show the modal
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  const modal = document.getElementById("planModal");
+  modal.style.display = "none";
+}
+
+// Close the modal when clicking outside of it
+window.onclick = function (event) {
+  const modal = document.getElementById("planModal");
+  if (event.target === modal) {
+    closeModal();
+  }
+};

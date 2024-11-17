@@ -1425,7 +1425,6 @@ ul {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  text-align: center;
 }
 
 .modal-content {
@@ -1466,4 +1465,19 @@ ul {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+#serviceModal {
+  overflow: auto;
+}
+
+#serviceModal .modal-content {
+  max-height: 80%; /* Set a max height to limit the content size */
+  overflow-y: auto; /* Enable vertical scrolling */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#serviceModal .scrollable-content {
+  max-height: 70vh; /* Limit the height of the content inside the modal */
+  overflow-y: auto; /* Enable scrolling for content inside */
 }

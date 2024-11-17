@@ -1292,6 +1292,10 @@ ion-icon {
   cursor: pointer;
 }
 
+.close1 {
+  margin-top: -22px;
+  margin-right: -10px;
+}
 .default li {
   list-style: circle;
   margin-left: 30px !important;
@@ -1480,4 +1484,17 @@ ul {
 #serviceModal .scrollable-content {
   max-height: 70vh; /* Limit the height of the content inside the modal */
   overflow-y: auto; /* Enable scrolling for content inside */
+}
+
+#serviceModal .scrollable-content::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+#serviceModal .scrollable-content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+#serviceModal .scrollable-content::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }

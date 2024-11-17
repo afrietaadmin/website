@@ -173,7 +173,7 @@ function openModal(service) {
   modal.style.display = "block";
 }
 
-function closeModal() {
+function closeModal1() {
   document.getElementById("serviceModal").style.display = "none";
 }
 

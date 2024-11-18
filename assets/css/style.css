@@ -1585,3 +1585,7 @@ ul {
   border: 1px solid #ee06ee;
   color: #ee06ee;
 }
+.btn-container .trans:hover {
+  border-color: #d406d4;
+  color: #d406d4;
+}

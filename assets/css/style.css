@@ -1458,7 +1458,8 @@ ul {
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+#plan-list li a:hover {
   color: black;
   text-decoration: none;
   cursor: pointer;

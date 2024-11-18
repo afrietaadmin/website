@@ -186,6 +186,23 @@ window.onclick = function (event) {
 };
 
 const plans = {
+  Meyerton: [
+    {
+      name: "20Mbps/20Mbps Advanced Wireless",
+      price: "R449",
+      link: "https://meyerton.afrieta.com/",
+    },
+    {
+      name: "25Mbps/25Mbps Advanced Wireless",
+      price: "R580",
+      link: "https://meyerton.afrieta.com/",
+    },
+    {
+      name: "50Mbps/25Mbps Advanced Wireless",
+      price: "R750",
+      link: "https://meyerton.afrieta.com/",
+    },
+  ],
   Milpark: [
     {
       name: "30Mbps/30Mbps Fibre Uncapped",

@@ -232,6 +232,28 @@ const plans = {
       link: "https://signup.afrieta.com/",
     },
   ],
+  Fibre: [
+    {
+      name: "Premium OS 50Mbps/50Mbps Symmetrical Fibre",
+      price: "R750",
+      link: "https://fibre.afrieta.com",
+    },
+    {
+      name: "Premium OS 100Mbps/100Mbps Symmetrical Fibre",
+      price: "R990",
+      link: "https://fibre.afrieta.com",
+    },
+    {
+      name: "50Mbps/100Mbps Afrieta Fibre OS",
+      price: "R1,099",
+      link: "https://fibre.afrieta.com",
+    },
+    {
+      name: "Premium OS 300Mbps/150Mbps Symmetrical Fibre",
+      price: "R1249",
+      link: "https://fibre.afrieta.com",
+    },
+  ],
 };
 
 function showPlans(location) {

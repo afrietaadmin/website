@@ -186,6 +186,23 @@ window.onclick = function (event) {
 };
 
 const plans = {
+  "Sebokeng/Evaton/Tshepong": [
+    {
+      name: "20Mbs @ R449 per month (Installation R995)",
+      price: "R449",
+      link: "https://prospects.afrieta.com/",
+    },
+    {
+      name: "25Mbs @ R580 per month (Installation R495)",
+      price: "R580",
+      link: "https://prospects.afrieta.com/",
+    },
+    {
+      name: "50Mbs @ R750 per month (Installation R495)",
+      price: "R750",
+      link: "https://prospects.afrieta.com/",
+    },
+  ],
   Meyerton: [
     {
       name: "20Mbps/20Mbps Advanced Wireless",
@@ -204,6 +221,11 @@ const plans = {
     },
   ],
   Milpark: [
+    {
+      name: "15Mbps/15Mbps Fibre Uncapped",
+      price: "R399",
+      link: "https://milparkmews.afrieta.com/",
+    },
     {
       name: "30Mbps/30Mbps Fibre Uncapped",
       price: "R489",

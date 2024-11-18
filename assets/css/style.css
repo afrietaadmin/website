@@ -1589,3 +1589,11 @@ ul {
   border-color: #d406d4;
   color: #d406d4;
 }
+
+#locations h2 {
+  margin-bottom: 0;
+}
+#locations p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}

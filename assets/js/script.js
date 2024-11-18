@@ -267,7 +267,7 @@ const plans = {
     },
     {
       name: "Premium OS 300Mbps/150Mbps Symmetrical Fibre",
-      price: "R1249",
+      price: "R1,249",
       link: "https://fibre.afrieta.com",
     },
   ],

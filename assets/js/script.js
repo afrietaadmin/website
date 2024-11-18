@@ -188,17 +188,17 @@ window.onclick = function (event) {
 const plans = {
   "Sebokeng/Evaton/Tshepong": [
     {
-      name: "20Mbs @ R449 per month (Installation R995)",
+      name: "20Mbps/20Mbps Advanced Wireless",
       price: "R449",
       link: "https://prospects.afrieta.com/",
     },
     {
-      name: "25Mbs @ R580 per month (Installation R495)",
+      name: "25Mbps/25Mbps Advanced Wireless",
       price: "R580",
       link: "https://prospects.afrieta.com/",
     },
     {
-      name: "50Mbs @ R750 per month (Installation R495)",
+      name: "50Mbps/25Mbps Advanced Wireless",
       price: "R750",
       link: "https://prospects.afrieta.com/",
     },

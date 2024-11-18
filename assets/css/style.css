@@ -1187,7 +1187,7 @@ ion-icon {
   .service-card {
     padding: 20px;
   }
-  .btn-container,
+
   .usecases .swiper-slide {
     flex-direction: column;
     text-align: center;
@@ -1303,14 +1303,6 @@ ion-icon {
 
 .mt-60 {
   margin-top: 60px;
-}
-
-.btn-container {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
 }
 
 .usecases img {
@@ -1499,4 +1491,97 @@ ul {
 #serviceModal .scrollable-content::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
+}
+
+/* Table Styling */
+#plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#plan-table th,
+#plan-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+#plan-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+#plan-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#plan-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Sign Up Button */
+.signup-button {
+  text-decoration: none;
+  padding: 8px 16px;
+  background-color: #ee06ee;
+  color: white;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.signup-button:hover {
+  background-color: #d406d4;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+
+  #plan-table th,
+  #plan-table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .signup-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #plan-table th,
+  #plan-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .signup-button {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+}
+
+.btn-container {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-container a {
+  width: 50%;
+}
+
+.btn-container .trans {
+  background: transparent;
+  border: 1px solid #ee06ee;
+  color: #ee06ee;
 }

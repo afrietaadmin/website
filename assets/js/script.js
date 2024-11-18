@@ -276,18 +276,38 @@ const plans = {
 function showPlans(location) {
   const modal = document.getElementById("planModal");
   const title = document.getElementById("modal-title");
-  const list = document.getElementById("plan-list");
-
+  const tableBody = document.getElementById("plan-table-body");
+  const signupButton = document.getElementById("signup-button");
   // Set modal title
-  title.textContent = "Packages";
+  title.textContent = `${location} Packages`;
 
-  // Populate the plan list
-  list.innerHTML = "";
+  // Clear the table body
+  tableBody.innerHTML = "";
+
+  // Populate the table with plans
   plans[location].forEach((plan) => {
-    const listItem = document.createElement("li");
-    listItem.innerHTML = `<a href="${plan.link}" target="_blank">${plan.name} - <strong>${plan.price}</strong></a>`;
-    list.appendChild(listItem);
+    const row = document.createElement("tr");
+
+    // Name column
+    const nameCell = document.createElement("td");
+    nameCell.textContent = plan.name;
+    row.appendChild(nameCell);
+
+    // Price column
+    const priceCell = document.createElement("td");
+    priceCell.textContent = plan.price;
+    row.appendChild(priceCell);
+
+    // Append row to table body
+    tableBody.appendChild(row);
   });
+
+  // Set the button link to the first plan's link or a generic link
+  if (plans[location].length > 0) {
+    signupButton.href = plans[location][0].link; // Link to the first plan
+  } else {
+    signupButton.href = "#"; // Default link if no plans available
+  }
 
   // Show the modal
   modal.style.display = "block";

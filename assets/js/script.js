@@ -173,7 +173,7 @@ function openModal(service) {
   modal.style.display = "block";
 }
 
-function closeModal() {
+function closeModal1() {
   document.getElementById("serviceModal").style.display = "none";
 }
 
@@ -182,5 +182,168 @@ window.onclick = function (event) {
   const modal = document.getElementById("serviceModal");
   if (event.target === modal) {
     modal.style.display = "none";
+  }
+};
+
+const plans = {
+  "Sebokeng/Evaton/Tshepong": [
+    {
+      name: "20Mbps/20Mbps Advanced Wireless",
+      price: "R449",
+      link: "https://prospects.afrieta.com/",
+    },
+    {
+      name: "25Mbps/25Mbps Advanced Wireless",
+      price: "R580",
+      link: "https://prospects.afrieta.com/",
+    },
+    {
+      name: "50Mbps/25Mbps Advanced Wireless",
+      price: "R750",
+      link: "https://prospects.afrieta.com/",
+    },
+  ],
+  Meyerton: [
+    {
+      name: "20Mbps/20Mbps Advanced Wireless",
+      price: "R449",
+      link: "https://meyerton.afrieta.com/",
+    },
+    {
+      name: "25Mbps/25Mbps Advanced Wireless",
+      price: "R580",
+      link: "https://meyerton.afrieta.com/",
+    },
+    {
+      name: "50Mbps/25Mbps Advanced Wireless",
+      price: "R750",
+      link: "https://meyerton.afrieta.com/",
+    },
+  ],
+  Milpark: [
+    {
+      name: "15Mbps/15Mbps Fibre Uncapped",
+      price: "R399",
+      link: "https://milparkmews.afrieta.com/",
+    },
+    {
+      name: "30Mbps/30Mbps Fibre Uncapped",
+      price: "R489",
+      link: "https://milparkmews.afrieta.com/",
+    },
+    {
+      name: "60Mbps/60Mbps Fibre Uncapped",
+      price: "R589",
+      link: "https://milparkmews.afrieta.com/",
+    },
+  ],
+  Roshnee: [
+    {
+      name: "20Mbps/20Mbps Advanced Wireless",
+      price: "R449",
+      link: "https://signup.afrieta.com/",
+    },
+    {
+      name: "25Mbps/25Mbps Advanced Wireless",
+      price: "R580",
+      link: "https://signup.afrieta.com/",
+    },
+    {
+      name: "50Mbps/25Mbps Advanced Wireless",
+      price: "R750",
+      link: "https://signup.afrieta.com/",
+    },
+  ],
+  Rustervaal: [
+    {
+      name: "20Mbps/20Mbps Advanced Wireless",
+      price: "R449",
+      link: "https://signup.afrieta.com/",
+    },
+    {
+      name: "25Mbps/25Mbps Advanced Wireless",
+      price: "R580",
+      link: "https://signup.afrieta.com/",
+    },
+    {
+      name: "50Mbps/25Mbps Advanced Wireless",
+      price: "R750",
+      link: "https://signup.afrieta.com/",
+    },
+  ],
+  Fibre: [
+    {
+      name: "Premium OS 50Mbps/50Mbps Symmetrical Fibre",
+      price: "R750",
+      link: "https://fibre.afrieta.com",
+    },
+    {
+      name: "Premium OS 100Mbps/100Mbps Symmetrical Fibre",
+      price: "R990",
+      link: "https://fibre.afrieta.com",
+    },
+    {
+      name: "50Mbps/100Mbps Afrieta Fibre OS",
+      price: "R1,099",
+      link: "https://fibre.afrieta.com",
+    },
+    {
+      name: "Premium OS 300Mbps/150Mbps Symmetrical Fibre",
+      price: "R1,249",
+      link: "https://fibre.afrieta.com",
+    },
+  ],
+};
+
+function showPlans(location) {
+  const modal = document.getElementById("planModal");
+  const title = document.getElementById("modal-title");
+  const tableBody = document.getElementById("plan-table-body");
+  const signupButton = document.getElementById("signup-button");
+  // Set modal title
+  title.textContent = `${location} Packages`;
+
+  // Clear the table body
+  tableBody.innerHTML = "";
+
+  // Populate the table with plans
+  plans[location].forEach((plan) => {
+    const row = document.createElement("tr");
+
+    // Name column
+    const nameCell = document.createElement("td");
+    nameCell.textContent = plan.name;
+    row.appendChild(nameCell);
+
+    // Price column
+    const priceCell = document.createElement("td");
+    priceCell.textContent = plan.price;
+    row.appendChild(priceCell);
+
+    // Append row to table body
+    tableBody.appendChild(row);
+  });
+
+  // Set the button link to the first plan's link or a generic link
+  if (plans[location].length > 0) {
+    signupButton.href = plans[location][0].link; // Link to the first plan
+  } else {
+    signupButton.href = "#"; // Default link if no plans available
+  }
+
+  // Show the modal
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  const modal = document.getElementById("planModal");
+  modal.style.display = "none";
+}
+
+// Close the modal when clicking outside of it
+window.onclick = function (event) {
+  const modal = document.getElementById("planModal");
+  if (event.target === modal) {
+    closeModal();
   }
 };

@@ -1600,3 +1600,33 @@ ul {
   font-size: 20px;
   margin-bottom: 20px;
 }
+
+.launching-soon {
+  font-size: 1em; /* Keep font size proportional */
+  color: #ff007f; /* Bright color to stand out */
+  background: linear-gradient(
+    90deg,
+    #ffecd2,
+    #fcb69f
+  ); /* Subtle gradient highlight */
+  padding: 2px 5px; /* Minimal padding to avoid increasing box size */
+  border-radius: 3px; /* Slight rounding for text highlight */
+  text-transform: uppercase; /* Makes the text all caps for emphasis */
+  letter-spacing: 0.5px; /* Adds slight spacing between letters */
+  display: inline; /* Ensures it doesn’t add extra block space */
+  animation: fade-in-out 2s infinite; /* Subtle attention-grabbing animation */
+}
+
+@keyframes fade-in-out {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.p-20 {
+  padding: 20px !important;
+}

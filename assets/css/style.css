@@ -697,6 +697,9 @@ body.nav-active {
 .project-card .card-content {
   padding: 30px;
 }
+.project-card .card-content strong {
+  color: #ee06ee;
+}
 
 .project-card .card-title {
   transition: var(--transition-1);

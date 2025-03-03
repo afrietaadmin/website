@@ -324,6 +324,11 @@ function showPlans(location) {
     tableBody.appendChild(row);
   });
 
+  if (location === "Sebokeng/Evaton/Tshepong") {
+    signupButton.innerText = "Pre-register";
+  } else {
+    signupButton.innerText = "Sign Up";
+  }
   // Set the button link to the first plan's link or a generic link
   if (plans[location].length > 0) {
     signupButton.href = plans[location][0].link; // Link to the first plan

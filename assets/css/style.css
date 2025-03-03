@@ -267,6 +267,12 @@ body.nav-active {
   color: var(--charcoal);
 }
 
+.btn-dark {
+  background-color: #262626;
+  ;
+  color: var(--white);
+}
+
 .img-holder {
   aspect-ratio: var(--width) / var(--height);
   background-color: var(--light-gray);
@@ -324,6 +330,7 @@ body.nav-active {
   0% {
     transform: translateY(-100%);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -372,6 +379,10 @@ body.nav-active {
   z-index: 2;
   visibility: hidden;
   transition: var(--transition-3);
+}
+
+header.signup {
+  background: #262626;
 }
 
 .navbar.active {
@@ -491,6 +502,7 @@ body.nav-active {
   0% {
     box-shadow: 0 0 0 0 var(--white_a70);
   }
+
   75% {
     box-shadow: 0 0 0 20px transparent;
   }
@@ -590,6 +602,7 @@ body.nav-active {
   transition: var(--transition-1);
   color: #ee06ee;
 }
+
 .btn-text1 {
   color: var(--violet-blue-crayola);
   text-decoration: none;
@@ -649,11 +662,9 @@ body.nav-active {
 \*-----------------------------------*/
 
 .stats {
-  background-image: linear-gradient(
-    to bottom,
-    var(--white) 50%,
-    var(--cultured) 50%
-  );
+  background-image: linear-gradient(to bottom,
+      var(--white) 50%,
+      var(--cultured) 50%);
 }
 
 .stats-card {
@@ -665,7 +676,7 @@ body.nav-active {
   border-radius: var(--radius-8);
 }
 
-.stats-card .card-text > * {
+.stats-card .card-text>* {
   color: var(--white);
 }
 
@@ -697,6 +708,7 @@ body.nav-active {
 .project-card .card-content {
   padding: 30px;
 }
+
 .project-card .card-content strong {
   color: #ee06ee;
 }
@@ -860,6 +872,7 @@ body.nav-active {
   display: flex;
   gap: 4px;
 }
+
 ion-icon {
   align-self: center;
   font-size: 30px;
@@ -883,7 +896,7 @@ ion-icon {
    */
 
   .nav-open-btn,
-  .navbar > *:not(.navbar-list),
+  .navbar>*:not(.navbar-list),
   .overlay {
     display: none;
   }
@@ -1071,6 +1084,7 @@ ion-icon {
   display: flex;
   justify-content: space-between;
 }
+
 .container .content .left-side {
   width: 100%;
   height: 100%;
@@ -1081,8 +1095,10 @@ ion-icon {
 
 .contact-info-cards {
   display: flex;
-  justify-content: space-between; /* Ensures the cards are evenly spaced */
-  gap: 10px; /* Adjusts spacing between cards */
+  justify-content: space-between;
+  /* Ensures the cards are evenly spaced */
+  gap: 10px;
+  /* Adjusts spacing between cards */
 }
 
 .card {
@@ -1103,15 +1119,18 @@ ion-icon {
   display: flex;
   align-items: center;
 }
+
 .container .content .left-side .faqs h4 {
   margin: 10px 0;
 }
+
 .container .content .left-side .faqs .accordion-card span {
   color: var(--charcoa) !important;
   font-size: 15px;
   transition: all 0.5s;
   text-align: left;
 }
+
 .content .left-side::before {
   content: "";
   position: absolute;
@@ -1122,18 +1141,22 @@ ion-icon {
   transform: translateY(-50%);
   background: #afafb6;
 }
+
 .content .left-side .details {
   margin: 14px;
 }
+
 .content .left-side .details ion-icon {
   font-size: 30px;
   color: var(--violet-blue-crayola);
   margin-bottom: 10px;
 }
+
 .content .left-side .details .topic {
   font-size: 18px;
   font-weight: 500;
 }
+
 .content .left-side .details .text-one,
 .content .left-side .details .text-two {
   font-size: 15px;
@@ -1149,36 +1172,45 @@ ion-icon {
     padding: 15px;
   }
 }
+
 @media (max-width: 820px) {
   .footer {
     padding: 60px;
   }
+
   .faqs img {
     width: 100%;
   }
+
   .contact-info-cards {
     flex-direction: column;
   }
+
   .container .content .left-side .faqs {
     flex-direction: column-reverse;
   }
+
   br {
     display: none;
   }
+
   .container {
     margin: 40px 0;
     height: 100%;
     margin: 0 auto;
   }
+
   .container .content {
     flex-direction: column-reverse;
   }
+
   .container .content .left-side {
     width: 100%;
     flex-direction: row;
     margin-top: 40px;
     flex-wrap: wrap;
   }
+
   .container .content .left-side::before {
     display: none;
   }
@@ -1201,11 +1233,13 @@ ion-icon {
     text-align: center !important;
     margin-bottom: 15px;
   }
+
   .left img,
   .left h4 {
     display: inline-block;
   }
 }
+
 .text-center {
   text-align: center;
 }
@@ -1214,6 +1248,7 @@ ion-icon {
   display: inline-block;
   margin-top: 20px;
 }
+
 .swiper {
   width: 100%;
   height: 100%;
@@ -1223,6 +1258,7 @@ ion-icon {
 .usecases {
   padding-bottom: 0;
 }
+
 .swiper1,
 .swiper1 h2 {
   color: var(--white);
@@ -1299,6 +1335,7 @@ ion-icon {
   margin-top: -22px;
   margin-right: -10px;
 }
+
 .default li {
   list-style: circle;
   margin-left: 30px !important;
@@ -1312,9 +1349,11 @@ ion-icon {
   width: 90px !important;
   height: 90px !important;
 }
+
 .dark img {
   filter: invert(1) brightness(2);
 }
+
 .underline {
   text-decoration: underline;
 }
@@ -1322,10 +1361,12 @@ ion-icon {
 .dark {
   padding-bottom: 0 !important;
 }
+
 .dark h2,
 .dark p {
   color: var(--white);
 }
+
 .dark h3,
 .dark p {
   color: #f3eded;
@@ -1364,10 +1405,12 @@ ion-icon {
     display: inline-block;
     color: rgb(38, 38, 38);
   }
+
   .swiper-slide {
     font-size: 16px;
     padding: 5px !important;
   }
+
   .swiper-button-next:after,
   .swiper-button-prev:after {
     font-size: 30px !important;
@@ -1386,6 +1429,7 @@ ion-icon {
     /* Hide 'Read More' link */
   }
 }
+
 @media (max-width: 400px) {
   .project .grid-list {
     display: flex;
@@ -1409,7 +1453,8 @@ ul {
 }
 
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
   position: fixed;
   z-index: 10;
   left: 0;
@@ -1473,14 +1518,18 @@ ul {
 }
 
 #serviceModal .modal-content {
-  max-height: 80%; /* Set a max height to limit the content size */
-  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 80%;
+  /* Set a max height to limit the content size */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #serviceModal .scrollable-content {
-  max-height: 70vh; /* Limit the height of the content inside the modal */
-  overflow-y: auto; /* Enable scrolling for content inside */
+  max-height: 70vh;
+  /* Limit the height of the content inside the modal */
+  overflow-y: auto;
+  /* Enable scrolling for content inside */
 }
 
 #serviceModal .scrollable-content::-webkit-scrollbar {
@@ -1539,6 +1588,163 @@ ul {
   background-color: #d406d4;
 }
 
+
+/* Sign Up Page */
+
+main.container {
+  margin: 221.5px auto;
+}
+
+.flex {
+  display: flex;
+}
+.sidebar {
+  width: 35%;
+  background-color: #5623a5;
+  color: white;
+  padding: 30px;
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.sidebar .description {
+  font-size: 14px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  font-size: 16px;
+  padding: 10px;
+  margin: 5px 0;
+  border-left: 4px solid white;
+  opacity: 0.6;
+}
+
+.step.active {
+  font-weight: bold;
+  opacity: 1;
+  border-left: 4px solid #ffffff;
+}
+
+/* Form Section */
+.form-container {
+  width: 65%;
+  padding: 30px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-container button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ee06ee;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #d406d4;
+}
+
+/* Hide other steps */
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}
+
+
+/* Sidebar */
+.sidebar {
+  width: 35%;
+  background-color: var(--violet-blue-crayola);
+  color: white;
+  padding: 30px;
+  position: relative;
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.sidebar p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.sidebar .description {
+  margin-bottom: 20px;
+}
+
+.steps {
+  position: relative;
+  margin-top: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 25px;
+  position: relative;
+}
+
+/* Step Circle */
+.step span {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Active Step */
+.step.active span {
+  background-color: white;
+  color: black;
+}
+
+.step.active {
+  color: white;
+  font-weight: bold;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .modal-content {
@@ -1556,9 +1762,18 @@ ul {
     font-size: 12px;
     padding: 6px 12px;
   }
+
+  .sidebar {
+    display: none;
+  }
+
+  .form-container {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 480px) {
+
   #plan-table th,
   #plan-table td {
     font-size: 12px;
@@ -1588,6 +1803,7 @@ ul {
   border: 1px solid #ee06ee;
   color: #ee06ee;
 }
+
 .btn-container .trans:hover {
   border-color: #d406d4;
   color: #d406d4;
@@ -1596,32 +1812,42 @@ ul {
 #locations h2 {
   margin-bottom: 0;
 }
+
 #locations p {
   font-size: 20px;
   margin-bottom: 20px;
 }
 
 .launching-soon {
-  font-size: 1em; /* Keep font size proportional */
-  color: #ff007f; /* Bright color to stand out */
-  background: linear-gradient(
-    90deg,
-    #ffecd2,
-    #fcb69f
-  ); /* Subtle gradient highlight */
-  padding: 2px 5px; /* Minimal padding to avoid increasing box size */
-  border-radius: 3px; /* Slight rounding for text highlight */
-  text-transform: uppercase; /* Makes the text all caps for emphasis */
-  letter-spacing: 0.5px; /* Adds slight spacing between letters */
-  display: inline; /* Ensures it doesn’t add extra block space */
-  animation: fade-in-out 2s infinite; /* Subtle attention-grabbing animation */
+  font-size: 1em;
+  /* Keep font size proportional */
+  color: #ff007f;
+  /* Bright color to stand out */
+  background: linear-gradient(90deg,
+      #ffecd2,
+      #fcb69f);
+  /* Subtle gradient highlight */
+  padding: 2px 5px;
+  /* Minimal padding to avoid increasing box size */
+  border-radius: 3px;
+  /* Slight rounding for text highlight */
+  text-transform: uppercase;
+  /* Makes the text all caps for emphasis */
+  letter-spacing: 0.5px;
+  /* Adds slight spacing between letters */
+  display: inline;
+  /* Ensures it doesn’t add extra block space */
+  animation: fade-in-out 2s infinite;
+  /* Subtle attention-grabbing animation */
 }
 
 @keyframes fade-in-out {
+
   0%,
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.6;
   }

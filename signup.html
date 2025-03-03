@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 
+    - primary meta tags
+  -->
+  <title>Afrieta Community Internet</title>
+  <meta name="title" content="Afrieta" />
+  <meta name="description" content="AFRIETA Community Internet is a leading internet service provider that offers high-speed internet connectivity to residential and business customers." />
+
+  <link rel="shortcut icon" href="./icon.png" type="image/svg+xml" />
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet" />
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-bg.jpg" />
+  <link rel="preload" as="image" href="./assets/images/hero-slide-1.jpg" />
+  <link rel="preload" as="image" href="./assets/images/hero-slide-2.jpg" />
+  <link rel="preload" as="image" href="./assets/images/hero-slide-3.jpg" />
+</head>
+
+<body>
+  <header class="header signup" data-header>
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="./assets/images/logo-white.png" width="150" height="80" alt="Adex home" class="logo-light" />
+
+        <img src="./assets/images/logo.png" width="150" height="80" alt="Adex home" class="logo-dark" />
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <div class="navbar-top">
+          <a href="#" class="logo">
+            <img src="./assets/images/logo-white.png" width="150" height="80" alt="Adex home" />
+          </a>
+
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+          <li>
+            <a href="#" class="navbar-link">Home</a>
+          </li>
+          <li>
+            <a href="#locations" class="navbar-link">Locations</a>
+          </li>
+          <li>
+            <a href="#services" class="navbar-link">Services</a>
+          </li>
+        </ul>
+
+        <div class="wrapper">
+          <a href="mailto:info@email.com" class="contact-link">admin@afrieta.com</a>
+
+          <a href="tel:001234567890" class="contact-link">+(27) 16 880 0300</a>
+        </div>
+
+        <ul class="social-list">
+          <a href="http://wa.link/a7sfoi" target="_blank" class="mob-btn">
+            <div class="d-flex">
+              <ion-icon name="logo-whatsapp"></ion-icon>Chat with Us
+            </div>
+          </a>
+        </ul>
+      </nav>
+
+      <a href="http://wa.link/a7sfoi" target="_blank" class="btn btn-primary">
+        <div class="d-flex">
+          <ion-icon name="logo-whatsapp"></ion-icon>Chat with Us
+        </div>
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="flex" >
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h4>Step <span id="step-number">1 of 4</span> </h4>
+        <div class="steps">
+          <div class="step active" data-step="1">
+            <span>1</span> Personal Information
+          </div>
+          <div class="step" data-step="2">
+            <span>2</span> Education
+          </div>
+          <div class="step" data-step="3">
+            <span>3</span> Work Experience
+          </div>
+          <div class="step" data-step="4">
+            <span>4</span> User Photo
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-container">
+        <form id="multiStepForm">
+          <div class="form-step active" data-step="1">
+            <h2>Your Personal Information</h2>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="E-mail Address" required>
+            <input type="tel" placeholder="Phone Number" required>
+          </div>
+
+          <div class="form-step" data-step="2">
+            <h2>Education</h2>
+            <input type="text" placeholder="Highest Qualification" required>
+            <input type="text" placeholder="University Name" required>
+          </div>
+
+          <div class="form-step" data-step="3">
+            <h2>Work Experience</h2>
+            <input type="text" placeholder="Company Name" required>
+            <input type="text" placeholder="Job Title" required>
+            <input type="number" placeholder="Years of Experience" required>
+          </div>
+
+          <div class="form-step" data-step="4">
+            <h2>Upload User Photo</h2>
+            <input type="file" required>
+          </div>
+
+          <div class="buttons">
+            <button type="button" id="prevBtn">Previous</button>
+            <button type="button" id="nextBtn">Next Step</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer">
+    <p>&copy; 2024 Afrieta Pty Ltd. All rights reserved.</p>
+    <div class="text-two">
+      <a href="tel:+27168800300" class="underline">+(27) 16 880 0300</a>
+    </div>
+  </footer>
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

@@ -352,3 +352,50 @@ window.onclick = function (event) {
     closeModal();
   }
 };
+
+// Multi Step Form
+
+let currentStep = 1;
+const totalSteps = document.querySelectorAll(".form-step").length;
+
+const stepNumberEl = document.getElementById("step-number");
+const steps = document.querySelectorAll(".step");
+const formSteps = document.querySelectorAll(".form-step");
+
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+function showStep(step) {
+  formSteps.forEach((formStep, index) => {
+    formStep.classList.toggle("active", index + 1 === step);
+  });
+
+  steps.forEach((stepEl, index) => {
+    stepEl.classList.toggle("active", index + 1 === step);
+  });
+
+  stepNumberEl.textContent = `${step} of ${totalSteps}`;
+
+  prevBtn.style.display = step === 1 ? "none" : "inline-block";
+  nextBtn.textContent = step === totalSteps ? "Submit" : "Next Step";
+}
+
+nextBtn.addEventListener("click", function () {
+  if (currentStep
+
+    <
+    totalSteps) {
+    currentStep++;
+    showStep(currentStep);
+  } else {
+    alert("Form submitted successfully!");
+  }
+});
+prevBtn.addEventListener("click", function () {
+  if (currentStep > 1) {
+    currentStep--;
+    showStep(currentStep);
+  }
+});
+
+showStep(currentStep);

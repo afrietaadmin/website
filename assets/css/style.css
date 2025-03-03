@@ -1607,8 +1607,6 @@ ul {
 
 .flex {
   display: flex;
-  /* gap: 20px; */
-  align-items: center;
 }
 .sidebar {
   width: 35%;

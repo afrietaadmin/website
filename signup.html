@@ -98,61 +98,312 @@
     </div>
   </header>
 
-  <main class="container">
-    <div class="flex" >
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <h4>Step <span id="step-number">1 of 4</span> </h4>
-        <div class="steps">
-          <div class="step active" data-step="1">
-            <span>1</span> Personal Information
+  <main id="signup">
+    <div class="container">
+      <h1>Agreement between Afrieta Pty Ltd and Client</h1>
+
+      <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <h4>Step <span id="step-number">1 of 4</span> </h4>
+          <div class="steps">
+            <div class="step active" data-step="1">
+              <span>1</span> Personal Information
+            </div>
+            <div class="step" data-step="2">
+              <span>2</span> Package Information
+            </div>
+            <div class="step" data-step="3">
+              <span>3</span> Terms &amp; Conditions
+            </div>
+            <div class="step" data-step="4">
+              <span>4</span> Important Notice
+            </div>
           </div>
-          <div class="step" data-step="2">
-            <span>2</span> Education
-          </div>
-          <div class="step" data-step="3">
-            <span>3</span> Work Experience
-          </div>
-          <div class="step" data-step="4">
-            <span>4</span> User Photo
-          </div>
+
         </div>
 
-      </div>
+        <!-- Form Section -->
+        <div class="form-container">
+          <form id="multiStepForm">
+            <div class="form-step active" data-step="1">
+              <label>Choose your location</label>
+              <select name="location" id="locationSelect" required>
+                <option value="">Select Location</option>
+                <option value="Milpark Mews">Milpark Mews</option>
+                <option value="Roshnee / Rustervaal / Meyerton">Roshnee / Rustervaal / Meyerton</option>
+                <option value="Fibre">Fibre</option>
+              </select>
 
-      <!-- Form Section -->
-      <div class="form-container">
-        <form id="multiStepForm">
-          <div class="form-step active" data-step="1">
-            <h2>Your Personal Information</h2>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="E-mail Address" required>
-            <input type="tel" placeholder="Phone Number" required>
-          </div>
+              <label>Type of Application <span class="required">*</span></label>
+              <select name="application_type" id="applicationType" required>
+                <option value="Individual">Individual</option>
+                <option value="Company">Company</option>
+              </select>
+              <p class="info-text">Select whether you want the invoice to be in your Individual name or Company Name.</p>
 
-          <div class="form-step" data-step="2">
-            <h2>Education</h2>
-            <input type="text" placeholder="Highest Qualification" required>
-            <input type="text" placeholder="University Name" required>
-          </div>
+              <!-- Individual Application Fields -->
+              <div id="individualFields">
+                <h4>Individual Application</h4>
+                <label>Email <span class="required">*</span></label>
+                <input type="email" name="email" placeholder="A Valid Email Address" required>
 
-          <div class="form-step" data-step="3">
-            <h2>Work Experience</h2>
-            <input type="text" placeholder="Company Name" required>
-            <input type="text" placeholder="Job Title" required>
-            <input type="number" placeholder="Years of Experience" required>
-          </div>
+                <label>Name <span class="required">*</span></label>
+                <div class="name-group">
+                  <input type="text" name="title" placeholder="Title">
+                  <input type="text" name="first_name" placeholder="First" required>
+                  <input type="text" name="last_name" placeholder="Last" required>
+                </div>
 
-          <div class="form-step" data-step="4">
-            <h2>Upload User Photo</h2>
-            <input type="file" required>
-          </div>
+                <label>Apartment/Unit Number <span class="required">*</span></label>
+                <input type="text" name="apartment_number" placeholder="Apartment or UNIT number" required>
 
-          <div class="buttons">
-            <button type="button" id="prevBtn">Previous</button>
-            <button type="button" id="nextBtn">Next Step</button>
-          </div>
-        </form>
+                <label>Address <span class="required">*</span></label>
+                <input type="text" name="address_line1" placeholder="Address Line 1" required>
+                <div class="address-group">
+                  <input type="text" name="city" placeholder="City" required>
+                  <input type="text" name="state" placeholder="State/Province" required>
+                  <input type="text" name="zip" placeholder="Postal Code" required>
+                </div>
+
+                <label>Phone <span class="required">*</span></label>
+                <input type="tel" name="phone" placeholder="+27 83 123 4567" required>
+
+                <label>Citizenship/Nationality <span class="required">*</span></label>
+                <input type="text" name="citizenship" placeholder="Nationality" required>
+
+                <label>Identity Number/Passport Number <span class="required">*</span></label>
+                <input type="text" name="id_passport" placeholder="13 Digit SA ID or Passport Number" required>
+
+                <label>Date of Birth</label>
+                <input type="date" name="dob">
+              </div>
+
+              <!-- Company Application Fields -->
+              <div id="companyFields" style="display: none;">
+                <h4>Company/Entity</h4>
+                <label>Company Name <span class="required">*</span></label>
+                <input type="text" name="company_name" placeholder="Company Name" required>
+
+                <label>Registration Number</label>
+                <input type="text" name="registration_number" placeholder="If a registered entity">
+
+                <label>Address <span class="required">*</span></label>
+                <input type="text" name="company_address1" placeholder="Address Line 1" required>
+                <div class="address-group">
+                  <input type="text" name="company_city" placeholder="City" required>
+                  <input type="text" name="company_state" placeholder="State/Province" required>
+                  <input type="text" name="company_zip" placeholder="Postal Code" required>
+                </div>
+
+                <label>VAT Number</label>
+                <input type="text" name="vat_number" placeholder="If registered">
+
+                <label>Phone <span class="required">*</span></label>
+                <input type="tel" name="company_phone" placeholder="+27 83 123 4567" required>
+
+                <label>Email <span class="required">*</span></label>
+                <input type="email" name="company_email" placeholder="Email Address" required>
+
+                <label>Name of Main Contact <span class="required">*</span></label>
+                <div class="name-group">
+                  <input type="text" name="contact_first" placeholder="First" required>
+                  <input type="text" name="contact_last" placeholder="Last" required>
+                </div>
+              </div>
+            </div>
+
+             <div class="form-step" data-step="2">
+               <!-- Agreement Type 1 -->
+               <div id="agreementType1" class="agreement-type">
+                 <label>Term <span class="required">*</span></label>
+                 <select name="term">
+                   <option value="6 Months">6 Months</option>
+                 </select>
+
+                 <label>Package Option <span class="required">*</span></label>
+                 <select name="package_option">
+                   <option value="30Mbs">30Mbs (R489 per Month)</option>
+                 </select>
+
+                 <label>WiFi Name (SSID) <span class="required">*</span></label>
+                 <input type="text" name="wifi_name" placeholder="Example: notyourwifi" required>
+
+                 <label>New WiFi Password <span class="required">*</span></label>
+                 <input type="password" name="wifi_password" placeholder="Between 8 to 16 characters" required>
+
+                 <!-- Are You Renting? Section -->
+                 <label>Are you renting?</label>
+                 <div class="radio-group">
+                   <input type="radio" name="renting" value="Yes" id="rentYes">
+                   <label for="rentYes">Yes</label>
+                   <input type="radio" name="renting" value="No" id="rentNo" checked>
+                   <label for="rentNo">No</label>
+                 </div>
+
+                 <!-- Landlord Details (Hidden by Default) -->
+                 <div id="landlordFields">
+                   <label>Agent/Landlord Name <span class="required">*</span></label>
+                   <div class="name-group">
+                     <input type="text" name="landlord_first_name" placeholder="First">
+                     <input type="text" name="landlord_last_name" placeholder="Last">
+                   </div>
+
+                   <label>Agent/Landlord Email <span class="required">*</span></label>
+                   <input type="email" name="landlord_email" placeholder="Email">
+
+                   <label>Agent/Landlord Phone Number <span class="required">*</span></label>
+                   <input type="tel" name="landlord_phone" placeholder="Phone (International)">
+                 </div>
+               </div>
+
+               <!-- Agreement Type 2 -->
+               <div id="agreementType2" class="agreement-type">
+                 <label>Select Option <span class="required">*</span></label>
+                 <select name="select_option">
+                   <option value="12 Month Contract">12 Month Contract</option>
+                 </select>
+
+                 <label>Package Choice <span class="required">*</span></label>
+                 <select name="package_choice">
+                   <option value="25Mbs">25Mbs (R580 per Month)</option>
+                 </select>
+
+                   <!-- Confirmation Fields (NEW) -->
+                   <label>Please Confirm - MUST be paid for BEFORE installation. <span class="required">*</span></label>
+                   <select name="payment_confirmation_1" required>
+                     <option value="">Choice (Drop Down)</option>
+                     <option value="Yes">Yes</option>
+                     <option value="No">No</option>
+                   </select>
+
+                   <label>Please Confirm - MUST be paid for BEFORE installation. <span class="required">*</span></label>
+                   <select name="payment_confirmation_2" required>
+                     <option value="">Choice (Drop Down)</option>
+                     <option value="Yes">Yes</option>
+                     <option value="No">No</option>
+                   </select>
+
+                 <label>WiFi Name (SSID) <span class="required">*</span></label>
+                 <input type="text" name="wifi_name_2" placeholder="Example: notyourwifi" required>
+
+                 <label>Your Password <span class="required">*</span></label>
+                 <input type="password" name="wifi_password_2" placeholder="Between 8 to 16 characters" required>
+               </div>
+
+               <!-- Agreement Type 3 -->
+               <div id="agreementType3" class="agreement-type">
+                 <label>Subscription Choice <span class="required">*</span></label>
+                 <select name="subscription_choice">
+                   <option value="100/100Mbs">100/100Mbs (R990 per Month)</option>
+                 </select>
+
+                 <label>Install Price <span class="required">*</span></label>
+                 <input type="text" name="install_price" value="FREE INSTALLATION PROMO (WORTH R2399)" readonly>
+
+                 <label>WiFi Name <span class="required">*</span></label>
+                 <input type="text" name="wifi_name_3" placeholder="Example: mywifi" required>
+
+                 <label>Password for WiFi <span class="required">*</span></label>
+                 <input type="password" name="wifi_password_3" placeholder="Between 8 to 16 characters" required>
+               </div>
+             </div>
+
+         <!-- Step 3: Terms & Conditions -->
+         <div class="form-step" data-step="3">
+           <!-- Terms & Conditions Type 1 (Milpark Mews) -->
+           <div id="termsType1" class="terms-section">
+             <h4>You Acknowledge:</h4>
+             <label><input type="checkbox" name="terms1_A"> A) Payments and usage of services: SERVICES ARE PAID IN ADVANCE (PREPAID).</label>
+             <label><input type="checkbox" name="terms1_B"> B) Credit Vetting: You agree that we may contact a credit agency.</label>
+             <label><input type="checkbox" name="terms1_C"> C) RICA Compliance: You agree to email ID/Passport copy.</label>
+             <label><input type="checkbox" name="terms1_D"> D) Acceptable usage policy.</label>
+             <label><input type="checkbox" name="terms1_E"> E) Further terms and conditions.</label>
+             <label><input type="checkbox" name="terms1_F"> F) Support: Our support hours are 9am to 5pm.</label>
+             <label><input type="checkbox" name="terms1_G"> G) Permission to contact you.</label>
+             <label><input type="checkbox" name="terms1_H"> H) Refundable deposit return policy.</label>
+           </div>
+
+           <!-- Terms & Conditions Type 2 (Roshnee / Rustervaal / Meyerton) -->
+           <div id="termsType2" class="terms-section">
+             <h4>You Acknowledge:</h4>
+             <label><input type="checkbox" name="terms2_A"> A) Payments and usage of services: SERVICES ARE PAID IN ADVANCE (PREPAID).</label>
+             <label><input type="checkbox" name="terms2_B"> B) Minimum Term: I contract myself to a 12-month term.</label>
+             <label><input type="checkbox" name="terms2_C"> C) Equipment Ownership: Router, Radio remain our property.</label>
+             <label><input type="checkbox" name="terms2_D"> D) Credit Vetting: You agree that we may contact a credit agency.</label>
+             <label><input type="checkbox" name="terms2_E"> E) RICA Compliance: You agree to email ID/Passport copy.</label>
+             <label><input type="checkbox" name="terms2_F"> F) Acceptable usage policy.</label>
+             <label><input type="checkbox" name="terms2_G"> G) Further terms and conditions.</label>
+             <label><input type="checkbox" name="terms2_H"> H) Support: Our support hours are 9am to 5pm.</label>
+             <label><input type="checkbox" name="terms2_I"> I) Permission to contact you.</label>
+             <label><input type="checkbox" name="terms2_J"> J) Sharing of service outside of household not permitted.</label>
+           </div>
+
+           <!-- Terms & Conditions Type 3 (Fibre) -->
+           <div id="termsType3" class="terms-section">
+             <h4>You Acknowledge:</h4>
+             <label><input type="checkbox" name="terms3_A"> A) Payments and usage of services: SERVICES ARE PAID IN ADVANCE (PREPAID).</label>
+             <label><input type="checkbox" name="terms3_B"> B) We provide a router while subscribed.</label>
+             <label><input type="checkbox" name="terms3_C"> C) Equipment Ownership: Router remains the property of Afrieta.</label>
+             <label><input type="checkbox" name="terms3_D"> D) Installation and Access.</label>
+             <label><input type="checkbox" name="terms3_E"> E) Credit Vetting: You agree that we may contact a credit agency.</label>
+             <label><input type="checkbox" name="terms3_F"> F) RICA Compliance: You agree to email ID/Passport copy.</label>
+             <label><input type="checkbox" name="terms3_G"> G) Acceptable usage policy.</label>
+             <label><input type="checkbox" name="terms3_H"> H) Further terms and conditions.</label>
+             <label><input type="checkbox" name="terms3_I"> I) Support: Our support hours are 9am to 5pm.</label>
+             <label><input type="checkbox" name="terms3_J"> J) Permission to contact you.</label>
+           </div>
+
+           <!-- Signature Section -->
+           <p>We do not have a fair use policy (FUP), however, an acceptable usage policy (AUP) is required by law. Our AUP can be found <a href="#">here</a>.</p>
+
+           <label>Signature <span class="required">*</span></label>
+           <canvas id="signature-pad" class="signature-pad"></canvas>
+           <button type="button" id="clear-signature">Clear Signature</button>
+
+           <p>By signing, you attest that you are over 21 years of age and legally resident in South Africa. You may NOT fill in this form on behalf of someone else.</p>
+
+           <div class="flex-group">
+             <div>
+               <label>Date <span class="required">*</span></label>
+               <input type="date" id="signedDate" name="signedDate" readonly>
+             </div>
+             <div>
+               <label>Place <span class="required">*</span></label>
+               <input type="text" id="signedPlace" name="signedPlace" readonly>
+             </div>
+           </div>
+
+           <label>Promo Code/Name of Referrer</label>
+           <input type="text" name="promoCode" placeholder="Enter promo code or referrer name">
+         </div>
+           <!-- Step 4: Final Confirmation & Contact Info -->
+           <div class="form-step" data-step="4">
+             <h3>JUST ANOTHER REMINDER !!!</h3>
+             <label>
+               <input type="checkbox" name="final_reminder">
+               SERVICES ARE PAID IN ADVANCE (PREPAID), payment must be received by 2nd of each month to prevent suspension.
+             </label>
+
+             <h4>What happens next?</h4>
+             <p>If your application is successful, you will be sent a quotation for the installation.</p>
+             <p>Upon receipt of payment into our bank account, we will call you to arrange installation. This depends on stock levels and the amount of installs we have. Generally, this is within an average of <b>3 BUSINESS DAYS !!!</b></p>
+             <p>YOU WILL RECEIVE AN INVOICE THE DAY AFTER INSTALLATION WHICH MUST BE PAID WITHIN 3 DAYS !!!</p>
+
+             <h4>You can contact our team through the following channels:</h4>
+             <p> <a href="https://wa.link/a7sfoi" target="_blank">https://wa.link/a7sfoi</a> </p>
+             <p> <a href="mailto:admin@afrieta.com">admin@afrieta.com</a></p>
+             <p> Call us on <b>016 880-0301</b></p>
+
+             <h2>Thank you for your business !!!</h2>
+           </div>
+
+            <div class="buttons">
+              <button type="button" id="prevBtn">Previous</button>
+              <button type="button" id="nextBtn">Next Step</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </main>
@@ -170,6 +421,7 @@
   <!-- 
     - custom js link
   -->
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
   <script src="./assets/js/script.js"></script>
 </body>
 

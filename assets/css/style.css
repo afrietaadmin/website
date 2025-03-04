@@ -1591,8 +1591,18 @@ ul {
 
 /* Sign Up Page */
 
-main.container {
-  margin: 221.5px auto;
+#signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--charcoal)
+}
+
+#signup h1 {
+  text-align: center;
+  margin: 120px 0 10px;
+  font-size: 28px;
 }
 
 .flex {
@@ -1600,9 +1610,10 @@ main.container {
 }
 .sidebar {
   width: 35%;
-  background-color: #5623a5;
+  background-color: #ee06ee;
   color: white;
   padding: 30px;
+  height: fit-content;
 }
 
 .sidebar h2 {
@@ -1640,15 +1651,6 @@ main.container {
   width: 65%;
   padding: 30px;
 }
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
 /* Buttons */
 .buttons {
   display: flex;
@@ -1855,4 +1857,142 @@ input {
 
 .p-20 {
   padding: 20px !important;
+}
+
+.required {
+  color: red;
+  display: inline;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.name-group {
+  display: flex;
+  gap: 10px;
+}
+
+.address-group {
+  display: flex;
+  gap: 10px;
+}
+
+.info-text {
+  font-size: 12px;
+  color: gray;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.radio-group input {
+  width: auto;
+  margin: 0;
+}
+/* Style for checkbox labels */
+label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 8px 0;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.terms-section , .agreement-type{
+  display: none;
+}
+
+/* Hide default checkbox */
+ input[type="checkbox"] {
+  appearance: none;
+  width: 6px;
+  height: 6px;
+  border: 1px solid #ee06ee;
+  /* Purple border */
+  border-radius: 4px;
+  margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.3s;
+}
+
+/* Custom checkbox checked state */
+ input[type="checkbox"]:checked {
+  background-color: #ee06ee;
+  border-color: #ee06ee;
+}
+
+/* Add checkmark */
+ input[type="checkbox"]:checked::after {
+  content: "✔";
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 1px;
+  left: 3px;
+}
+
+/* Signature Pad */
+.signature-pad {
+  width: 100%;
+  height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  cursor: crosshair;
+  margin-bottom: 10px;
+}
+
+/* Signature Clear Button */
+#clear-signature {
+  display: block;
+  background-color: #5623a5;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+#clear-signature:hover {
+  background-color: #421b7b;
+}
+
+/* Flexbox for Date & Place */
+.flex-group {
+  display: flex;
+  gap: 10px;
+}
+
+.flex-group div {
+  flex: 1;
+}
+
+/* Readonly Fields */
+input[readonly] {
+  background-color: #f3f3f3;
+}
+
+/* Error styling */
+.error {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+}
+
+.error::placeholder {
+  color: red;
+  font-weight: bold;
 }

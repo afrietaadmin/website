@@ -380,15 +380,33 @@ function showStep(step) {
   nextBtn.textContent = step === totalSteps ? "Submit" : "Next Step";
 }
 
-nextBtn.addEventListener("click", function () {
-  if (currentStep
+function validateStep() {
+  let isValid = true;
+  const currentStepFields = formSteps[currentStep - 1].querySelectorAll("[required]");
 
-    <
-    totalSteps) {
-    currentStep++;
-    showStep(currentStep);
-  } else {
-    alert("Form submitted successfully!");
+  currentStepFields.forEach(field => {
+    if (field.offsetParent !== null) { // Only validate visible fields
+      if (!field.value.trim()) {
+        isValid = false;
+        field.classList.add("error");
+      } else {
+        field.classList.remove("error");
+      }
+    }
+  });
+
+  return isValid;
+}
+
+
+nextBtn.addEventListener("click", function () {
+  if (validateStep()) {
+    if (currentStep < totalSteps) {
+      currentStep++;
+      showStep(currentStep);
+    } else {
+      alert("Form submitted successfully!");
+    }
   }
 });
 prevBtn.addEventListener("click", function () {
@@ -399,3 +417,52 @@ prevBtn.addEventListener("click", function () {
 });
 
 showStep(currentStep);
+
+const applicationType = document.getElementById("applicationType");
+const individualFields = document.getElementById("individualFields");
+const companyFields = document.getElementById("companyFields");
+
+applicationType.addEventListener("change", function () {
+  if (this.value === "Company") {
+    individualFields.style.display = "none";
+    companyFields.style.display = "block";
+  } else {
+    individualFields.style.display = "block";
+    companyFields.style.display = "none";
+  }
+});
+
+const locationSelect = document.getElementById("locationSelect");
+const agreementType1 = document.getElementById("agreementType1");
+const agreementType2 = document.getElementById("agreementType2");
+const agreementType3 = document.getElementById("agreementType3");
+
+locationSelect.addEventListener("change", function () {
+  const selectedLocation = locationSelect.value;
+  agreementType1.style.display = selectedLocation === "Milpark Mews" ? "block" : "none";
+  agreementType2.style.display = selectedLocation === "Roshnee / Rustervaal / Meyerton" ? "block" : "none";
+  agreementType3.style.display = selectedLocation === "Fibre" ? "block" : "none";
+  termsType1.style.display = selectedLocation === "Milpark Mews" ? "block" : "none";
+  termsType2.style.display = selectedLocation === "Roshnee / Rustervaal / Meyerton" ? "block" : "none";
+  termsType3.style.display = selectedLocation === "Fibre" ? "block" : "none";
+});
+
+const signedDate = document.getElementById("signedDate");
+const signedPlace = document.getElementById("signedPlace");
+
+// Signature Pad Initialization
+const canvas = document.getElementById("signature-pad");
+const signaturePad = new SignaturePad(canvas);
+const clearButton = document.getElementById("clear-signature");
+
+clearButton.addEventListener("click", () => {
+  signaturePad.clear();
+});
+
+// Prefill Signed Date with the Current Date
+const today = new Date().toISOString().split("T")[0];
+signedDate.value = today;
+
+// Prefill Signed Place with Province from Step 1
+const provinceField = document.querySelector("input[name='state']"); // Assuming "state" is the name of the province field in Step 1
+signedPlace.value = provinceField ? provinceField.value : "";

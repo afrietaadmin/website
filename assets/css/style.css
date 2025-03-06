@@ -1595,18 +1595,20 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 83.6vh;
   color: var(--charcoal)
 }
 
 #signup h1 {
   text-align: center;
-  margin: 120px 0 10px;
+  margin: 50px 0 20px;
   font-size: 28px;
 }
 
 .flex {
   display: flex;
+  /* gap: 20px; */
+  align-items: center;
 }
 .sidebar {
   width: 35%;
@@ -1646,18 +1648,25 @@ ul {
   border-left: 4px solid #ffffff;
 }
 
+form {
+  width: 100%;
+}
+
 /* Form Section */
 .form-container {
-  width: 65%;
-  padding: 30px;
+  padding: 0 30px;
+  height: 600px;
+  overflow: auto;
 }
 /* Buttons */
 .buttons {
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 
-.form-container button {
+form button {
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
@@ -1667,7 +1676,7 @@ ul {
   cursor: pointer;
 }
 
-.form-container button:hover {
+form button:hover {
   background-color: #d406d4;
 }
 
@@ -1892,6 +1901,7 @@ select {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-top: -10px;
 }
 
 .radio-group input {
@@ -1995,4 +2005,42 @@ input[readonly] {
 .error::placeholder {
   color: red;
   font-weight: bold;
+}
+
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  /* Makes it almost invisible */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  /* Soft box shadow effect */
+  border-radius: 10px;
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  /* Subtle color (semi-transparent) */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.1);
+  /* Slightly darker when hovered */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+.mt {
+  margin-top: 5px;
+}
+.hidden {
+  display: none;
 }

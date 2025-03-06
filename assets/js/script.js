@@ -466,3 +466,19 @@ signedDate.value = today;
 // Prefill Signed Place with Province from Step 1
 const provinceField = document.querySelector("input[name='state']"); // Assuming "state" is the name of the province field in Step 1
 signedPlace.value = provinceField ? provinceField.value : "";
+
+const companyYes = document.getElementById("companyYes");
+const companyNo = document.getElementById("companyNo");
+const companyDetails = document.getElementById("companyDetails");
+
+function toggleCompanyFields() {
+  if (companyYes.checked) {
+    companyDetails.classList.remove("hidden");
+  } else {
+    companyDetails.classList.add("hidden");
+  }
+}
+
+// Listen for changes on radio buttons
+companyYes.addEventListener("change", toggleCompanyFields);
+companyNo.addEventListener("change", toggleCompanyFields);

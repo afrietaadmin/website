@@ -2040,3 +2040,15 @@ input[readonly] {
 .hidden {
   display: none;
 }
+
+form ul {
+  padding-left: 40px;
+}
+
+form ul li{
+  list-style: disc;
+}
+
+form ul li a {
+  text-decoration: underline;
+}

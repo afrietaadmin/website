@@ -127,20 +127,27 @@
         <form id="multiStepForm">
           <div class="form-container">
             <div class="form-step active" data-step="1">
-              <label>Choose your location</label>
-              <select name="location" id="locationSelect" required>
-                <option value="">Select Location</option>
-                <option value="Milpark Mews">Milpark Mews</option>
-                <option value="Roshnee / Rustervaal / Meyerton">Roshnee / Rustervaal / Meyerton</option>
-                <option value="Fibre">Fibre</option>
-              </select>
-
-              <label>Type of Application <span class="required">*</span></label>
-              <select name="application_type" id="applicationType" required>
-                <option value="Individual">Individual</option>
-                <option value="Company">Company</option>
-              </select>
-              <p class="info-text">Select whether you want the invoice to be in your Individual name or Company Name.</p>
+              <div class="flex-group">
+<div>
+  
+  <label>Choose your location</label>
+  <select name="location" id="locationSelect" required>
+    <option value="">Select Location</option>
+    <option value="Milpark Mews">Milpark Mews</option>
+    <option value="Roshnee / Rustervaal / Meyerton">Roshnee / Rustervaal / Meyerton</option>
+    <option value="Fibre">Fibre</option>
+  </select>
+</div>
+  
+             <div>
+                 <label>Type of Application <span class="required">*</span></label>
+                <select name="application_type" id="applicationType" required>
+                  <option value="Individual">Individual</option>
+                  <option value="Company">Company</option>
+                </select>
+             </div>
+              </div>
+              <!-- <p class="info-text">Select whether you want the invoice to be in your Individual name or Company Name.</p> -->
 
               <!-- Individual Application Fields -->
               <div id="individualFields" class="mt">

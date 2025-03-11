@@ -400,14 +400,14 @@ function validateStep() {
 
 
 nextBtn.addEventListener("click", function () {
-  if (validateStep()) {
-    if (currentStep < totalSteps) {
-      currentStep++;
-      showStep(currentStep);
-    } else {
-      alert("Form submitted successfully!");
-    }
+  // if (validateStep()) {
+  if (currentStep < totalSteps) {
+    currentStep++;
+    showStep(currentStep);
+  } else {
+    alert("Form submitted successfully!");
   }
+  // }
 });
 prevBtn.addEventListener("click", function () {
   if (currentStep > 1) {

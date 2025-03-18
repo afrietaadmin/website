@@ -464,8 +464,11 @@ const today = new Date().toISOString().split("T")[0];
 signedDate.value = today;
 
 // Prefill Signed Place with Province from Step 1
-const provinceField = document.querySelector("input[name='state']"); // Assuming "state" is the name of the province field in Step 1
-signedPlace.value = provinceField ? provinceField.value : "";
+const city = document.querySelector("input[name='city']");
+const state = document.querySelector("input[name='state']");
+const provinceField = city.value + " " + state.value;
+
+signedPlace.value = provinceField ? provinceField : "";
 
 const companyYes = document.getElementById("companyYes");
 const companyNo = document.getElementById("companyNo");
@@ -482,3 +485,19 @@ function toggleCompanyFields() {
 // Listen for changes on radio buttons
 companyYes.addEventListener("change", toggleCompanyFields);
 companyNo.addEventListener("change", toggleCompanyFields);
+
+const rentingYes = document.getElementById("rentYes");
+const rentingNo = document.getElementById("rentNo");
+const landlordDetails = document.getElementById("landlordFields");
+
+function toggleRentingFields() {
+  if (rentingYes.checked) {
+    landlordDetails.classList.remove("hidden");
+  } else {
+    landlordDetails.classList.add("hidden");
+  }
+}
+
+// Listen for changes on radio buttons
+rentingYes.addEventListener("change", toggleRentingFields);
+rentingNo.addEventListener("change", toggleRentingFields);

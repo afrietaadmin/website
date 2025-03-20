@@ -400,6 +400,11 @@ function validateStep() {
 
 
 nextBtn.addEventListener("click", function () {
+  const city = document.querySelector("input[name='city']");
+  const state = document.querySelector("input[name='state']");
+  const signedPlace = document.querySelector("input[name='signedPlace']");
+  const provinceField = (city.value + " " + state.value).trim();
+  signedPlace.value = provinceField ? provinceField : "";
   // if (validateStep()) {
   if (currentStep < totalSteps) {
     currentStep++;
@@ -448,7 +453,6 @@ locationSelect.addEventListener("change", function () {
 });
 
 const signedDate = document.getElementById("signedDate");
-const signedPlace = document.getElementById("signedPlace");
 
 // Signature Pad Initialization
 const canvas = document.getElementById("signature-pad");
@@ -462,13 +466,6 @@ clearButton.addEventListener("click", () => {
 // Prefill Signed Date with the Current Date
 const today = new Date().toISOString().split("T")[0];
 signedDate.value = today;
-
-// Prefill Signed Place with Province from Step 1
-const city = document.querySelector("input[name='city']");
-const state = document.querySelector("input[name='state']");
-const provinceField = city.value + " " + state.value;
-
-signedPlace.value = provinceField ? provinceField : "";
 
 const companyYes = document.getElementById("companyYes");
 const companyNo = document.getElementById("companyNo");

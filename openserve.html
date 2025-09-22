@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Afrieta Community Internet</title>
+  <meta name="title" content="Afrieta" />
+  <meta name="description" content="AFRIETA Community Internet is a leading internet service provider that offers high-speed internet connectivity to residential and business customers." />
+
+  <link rel="shortcut icon" href="./icon.png" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+
+  <link rel="preload" as="image" href="./assets/images/hero-bg.jpg" />
+  <link rel="preload" as="image" href="./assets/images/hero-slide-1.jpg" />
+  <link rel="preload" as="image" href="./assets/images/hero-slide-2.jpg" />
+  <link rel="preload" as="image" href="./assets/images/hero-slide-3.jpg" />
+
+  <style>
+    main {
+      padding: 50px 0;
+    }
+
+    .header {
+      background-color: #262626;
+    }
+
+    body {
+      color: #424141;
+    }
+
+    .subtext {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px
+    }
+
+    .chip {
+      display: inline-block;
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(236, 5, 236, 0.5);
+      color: #333;
+    }
+
+    .speed {
+      margin-top: 8px;
+      font-size: 20px;
+      font-weight: 800
+    }
+
+    .tier {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .price {
+      margin-top: 13px;
+      font-size: 28px;
+      font-weight: 900
+    }
+
+    .per {
+      color: var(--muted);
+      font-size: 14px;
+      margin-left: 6px;
+      font-weight: 500
+    }
+
+    .hidden {
+      display: none !important
+    }
+
+    .embed-wrap {
+      margin-top: 20px;
+      background: #101a26;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 14px;
+      padding: 16px
+    }
+
+    iframe {
+      width: 100%;
+      height: 760px;
+      border: 0;
+      border-radius: 10px;
+      background: #fff
+    }
+
+    /* ===== Afrieta modal (namespaced) ===== */
+    :root {
+      --af-bg: #0b0f14;
+      --af-panel: #0f1621;
+      --af-border: rgba(255, 255, 255, .08);
+      --af-text: #f5f7fb;
+      --af-muted: #9fb0c6;
+      --af-accent: #ee06ee;
+      --af-shadow: 0 18px 60px rgba(0, 0, 0, .45);
+    }
+
+    .af-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 12, 18, .65);
+      backdrop-filter: blur(2px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 10000;
+    }
+
+    .af-modal {
+      width: min(640px, 100%);
+      background: radial-gradient(1200px 600px at 70% -10%, #262626 0%, var(--af-panel) 55%);
+      border: 1px solid var(--af-border);
+      border-radius: 18px;
+      color: var(--af-text);
+      box-shadow: var(--af-shadow);
+      overflow: hidden;
+      transform: translateY(10px) scale(.98);
+      opacity: 0;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+
+    .af-backdrop[style*="display: flex"] .af-modal {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .af-modal__header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--af-border);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0));
+    }
+
+    .af-modal__title {
+      font-weight: 800;
+      letter-spacing: .2px;
+      font-size: 18px;
+    }
+
+    .af-modal__body {
+      padding: 18px 20px 20px;
+    }
+
+    .af-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 560px) {
+      .af-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .af-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .af-field>label {
+      font-size: 14px;
+      color: var(--af-muted);
+    }
+
+    .af-field>input {
+      background: #0b121b;
+      border: 1px solid var(--af-border);
+      color: var(--af-text);
+      border-radius: 10px;
+      padding: 10px 12px;
+      outline: none;
+    }
+
+    .af-field>input::placeholder {
+      color: #6f8096;
+    }
+
+    .af-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 6px;
+    }
+
+    .af-actions .btn:hover {
+      border: none;
+    }
+
+    .af-actions .btn-primary:hover {
+      color: #fff;
+    }
+
+    .af-field>input:focus {
+      box-shadow: 0 0 0 2px rgba(236, 5, 236, .35);
+      border-color: rgba(236, 5, 236, .55);
+    }
+
+    /* ====== Toasts ====== */
+    #af-toast {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      display: grid;
+      gap: 10px;
+      z-index: 12000;
+    }
+
+    .af-toast {
+      min-width: 260px;
+      max-width: 360px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: #0b0f14;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .af-toast.info {
+      background: #ffe680;
+    }
+
+    .af-toast.success {
+      background: #a9f0d6;
+    }
+
+    .af-toast.error {
+      background: #ffc2c2;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header" data-header>
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="./assets/images/logo-white.png" width="150" height="80" alt="Adex home" class="logo-light" />
+        <img src="./assets/images/logo.png" width="150" height="80" alt="Adex home" class="logo-dark" />
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <div class="navbar-top">
+          <a href="#" class="logo"><img src="./assets/images/logo-white.png" width="150" height="80" alt="Adex home" /></a>
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+          <li><a href="#" class="navbar-link">Home</a></li>
+          <li><a href="#locations" class="navbar-link">Locations</a></li>
+          <li><a href="#services" class="navbar-link">Services</a></li>
+        </ul>
+
+        <div class="wrapper">
+          <a href="mailto:info@email.com" class="contact-link">admin@afrieta.com</a>
+          <a href="tel:001234567890" class="contact-link">+(27) 16 880 0300</a>
+        </div>
+
+        <ul class="social-list">
+          <a href="http://wa.link/a7sfoi" target="_blank" class="mob-btn">
+            <div class="d-flex">
+              <ion-icon name="logo-whatsapp"></ion-icon>Chat with Us
+            </div>
+          </a>
+        </ul>
+      </nav>
+
+      <a href="http://wa.link/a7sfoi" target="_blank" class="btn btn-primary">
+        <div class="d-flex">
+          <ion-icon name="logo-whatsapp"></ion-icon>Chat with Us
+        </div>
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="mb-3">Afrieta Fibre Packages</h1>
+    <p class="subtext">Say goodbye to buffering. Check coverage in seconds to discover the Afrieta Fibre packages available at this address.</p>
+    <div><button id="openCoverage" class="btn btn-dark">Check coverage</button></div>
+
+    <!-- WebConnect -->
+    <section class="section">
+      <h2>Openserve WebConnect — township areas</h2>
+      <div class="grid" id="grid-webconnect"></div>
+    </section>
+
+    <!-- WebStream -->
+    <section class="section">
+      <h2>Openserve WebStream — suburbs & gated communities</h2>
+      <div class="grid" id="grid-webstream"></div>
+    </section>
+
+    <!-- FibreConnect / Afrieta APL -->
+    <section class="section">
+      <h2>Openserve FibreConnect — gated communities / affluent areas (Afrieta APL)</h2>
+      <div class="grid" id="grid-fibreconnect"></div>
+    </section>
+
+    <!-- Toasts + embedded Cognito -->
+    <div id="af-toast"></div>
+    <div id="embed" class="embed-wrap hidden">
+      <iframe id="cognitoFrame" title="Cognito Form"></iframe>
+    </div>
+  </main>
+
+  <!-- Coverage modal -->
+  <div class="af-backdrop" id="backdrop" aria-hidden="true">
+    <div class="af-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header class="af-modal__header">
+        <div id="modalTitle" class="af-modal__title">Check coverage</div>
+      </header>
+      <div class="af-modal__body">
+        <form id="coverageForm">
+          <div class="af-field">
+            <label for="address1">Street address</label>
+            <input id="address1" name="address1" placeholder="e.g., 12 Example St" required />
+          </div>
+
+          <div class="af-field">
+            <label for="unit">Unit / Complex (optional)</label>
+            <input id="unit" name="unit" placeholder="e.g., Unit 5" />
+          </div>
+
+          <div class="af-grid-2">
+            <div class="af-field">
+              <label for="suburb">Suburb</label>
+              <input id="suburb" name="suburb" placeholder="e.g., Rosebank" required />
+            </div>
+            <div class="af-field">
+              <label for="city">City</label>
+              <input id="city" name="city" placeholder="e.g., Johannesburg" required />
+            </div>
+          </div>
+
+          <div class="af-grid-2">
+            <div class="af-field">
+              <label for="province">Province</label>
+              <input id="province" name="province" placeholder="e.g., Gauteng" required />
+            </div>
+            <div class="af-field">
+              <label for="postal">Postal code</label>
+              <input id="postal" name="postal" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="e.g., 2196" required />
+            </div>
+          </div>
+
+          <div class="af-actions">
+            <button type="button" class="btn btn-dark" id="cancelBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Check availability</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Afrieta Pty Ltd. All rights reserved.</p>
+    <div class="text-two"><a href="tel:+27168800300" class="underline">+(27) 16 880 0300</a></div>
+  </footer>
+
+  <script>
+    /* ---------- Afrieta prices ---------- */
+    const WEB_CONNECT = [{
+        speed: "10 / 10 Mbps",
+        price: 379,
+        tag: "Popular",
+        cat: "WebConnect"
+      },
+      {
+        speed: "20 / 10 Mbps",
+        price: 449,
+        cat: "WebConnect"
+      },
+      {
+        speed: "40 / 20 Mbps",
+        price: 509,
+        cat: "WebConnect"
+      }
+    ];
+    const WEB_STREAM = [{
+        speed: "25 / 25 Mbps",
+        price: 639,
+        cat: "WebStream"
+      },
+      {
+        speed: "50 / 25 Mbps",
+        price: 799,
+        tag: "Popular",
+        cat: "WebStream"
+      },
+      {
+        speed: "100 / 50 Mbps",
+        price: 959,
+        cat: "WebStream"
+      },
+      {
+        speed: "200 / 100 Mbps",
+        price: 1099,
+        cat: "WebStream"
+      },
+      {
+        speed: "300 / 150 Mbps",
+        price: 1209,
+        cat: "WebStream"
+      },
+      {
+        speed: "500 / 250 Mbps",
+        price: 1309,
+        cat: "WebStream"
+      }
+    ];
+    const FIBRE_CONNECT = [{
+        speed: "50 / 50 Mbps",
+        price: 750,
+        cat: "FibreConnect"
+      },
+      {
+        speed: "100 / 100 Mbps",
+        price: 819,
+        cat: "FibreConnect"
+      },
+      {
+        speed: "300 / 150 Mbps",
+        price: 1045,
+        cat: "FibreConnect"
+      },
+      {
+        speed: "500 / 250 Mbps",
+        price: 1299,
+        tag: "Best value",
+        cat: "FibreConnect"
+      },
+      {
+        speed: "500 / 250 Mbps (Premium)",
+        price: 1550,
+        cat: "FibreConnect"
+      }
+    ];
+    const ALL_PACKAGES = [...WEB_CONNECT, ...WEB_STREAM, ...FIBRE_CONNECT];
+
+    /* Cognito form URL */
+    const COGNITO_FORM_URL = "https://www.cognitoforms.com/AfrietaAdmin/RegisterForFibre";
+
+    /* ---------- Render package grids ---------- */
+    const toRand = v => "R" + v.toLocaleString("en-ZA");
+
+    function renderSection(list, mountId, label) {
+      const host = document.getElementById(mountId);
+      host.innerHTML = "";
+      list.forEach(p => {
+        const el = document.createElement("article");
+        el.className = "service-card";
+        el.innerHTML = `
+          ${p.tag?`<span class="chip">${p.tag}</span>`:""}
+          <div class="speed">${p.speed}</div>
+          <div class="tier">${label}</div>
+          <div class="price">${toRand(p.price)} <span class="per">per month</span></div>
+        `;
+        host.appendChild(el);
+      });
+    }
+    renderSection(WEB_CONNECT, "grid-webconnect", "WebConnect");
+    renderSection(WEB_STREAM, "grid-webstream", "WebStream");
+    renderSection(FIBRE_CONNECT, "grid-fibreconnect", "FibreConnect");
+
+    /* ---------- Elements ---------- */
+    const openBtn = document.getElementById("openCoverage");
+    const backdrop = document.getElementById("backdrop");
+    const form = document.getElementById("coverageForm");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const embedWrap = document.getElementById("embed");
+    const frame = document.getElementById("cognitoFrame");
+    const submitBtn = document.getElementById("submitBtn");
+
+    /* ---------- Toasts ---------- */
+    function showToast(type, message, ms = 3200) {
+      const host = document.getElementById('af-toast');
+      const el = document.createElement('div');
+      el.className = `af-toast ${type}`;
+      el.textContent = message;
+      host.appendChild(el);
+      setTimeout(() => {
+        el.style.transition = 'opacity .25s ease, transform .25s ease';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(-6px)';
+        setTimeout(() => host.removeChild(el), 260);
+      }, ms);
+    }
+
+    /* ---------- Modal open/close ---------- */
+    function openModal() {
+      backdrop.style.display = "flex";
+      backdrop.removeAttribute("aria-hidden");
+      setTimeout(() => document.getElementById("address1").focus(), 30);
+    }
+
+    function closeModal() {
+      form.reset();
+      backdrop.style.display = "none";
+      backdrop.setAttribute("aria-hidden", "true");
+    }
+    openBtn.addEventListener("click", openModal);
+    cancelBtn.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", e => {
+      if (e.target === backdrop) closeModal();
+    });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeModal();
+    });
+
+    /* ---------- Build Cognito URL with prefill ---------- */
+    function buildCognitoUrl(address) {
+      const params = new URLSearchParams({
+        Address: address.address1 || "",
+        Unit: address.unit || "",
+        Suburb: address.suburb || "",
+        City: address.city || "",
+        Province: address.province || "",
+        PostalCode: address.postal || "",
+        Catalogue: ALL_PACKAGES.map(p => `${p.cat}: ${p.speed} – ${toRand(p.price)}`).join(" | ")
+      });
+      return `${COGNITO_FORM_URL}?${params.toString()}`;
+    }
+
+    /* ---------- Backend coverage call (proxy → Openserve Product Qualification) ---------- */
+    async function checkCoverage(address) {
+      const res = await fetch('/api/openserve/product-qualification', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(address)
+      });
+      if (!res.ok) {
+        const t = await res.text().catch(() => "");
+        throw new Error(t || 'Coverage check failed');
+      }
+      return res.json(); // { available, ftthStatus, products, normalizedAddress }
+    }
+
+    form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          // 1) Trigger native validation bubbles in the modal
+          if (!form.reportValidity()) {
+          // invalid → browser shows which fields need attention
+          return;
+          }
+
+          // 2) Build payload
+          const address = {
+          address1: form.address1.value.trim(),
+          unit: form.unit.value.trim(),
+          suburb: form.suburb.value.trim(),
+          city: form.city.value.trim(),
+          province: form.province.value.trim(),
+          postal: form.postal.value.trim()
+          };
+
+          // 3) Close modal + show toast immediately
+            submitBtn.textContent = 'Checking availability…';
+          openBtn && (openBtn.disabled = true);
+
+          try {
+          const result = await checkCoverage(address);
+
+          if (result.available) {
+          showToast('success', 'Great news! Fibre is available at this address.');
+          submitBtn.textContent = 'Check availability';
+          closeModal();
+          const url = buildCognitoUrl(result.normalizedAddress || address);
+          frame.src = url;
+          embedWrap.classList.remove("hidden");
+          embedWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+          } else {
+          frame.src = "about:blank";
+          embedWrap.classList.add("hidden");
+          showToast('error', 'No Openserve fibre is available at this address.');
+          }
+          } catch (err) {
+          frame.src = "about:blank";
+          embedWrap.classList.add("hidden");
+          submitBtn.textContent = 'Check availability';
+          showToast('error', 'Unable to complete coverage check. Please try again.');
+          console.error(err);
+          } finally {
+          openBtn && (openBtn.disabled = false);
+          }
+    });
+  </script>
+
+  <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

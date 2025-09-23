@@ -272,24 +272,39 @@ const plans = {
     },
   ],
   Fibre: [
+       {
+      name: " 50Mbps/25Mbps Symmetrical Fibre OS",
+      price: "R799",
+      link: "https://fibre.afrieta.com",
+    },
     {
-      name: "Premium OS 50Mbps/50Mbps Symmetrical Fibre",
-      price: "R750",
+      name: "Premium OS 50Mbps/25Mbps Symmetrical Fibre",
+      price: "R819",
+      link: "https://fibre.afrieta.com",
+    },
+        {
+      name: "100Mbps/50Mbps Symmetrical Fibre OS",
+      price: "R919",
       link: "https://fibre.afrieta.com",
     },
     {
       name: "Premium OS 100Mbps/100Mbps Symmetrical Fibre",
-      price: "R990",
+      price: "R1,045",
       link: "https://fibre.afrieta.com",
     },
     {
-      name: "50Mbps/100Mbps Afrieta Fibre OS",
-      price: "R1,099",
+      name: "150Mbps/100Mbps Symmetrical Fibre OS",
+      price: "R1,179",
       link: "https://fibre.afrieta.com",
     },
     {
-      name: "Premium OS 300Mbps/150Mbps Symmetrical Fibre",
-      price: "R1,249",
+      name: " 300Mbps/150Mbps Symmetrical Fibre OS",
+      price: "R1,299",
+      link: "https://fibre.afrieta.com",
+    },
+    {
+      name: " 500Mbps/250Mbps Symmetrical Fibre OS",
+      price: "R1,550",
       link: "https://fibre.afrieta.com",
     },
   ],
@@ -482,6 +497,7 @@ function toggleCompanyFields() {
 // Listen for changes on radio buttons
 companyYes.addEventListener("change", toggleCompanyFields);
 companyNo.addEventListener("change", toggleCompanyFields);
+
 
 const rentingYes = document.getElementById("rentYes");
 const rentingNo = document.getElementById("rentNo");

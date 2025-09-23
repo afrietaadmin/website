@@ -199,6 +199,8 @@
       gap: 10px;
       justify-content: flex-end;
       margin-top: 6px;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     .af-actions .btn:hover {
@@ -250,6 +252,10 @@
     html {
       scroll-behavior: smooth;
     }
+
+    /* Tiny label for test mode */
+    .af-test-badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #ffe680; color: #111; font-weight: 800; }
+    .af-test-inline { display: inline-flex; align-items: center; gap: 10px; }
   </style>
 </head>
 
@@ -375,6 +381,7 @@
           <div class="af-actions">
             <button type="button" class="btn btn-dark" id="cancelBtn">Cancel</button>
             <button type="submit" class="btn btn-primary" id="submitBtn">Check availability</button>
+            <!-- Test controls are injected via JS when TEST_MODE is enabled -->
           </div>
         </form>
       </div>
@@ -550,13 +557,56 @@
       return `${COGNITO_FORM_URL}?${params.toString()}`;
     }
 
+    /* ======================================================
+       TEST MODE (toggle to mock success/failure without API)
+       ====================================================== */
+    const TEST_MODE = true; // ← set to false to re-enable real API call
+    let __testOutcome = 'success'; // 'success' | 'failure' | 'error'
+
+    function injectTestControls() {
+      if (!TEST_MODE) return;
+      const actions = document.querySelector('.af-actions');
+      if (!actions) return;
+
+      const wrap = document.createElement('div');
+      wrap.className = 'af-test-inline';
+      wrap.innerHTML = `
+        <span class="af-test-badge" title="Only visible in test mode">TEST</span>
+        <label style="font-size:12px; color:#9fb0c6; display:inline-flex; align-items:center; gap:6px;">
+          Outcome:
+          <select id="af-test-outcome" style="background:#0b121b; border:1px solid var(--af-border); color:#f5f7fb; border-radius:8px; padding:6px 8px;">
+            <option value="success">Success (available)</option>
+            <option value="failure">Failure (not available)</option>
+            <option value="error">Network/Error</option>
+          </select>
+        </label>`;
+      actions.prepend(wrap);
+      const sel = wrap.querySelector('#af-test-outcome');
+      sel.value = __testOutcome;
+      sel.addEventListener('change', () => { __testOutcome = sel.value; });
+    }
+
+    injectTestControls();
+
     /* ---------- Backend coverage call (proxy → Openserve Product Qualification) ---------- */
     async function checkCoverage(address) {
+      if (TEST_MODE) {
+        // Mocked result to test UI flows without hitting the backend
+        await new Promise(r => setTimeout(r, 800)); // simulate latency
+        if (__testOutcome === 'error') throw new Error('Simulated network error');
+        const available = (__testOutcome === 'success');
+        return {
+          available,
+          ftthStatus: available ? 'Available' : 'Unavailable',
+          products: available ? ALL_PACKAGES : [],
+          normalizedAddress: address
+        };
+      }
+
+      /* --- REAL FUNCTIONALITY (commented out for testability) ---
       const res = await fetch('/api/openserve/product-qualification', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(address)
       });
       if (!res.ok) {
@@ -564,35 +614,36 @@
         throw new Error(t || 'Coverage check failed');
       }
       return res.json(); // { available, ftthStatus, products, normalizedAddress }
+      --- END REAL FUNCTIONALITY --- */
     }
 
     form.addEventListener("submit", async (e) => {
-          e.preventDefault();
+      e.preventDefault();
 
-          // 1) Trigger native validation bubbles in the modal
-          if (!form.reportValidity()) {
-          // invalid → browser shows which fields need attention
-          return;
-          }
+      // 1) Trigger native validation bubbles in the modal
+      if (!form.reportValidity()) {
+        // invalid → browser shows which fields need attention
+        return;
+      }
 
-          // 2) Build payload
-          const address = {
-          address1: form.address1.value.trim(),
-          unit: form.unit.value.trim(),
-          suburb: form.suburb.value.trim(),
-          city: form.city.value.trim(),
-          province: form.province.value.trim(),
-          postal: form.postal.value.trim()
-          };
+      // 2) Build payload
+      const address = {
+        address1: form.address1.value.trim(),
+        unit: form.unit.value.trim(),
+        suburb: form.suburb.value.trim(),
+        city: form.city.value.trim(),
+        province: form.province.value.trim(),
+        postal: form.postal.value.trim()
+      };
 
-          // 3) Close modal + show toast immediately
-            submitBtn.textContent = 'Checking availability…';
-          openBtn && (openBtn.disabled = true);
+      // 3) Close modal + show toast immediately
+      submitBtn.textContent = 'Checking availability…';
+      openBtn && (openBtn.disabled = true);
 
-          try {
-          const result = await checkCoverage(address);
+      try {
+        const result = await checkCoverage(address);
 
-          if (result.available) {
+        if (result.available) {
           showToast('success', 'Great news! Fibre is available at this address.');
           submitBtn.textContent = 'Check availability';
           closeModal();
@@ -600,20 +651,20 @@
           frame.src = url;
           embedWrap.classList.remove("hidden");
           embedWrap.scrollIntoView({ behavior: "smooth", block: "start" });
-          } else {
+        } else {
           frame.src = "about:blank";
           embedWrap.classList.add("hidden");
           showToast('error', 'No Openserve fibre is available at this address.');
-          }
-          } catch (err) {
-          frame.src = "about:blank";
-          embedWrap.classList.add("hidden");
-          submitBtn.textContent = 'Check availability';
-          showToast('error', 'Unable to complete coverage check. Please try again.');
-          console.error(err);
-          } finally {
-          openBtn && (openBtn.disabled = false);
-          }
+        }
+      } catch (err) {
+        frame.src = "about:blank";
+        embedWrap.classList.add("hidden");
+        submitBtn.textContent = 'Check availability';
+        showToast('error', 'Unable to complete coverage check. Please try again.');
+        console.error(err);
+      } finally {
+        openBtn && (openBtn.disabled = false);
+      }
     });
   </script>
 

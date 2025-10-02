@@ -548,7 +548,7 @@
     }
 
     async function checkCoverage(address) {
-      const res = await fetch('/api/openserve/product-qualification', {
+      const res = await fetch('https://c22ba9ce9390.ngrok-free.app/openserve/product-qualification', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -581,6 +581,7 @@
       try {
         const result = await checkCoverage(address);
 
+        showToast('success', `You Co-ordinates are ${result.longitude}, ${result.latitude}`);
         if (result.available) {
           showToast('success', 'Great news! Fibre is available at this address.');
           submitBtn.textContent = 'Check availability';

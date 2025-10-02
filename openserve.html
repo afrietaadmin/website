@@ -252,10 +252,6 @@
     html {
       scroll-behavior: smooth;
     }
-
-    /* Tiny label for test mode */
-    .af-test-badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #ffe680; color: #111; font-weight: 800; }
-    .af-test-inline { display: inline-flex; align-items: center; gap: 10px; }
   </style>
 </head>
 
@@ -310,24 +306,25 @@
 
   <main class="container">
     <h1 class="mb-3">Afrieta Fibre Packages</h1>
-    <p class="subtext">Say goodbye to buffering. Check coverage in seconds to discover the Afrieta Fibre packages available at this address.</p>
+    <p class="subtext">Say goodbye to buffering. Check coverage in seconds to discover the Afrieta Fibre packages
+      available at this address.</p>
     <div><button id="openCoverage" class="btn btn-dark">Check coverage</button></div>
 
     <!-- WebConnect -->
     <section class="section">
-      <h2>Openserve WebConnect — township areas</h2>
+      <h2>Openserve WebConnect </h2>
       <div class="grid" id="grid-webconnect"></div>
     </section>
 
     <!-- WebStream -->
     <section class="section">
-      <h2>Openserve WebStream — suburbs & gated communities</h2>
+      <h2>Openserve WebStream</h2>
       <div class="grid" id="grid-webstream"></div>
     </section>
 
     <!-- FibreConnect / Afrieta APL -->
     <section class="section">
-      <h2>Openserve FibreConnect — gated communities / affluent areas (Afrieta APL)</h2>
+      <h2>Openserve FibreConnect </h2>
       <div class="grid" id="grid-fibreconnect"></div>
     </section>
 
@@ -381,7 +378,6 @@
           <div class="af-actions">
             <button type="button" class="btn btn-dark" id="cancelBtn">Cancel</button>
             <button type="submit" class="btn btn-primary" id="submitBtn">Check availability</button>
-            <!-- Test controls are injected via JS when TEST_MODE is enabled -->
           </div>
         </form>
       </div>
@@ -473,10 +469,8 @@
     ];
     const ALL_PACKAGES = [...WEB_CONNECT, ...WEB_STREAM, ...FIBRE_CONNECT];
 
-    /* Cognito form URL */
     const COGNITO_FORM_URL = "https://www.cognitoforms.com/AfrietaAdmin/RegisterForFibre";
 
-    /* ---------- Render package grids ---------- */
     const toRand = v => "R" + v.toLocaleString("en-ZA");
 
     function renderSection(list, mountId, label) {
@@ -486,7 +480,7 @@
         const el = document.createElement("article");
         el.className = "service-card";
         el.innerHTML = `
-          ${p.tag?`<span class="chip">${p.tag}</span>`:""}
+          ${p.tag ? `<span class="chip">${p.tag}</span>` : ""}
           <div class="speed">${p.speed}</div>
           <div class="tier">${label}</div>
           <div class="price">${toRand(p.price)} <span class="per">per month</span></div>
@@ -498,7 +492,6 @@
     renderSection(WEB_STREAM, "grid-webstream", "WebStream");
     renderSection(FIBRE_CONNECT, "grid-fibreconnect", "FibreConnect");
 
-    /* ---------- Elements ---------- */
     const openBtn = document.getElementById("openCoverage");
     const backdrop = document.getElementById("backdrop");
     const form = document.getElementById("coverageForm");
@@ -507,7 +500,6 @@
     const frame = document.getElementById("cognitoFrame");
     const submitBtn = document.getElementById("submitBtn");
 
-    /* ---------- Toasts ---------- */
     function showToast(type, message, ms = 3200) {
       const host = document.getElementById('af-toast');
       const el = document.createElement('div');
@@ -522,7 +514,6 @@
       }, ms);
     }
 
-    /* ---------- Modal open/close ---------- */
     function openModal() {
       backdrop.style.display = "flex";
       backdrop.removeAttribute("aria-hidden");
@@ -543,7 +534,6 @@
       if (e.key === "Escape") closeModal();
     });
 
-    /* ---------- Build Cognito URL with prefill ---------- */
     function buildCognitoUrl(address) {
       const params = new URLSearchParams({
         Address: address.address1 || "",
@@ -557,76 +547,25 @@
       return `${COGNITO_FORM_URL}?${params.toString()}`;
     }
 
-    /* ======================================================
-       TEST MODE (toggle to mock success/failure without API)
-       ====================================================== */
-    const TEST_MODE = true; // ← set to false to re-enable real API call
-    let __testOutcome = 'success'; // 'success' | 'failure' | 'error'
-
-    function injectTestControls() {
-      if (!TEST_MODE) return;
-      const actions = document.querySelector('.af-actions');
-      if (!actions) return;
-
-      const wrap = document.createElement('div');
-      wrap.className = 'af-test-inline';
-      wrap.innerHTML = `
-        <span class="af-test-badge" title="Only visible in test mode">TEST</span>
-        <label style="font-size:12px; color:#9fb0c6; display:inline-flex; align-items:center; gap:6px;">
-          Outcome:
-          <select id="af-test-outcome" style="background:#0b121b; border:1px solid var(--af-border); color:#f5f7fb; border-radius:8px; padding:6px 8px;">
-            <option value="success">Success (available)</option>
-            <option value="failure">Failure (not available)</option>
-            <option value="error">Network/Error</option>
-          </select>
-        </label>`;
-      actions.prepend(wrap);
-      const sel = wrap.querySelector('#af-test-outcome');
-      sel.value = __testOutcome;
-      sel.addEventListener('change', () => { __testOutcome = sel.value; });
-    }
-
-    injectTestControls();
-
-    /* ---------- Backend coverage call (proxy → Openserve Product Qualification) ---------- */
     async function checkCoverage(address) {
-      if (TEST_MODE) {
-        // Mocked result to test UI flows without hitting the backend
-        await new Promise(r => setTimeout(r, 800)); // simulate latency
-        if (__testOutcome === 'error') throw new Error('Simulated network error');
-        const available = (__testOutcome === 'success');
-        return {
-          available,
-          ftthStatus: available ? 'Available' : 'Unavailable',
-          products: available ? ALL_PACKAGES : [],
-          normalizedAddress: address
-        };
-      }
-
-      /* --- REAL FUNCTIONALITY (commented out for testability) ---
       const res = await fetch('/api/openserve/product-qualification', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(address)
       });
       if (!res.ok) {
         const t = await res.text().catch(() => "");
         throw new Error(t || 'Coverage check failed');
       }
-      return res.json(); // { available, ftthStatus, products, normalizedAddress }
-      --- END REAL FUNCTIONALITY --- */
+      return res.json();
     }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      if (!form.reportValidity()) return;
 
-      // 1) Trigger native validation bubbles in the modal
-      if (!form.reportValidity()) {
-        // invalid → browser shows which fields need attention
-        return;
-      }
-
-      // 2) Build payload
       const address = {
         address1: form.address1.value.trim(),
         unit: form.unit.value.trim(),
@@ -636,7 +575,6 @@
         postal: form.postal.value.trim()
       };
 
-      // 3) Close modal + show toast immediately
       submitBtn.textContent = 'Checking availability…';
       openBtn && (openBtn.disabled = true);
 
@@ -650,7 +588,10 @@
           const url = buildCognitoUrl(result.normalizedAddress || address);
           frame.src = url;
           embedWrap.classList.remove("hidden");
-          embedWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+          embedWrap.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
         } else {
           frame.src = "about:blank";
           embedWrap.classList.add("hidden");

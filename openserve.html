@@ -24,81 +24,22 @@
   <link rel="preload" as="image" href="./assets/images/hero-slide-3.jpg" />
 
   <style>
-    main {
-      padding: 50px 0;
+    main { padding: 50px 0; }
+    section {
+      padding: 20px !important;
     }
-
-    .header {
-      background-color: #262626;
-    }
-
-    body {
-      color: #424141;
-    }
-
-    .subtext {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px
-    }
-
-    .chip {
-      display: inline-block;
-      font-size: 14px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: rgba(236, 5, 236, 0.5);
-      color: #333;
-    }
-
-    .speed {
-      margin-top: 8px;
-      font-size: 20px;
-      font-weight: 800
-    }
-
-    .tier {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .price {
-      margin-top: 13px;
-      font-size: 28px;
-      font-weight: 900
-    }
-
-    .per {
-      color: var(--muted);
-      font-size: 14px;
-      margin-left: 6px;
-      font-weight: 500
-    }
-
-    .hidden {
-      display: none !important
-    }
-
-    .embed-wrap {
-      margin-top: 20px;
-      background: #101a26;
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 14px;
-      padding: 16px
-    }
-
-    iframe {
-      width: 100%;
-      height: 760px;
-      border: 0;
-      border-radius: 10px;
-      background: #fff
-    }
+    .header { background-color: #262626; }
+    body { color: #424141; }
+    .subtext { font-size: 20px; margin-bottom: 10px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px }
+    .chip { display: inline-block; font-size: 14px; padding: 5px 10px; border-radius: 999px; background: rgba(236, 5, 236, 0.5); color: #333; }
+    .speed { margin-top: 8px; font-size: 20px; font-weight: 800 }
+    .tier { color: var(--muted); font-size: 15px; }
+    .price { margin-top: 13px; font-size: 28px; font-weight: 900 }
+    .per { color: var(--muted); font-size: 14px; margin-left: 6px; font-weight: 500 }
+    .hidden { display: none !important }
+    .embed-wrap { width: 800px; margin-top: 20px; background: #101a26; border: 1px solid rgba(255, 255, 255, .08); border-radius: 14px; padding: 16px }
+    iframe { width: 100%; height: 600px; border: 0; border-radius: 10px; background: #fff }
 
     /* ===== Afrieta modal (namespaced) ===== */
     :root {
@@ -124,7 +65,9 @@
     }
 
     .af-modal {
-      width: min(640px, 100%);
+      width: min(80%, 100%);
+      height: 90%;
+      overflow: auto !important;
       background: radial-gradient(1200px 600px at 70% -10%, #262626 0%, var(--af-panel) 55%);
       border: 1px solid var(--af-border);
       border-radius: 18px;
@@ -136,122 +79,76 @@
       transition: transform .18s ease, opacity .18s ease;
     }
 
-    .af-backdrop[style*="display: flex"] .af-modal {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-
-    .af-modal__header {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--af-border);
-      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0));
-    }
-
-    .af-modal__title {
-      font-weight: 800;
-      letter-spacing: .2px;
-      font-size: 18px;
-    }
-
-    .af-modal__body {
-      padding: 18px 20px 20px;
-    }
-
-    .af-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    @media (max-width: 560px) {
-      .af-grid-2 {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .af-field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
-
-    .af-field>label {
-      font-size: 14px;
-      color: var(--af-muted);
-    }
-
-    .af-field>input {
-      background: #0b121b;
-      border: 1px solid var(--af-border);
-      color: var(--af-text);
-      border-radius: 10px;
-      padding: 10px 12px;
-      outline: none;
-    }
-
-    .af-field>input::placeholder {
-      color: #6f8096;
-    }
-
-    .af-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-      margin-top: 6px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .af-actions .btn:hover {
-      border: none;
-    }
-
-    .af-actions .btn-primary:hover {
-      color: #fff;
-    }
-
-    .af-field>input:focus {
-      box-shadow: 0 0 0 2px rgba(236, 5, 236, .35);
-      border-color: rgba(236, 5, 236, .55);
-    }
+    .af-backdrop[style*="display: flex"] .af-modal { transform: translateY(0) scale(1); opacity: 1; }
+    .af-modal__header { padding: 16px 20px; border-bottom: 1px solid var(--af-border); background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0)); }
+    .af-modal__title { font-weight: 800; letter-spacing: .2px; font-size: 18px; }
+    .af-modal__body { padding: 18px 20px 20px; }
+    .af-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 560px) { .af-grid-2 { grid-template-columns: 1fr; } }
+    .af-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+    .af-field>label { font-size: 14px; color: var(--af-muted); }
+    .af-field>input { background: #0b121b; border: 1px solid var(--af-border); color: var(--af-text); border-radius: 10px; padding: 10px 12px; outline: none; }
+    .af-field>input::placeholder { color: #6f8096; }
+    .af-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 6px; align-items: center; flex-wrap: wrap; }
+    .af-actions .btn:hover { border: none; }
+    .af-actions .btn-primary:hover { background: #ee06ee; color: #fff; }
+    .af-field>input:focus { box-shadow: 0 0 0 2px rgba(236, 5, 236, .35); border-color: rgba(236, 5, 236, .55); }
 
     /* ====== Toasts ====== */
-    #af-toast {
-      position: fixed;
-      top: 18px;
-      right: 18px;
-      display: grid;
-      gap: 10px;
-      z-index: 12000;
-    }
+    #af-toast { position: fixed; top: 18px; right: 18px; display: grid; gap: 10px; z-index: 12000; }
+    .af-toast { min-width: 260px; max-width: 360px; padding: 12px 14px; border-radius: 12px; color: #0b0f14; box-shadow: 0 10px 30px rgba(0, 0, 0, .35); font-weight: 700; letter-spacing: .2px; }
+    .af-toast.info { background: #ffe680; }
+    .af-toast.success { background: #a9f0d6; }
+    .af-toast.error { background: #ffc2c2; }
 
-    .af-toast {
-      min-width: 260px;
-      max-width: 360px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      color: #0b0f14;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-      font-weight: 700;
-      letter-spacing: .2px;
-    }
+    /* Result block tweaks */
+    .result-block p { margin: 4px 0; }
+    .result-block h4 { margin: 6px 0; font-weight: 700; color: #f5f7fb; }
+    .badge { display:inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 800; }
+    .badge.ok { background:#a9f0d6; color:#053b2e; }
+    .badge.warn { background:#ffe680; color:#513e00; }
+    .badge.err { background:#ffc2c2; color:#5c0000; }
 
-    .af-toast.info {
-      background: #ffe680;
-    }
+    html { scroll-behavior: smooth; }
+    /* ===== Coverage Results Grid ===== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(33.3%, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
 
-    .af-toast.success {
-      background: #a9f0d6;
-    }
+.product-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: all .2s ease;
+}
 
-    .af-toast.error {
-      background: #ffc2c2;
-    }
+.product-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.08);
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+.product-card h5 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f5f7fb;
+}
+
+.product-card small {
+  color: #9fb0c6;
+  font-size: 12px;
+}
+
+.product-card p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #d8d8d8;
+}
+
   </style>
 </head>
 
@@ -391,81 +288,25 @@
 
   <script>
     /* ---------- Afrieta prices ---------- */
-    const WEB_CONNECT = [{
-        speed: "10 / 10 Mbps",
-        price: 379,
-        tag: "Popular",
-        cat: "WebConnect"
-      },
-      {
-        speed: "20 / 10 Mbps",
-        price: 449,
-        cat: "WebConnect"
-      },
-      {
-        speed: "40 / 20 Mbps",
-        price: 509,
-        cat: "WebConnect"
-      }
+    const WEB_CONNECT = [
+      { speed: "10 / 10 Mbps", price: 379, tag: "Popular", cat: "WebConnect" },
+      { speed: "20 / 10 Mbps", price: 449, cat: "WebConnect" },
+      { speed: "40 / 20 Mbps", price: 509, cat: "WebConnect" }
     ];
-    const WEB_STREAM = [{
-        speed: "25 / 25 Mbps",
-        price: 639,
-        cat: "WebStream"
-      },
-      {
-        speed: "50 / 25 Mbps",
-        price: 799,
-        tag: "Popular",
-        cat: "WebStream"
-      },
-      {
-        speed: "100 / 50 Mbps",
-        price: 959,
-        cat: "WebStream"
-      },
-      {
-        speed: "200 / 100 Mbps",
-        price: 1099,
-        cat: "WebStream"
-      },
-      {
-        speed: "300 / 150 Mbps",
-        price: 1209,
-        cat: "WebStream"
-      },
-      {
-        speed: "500 / 250 Mbps",
-        price: 1309,
-        cat: "WebStream"
-      }
+    const WEB_STREAM = [
+      { speed: "25 / 25 Mbps", price: 639, cat: "WebStream" },
+      { speed: "50 / 25 Mbps", price: 799, tag: "Popular", cat: "WebStream" },
+      { speed: "100 / 50 Mbps", price: 959, cat: "WebStream" },
+      { speed: "200 / 100 Mbps", price: 1099, cat: "WebStream" },
+      { speed: "300 / 150 Mbps", price: 1209, cat: "WebStream" },
+      { speed: "500 / 250 Mbps", price: 1309, cat: "WebStream" }
     ];
-    const FIBRE_CONNECT = [{
-        speed: "50 / 50 Mbps",
-        price: 750,
-        cat: "FibreConnect"
-      },
-      {
-        speed: "100 / 100 Mbps",
-        price: 819,
-        cat: "FibreConnect"
-      },
-      {
-        speed: "300 / 150 Mbps",
-        price: 1045,
-        cat: "FibreConnect"
-      },
-      {
-        speed: "500 / 250 Mbps",
-        price: 1299,
-        tag: "Best value",
-        cat: "FibreConnect"
-      },
-      {
-        speed: "500 / 250 Mbps (Premium)",
-        price: 1550,
-        cat: "FibreConnect"
-      }
+    const FIBRE_CONNECT = [
+      { speed: "50 / 50 Mbps", price: 750, cat: "FibreConnect" },
+      { speed: "100 / 100 Mbps", price: 819, cat: "FibreConnect" },
+      { speed: "300 / 150 Mbps", price: 1045, cat: "FibreConnect" },
+      { speed: "500 / 250 Mbps", price: 1299, tag: "Best value", cat: "FibreConnect" },
+      { speed: "500 / 250 Mbps (Premium)", price: 1550, cat: "FibreConnect" }
     ];
     const ALL_PACKAGES = [...WEB_CONNECT, ...WEB_STREAM, ...FIBRE_CONNECT];
 
@@ -492,6 +333,7 @@
     renderSection(WEB_STREAM, "grid-webstream", "WebStream");
     renderSection(FIBRE_CONNECT, "grid-fibreconnect", "FibreConnect");
 
+    /* ---------- Elements ---------- */
     const openBtn = document.getElementById("openCoverage");
     const backdrop = document.getElementById("backdrop");
     const form = document.getElementById("coverageForm");
@@ -499,7 +341,10 @@
     const embedWrap = document.getElementById("embed");
     const frame = document.getElementById("cognitoFrame");
     const submitBtn = document.getElementById("submitBtn");
+    const modalBody = document.querySelector(".af-modal__body");
+    const modalTitle = document.getElementById("modalTitle");
 
+    /* ---------- Toasts ---------- */
     function showToast(type, message, ms = 3200) {
       const host = document.getElementById('af-toast');
       const el = document.createElement('div');
@@ -514,7 +359,14 @@
       }, ms);
     }
 
+    /* ---------- Modal open/close ---------- */
     function openModal() {
+      // Ensure form is visible when opening (in case last time we showed results)
+      if (!modalBody.contains(form)) {
+        modalBody.innerHTML = "";
+        modalBody.appendChild(form);
+      }
+      modalTitle.textContent = "Check coverage";
       backdrop.style.display = "flex";
       backdrop.removeAttribute("aria-hidden");
       setTimeout(() => document.getElementById("address1").focus(), 30);
@@ -527,13 +379,10 @@
     }
     openBtn.addEventListener("click", openModal);
     cancelBtn.addEventListener("click", closeModal);
-    backdrop.addEventListener("click", e => {
-      if (e.target === backdrop) closeModal();
-    });
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") closeModal();
-    });
+    backdrop.addEventListener("click", e => { if (e.target === backdrop) closeModal(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
+    /* ---------- Build Cognito URL with prefill ---------- */
     function buildCognitoUrl(address) {
       const params = new URLSearchParams({
         Address: address.address1 || "",
@@ -547,12 +396,12 @@
       return `${COGNITO_FORM_URL}?${params.toString()}`;
     }
 
+    /* ---------- Backend coverage call ---------- */
     async function checkCoverage(address) {
-      const res = await fetch('https://dfda71a97b94.ngrok-free.app/openserve/product-qualification', {
+      // Use your running backend URL (ngrok example kept from your code)
+      const res = await fetch('https://d38399ad85f6.ngrok-free.app/openserve/product-qualification', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(address)
       });
       if (!res.ok) {
@@ -562,6 +411,78 @@
       return res.json();
     }
 
+    /* ---------- Render result INSIDE the modal ---------- */
+    function renderResult(result, address) {
+      const { FTTH_Status, MDU_Verification, AddressInfo = {}, ftthProductInfo = [] } = result || {};
+      const status = (FTTH_Status).toLowerCase();
+      const isAvailable = status === "working";
+
+      const badgeClass = isAvailable ? "ok" : (status ? "warn" : "err");
+      const badgeText = isAvailable ? 'Available' : 'Not Available' || "No status";
+
+      modalTitle.textContent = "Coverage results";
+      modalBody.innerHTML = `
+        <div class="result-block">
+          ${isAvailable ? `
+          div
+          <p><strong>Status:</strong> <span class="badge ${badgeClass}">${badgeText}</span></p>
+          <p><strong>AMID:</strong> ${AddressInfo.AMID || "—"}</p>
+          <div class="addr" style="margin-top:8px;">
+            <p><strong>Address:</strong> ${AddressInfo.LR_Address || `${address.address1}, ${address.suburb}`}</p>
+            <p>${[AddressInfo.LR_SUBURB, AddressInfo.LR_TOWN, AddressInfo.LR_PROVINCE].filter(Boolean).join(", ")}</p>
+          </div>
+          <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
+          <div>
+            <h4>Available Products:</h4>
+              <ul class="product-grid" style="list-style:none; padding:0;">
+                ${ftthProductInfo.map(p => `
+                  <li class="product-card">
+                    <div style="font-weight:800;">${p.ProductName} <span style="opacity:.7; font-weight:600;">(${p.ProductCode})</span></div>
+                    <div style="font-size:14px; opacity:.9;">Download Speed: ${p.downstreamSpeed} &nbsp;|&nbsp; Upload Speed: ${p.upstreamSpeed}</div>
+                  </li>`).join("")}
+              </ul>
+          </div>
+        </div>` : `<h5 style="margin-bottom: 30px; font-size: 18px;" >We are sorry, OpenServe Fibre is not available in this area.</h5>`}
+          <div class="af-actions" style="margin-top:16px;">
+            <button type="button" class="btn btn-dark" id="backBtn">Back</button>
+            ${isAvailable ? `<button type="button" class="btn btn-primary" id="continueBtn">Continue</button>` : `<button type="button" class="btn btn-primary" id="tryAgainBtn">Try another address</button>`}
+          </div>
+        </div>
+      `;
+
+      // Back → restore original form
+      document.getElementById("backBtn").addEventListener("click", () => {
+        modalTitle.textContent = "Check coverage";
+        modalBody.innerHTML = "";
+        modalBody.appendChild(form);
+        setTimeout(() => document.getElementById("address1").focus(), 20);
+      });
+
+      // Continue (only shown when available)
+      const continueBtn = document.getElementById("continueBtn");
+      if (continueBtn) {
+        continueBtn.addEventListener("click", () => {
+          const url = buildCognitoUrl(address);
+          frame.src = url;
+          embedWrap.classList.remove("hidden");
+          closeModal();
+          embedWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+
+      // If not available, offer to try again (focus back to address field)
+      const tryAgainBtn = document.getElementById("tryAgainBtn");
+      if (tryAgainBtn) {
+        tryAgainBtn.addEventListener("click", () => {
+          modalTitle.textContent = "Check coverage";
+          modalBody.innerHTML = "";
+          modalBody.appendChild(form);
+          setTimeout(() => document.getElementById("address1").focus(), 20);
+        });
+      }
+    }
+
+    /* ---------- Form submit → replace modal content with results ---------- */
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!form.reportValidity()) return;
@@ -580,37 +501,24 @@
 
       try {
         const result = await checkCoverage(address);
-
-        console.log(`The Co-ordinates for the provided address ${result.addy} are ${result.longitude}, ${result.latitude}`);
-        if (result.available) {
-          showToast('success', 'Great news! Fibre is available at this address.');
-          submitBtn.textContent = 'Check availability';
-          closeModal();
-          const url = buildCognitoUrl(result.normalizedAddress || address);
-          frame.src = url;
-          embedWrap.classList.remove("hidden");
-          embedWrap.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        } else {
-          frame.src = "about:blank";
-          embedWrap.classList.add("hidden");
-          showToast('error', 'No Openserve fibre is available at this address.');
-        }
+        showToast('success', 'Coverage information received.');
+        // Replace modal contents with the result view (do NOT close modal)
+        renderResult(result, address);
       } catch (err) {
-        frame.src = "about:blank";
-        embedWrap.classList.add("hidden");
-        submitBtn.textContent = 'Check availability';
-        showToast('error', 'Unable to complete coverage check. Please try again.');
         console.error(err);
+        showToast('error', 'Unable to complete coverage check. Please try again.');
       } finally {
         openBtn && (openBtn.disabled = false);
+        submitBtn.textContent = 'Check availability';
       }
     });
   </script>
 
-  <script src="./assets/js/script.js"></script>
-</body>
+  <!-- Ionicons (for icons used in header buttons) -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
+  <!-- Your site-wide JS (if any) -->
+  <!-- <script src="./assets/js/script.js"></script> -->
+</body>
 </html>

@@ -24,22 +24,86 @@
   <link rel="preload" as="image" href="./assets/images/hero-slide-3.jpg" />
 
   <style>
-    main { padding: 50px 0; }
+    main {
+      padding: 50px 0;
+    }
+
     section {
       padding: 20px !important;
     }
-    .header { background-color: #262626; }
-    body { color: #424141; }
-    .subtext { font-size: 20px; margin-bottom: 10px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px }
-    .chip { display: inline-block; font-size: 14px; padding: 5px 10px; border-radius: 999px; background: rgba(236, 5, 236, 0.5); color: #333; }
-    .speed { margin-top: 8px; font-size: 20px; font-weight: 800 }
-    .tier { color: var(--muted); font-size: 15px; }
-    .price { margin-top: 13px; font-size: 28px; font-weight: 900 }
-    .per { color: var(--muted); font-size: 14px; margin-left: 6px; font-weight: 500 }
-    .hidden { display: none !important }
-    .embed-wrap { width: 800px; margin-top: 20px; background: #101a26; border: 1px solid rgba(255, 255, 255, .08); border-radius: 14px; padding: 16px }
-    iframe { width: 100%; height: 600px; border: 0; border-radius: 10px; background: #fff }
+
+    .header {
+      background-color: #262626;
+    }
+
+    body {
+      color: #424141;
+    }
+
+    .subtext {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px
+    }
+
+    .chip {
+      display: inline-block;
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(236, 5, 236, 0.5);
+      color: #333;
+    }
+
+    .speed {
+      margin-top: 8px;
+      font-size: 20px;
+      font-weight: 800
+    }
+
+    .tier {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .price {
+      margin-top: 13px;
+      font-size: 28px;
+      font-weight: 900
+    }
+
+    .per {
+      color: var(--muted);
+      font-size: 14px;
+      margin-left: 6px;
+      font-weight: 500
+    }
+
+    .hidden {
+      display: none !important
+    }
+
+    .embed-wrap {
+      width: 800px;
+      margin-top: 20px;
+      background: #101a26;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 14px;
+      padding: 16px
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: 0;
+      border-radius: 10px;
+      background: #fff
+    }
 
     /* ===== Afrieta modal (namespaced) ===== */
     :root {
@@ -79,76 +143,203 @@
       transition: transform .18s ease, opacity .18s ease;
     }
 
-    .af-backdrop[style*="display: flex"] .af-modal { transform: translateY(0) scale(1); opacity: 1; }
-    .af-modal__header { padding: 16px 20px; border-bottom: 1px solid var(--af-border); background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0)); }
-    .af-modal__title { font-weight: 800; letter-spacing: .2px; font-size: 18px; }
-    .af-modal__body { padding: 18px 20px 20px; }
-    .af-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width: 560px) { .af-grid-2 { grid-template-columns: 1fr; } }
-    .af-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-    .af-field>label { font-size: 14px; color: var(--af-muted); }
-    .af-field>input { background: #0b121b; border: 1px solid var(--af-border); color: var(--af-text); border-radius: 10px; padding: 10px 12px; outline: none; }
-    .af-field>input::placeholder { color: #6f8096; }
-    .af-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 6px; align-items: center; flex-wrap: wrap; }
-    .af-actions .btn:hover { border: none; }
-    .af-actions .btn-primary:hover { background: #ee06ee; color: #fff; }
-    .af-field>input:focus { box-shadow: 0 0 0 2px rgba(236, 5, 236, .35); border-color: rgba(236, 5, 236, .55); }
+    .af-backdrop[style*="display: flex"] .af-modal {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .af-modal__header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--af-border);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0));
+    }
+
+    .af-modal__title {
+      font-weight: 800;
+      letter-spacing: .2px;
+      font-size: 18px;
+    }
+
+    .af-modal__body {
+      padding: 18px 20px 20px;
+    }
+
+    .af-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 560px) {
+      .af-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .af-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .af-field>label {
+      font-size: 14px;
+      color: var(--af-muted);
+    }
+
+    .af-field>input,
+    .af-field>select {
+      background: #0b121b;
+      border: 1px solid var(--af-border);
+      color: var(--af-text);
+      border-radius: 10px;
+      padding: 10px 12px;
+      outline: none;
+    }
+
+    .af-field>input::placeholder {
+      color: #6f8096;
+    }
+
+    .af-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .af-actions .btn:hover {
+      border: none;
+    }
+
+    .af-actions .btn-primary:hover {
+      background: #ee06ee;
+      color: #fff;
+    }
+
+    .af-field>input:focus {
+      box-shadow: 0 0 0 2px rgba(236, 5, 236, .35);
+      border-color: rgba(236, 5, 236, .55);
+    }
 
     /* ====== Toasts ====== */
-    #af-toast { position: fixed; top: 18px; right: 18px; display: grid; gap: 10px; z-index: 12000; }
-    .af-toast { min-width: 260px; max-width: 360px; padding: 12px 14px; border-radius: 12px; color: #0b0f14; box-shadow: 0 10px 30px rgba(0, 0, 0, .35); font-weight: 700; letter-spacing: .2px; }
-    .af-toast.info { background: #ffe680; }
-    .af-toast.success { background: #a9f0d6; }
-    .af-toast.error { background: #ffc2c2; }
+    #af-toast {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      display: grid;
+      gap: 10px;
+      z-index: 12000;
+    }
+
+    .af-toast {
+      min-width: 260px;
+      max-width: 360px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: #0b0f14;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .af-toast.info {
+      background: #ffe680;
+    }
+
+    .af-toast.success {
+      background: #a9f0d6;
+    }
+
+    .af-toast.error {
+      background: #ffc2c2;
+    }
 
     /* Result block tweaks */
-    .result-block p { margin: 4px 0; }
-    .result-block h4 { margin: 6px 0; font-weight: 700; color: #f5f7fb; }
-    .badge { display:inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 800; }
-    .badge.ok { background:#a9f0d6; color:#053b2e; }
-    .badge.warn { background:#ffe680; color:#513e00; }
-    .badge.err { background:#ffc2c2; color:#5c0000; }
+    .result-block p {
+      margin: 4px 0;
+    }
 
-    html { scroll-behavior: smooth; }
+    .result-block h4 {
+      margin: 6px 0;
+      font-weight: 700;
+      color: #f5f7fb;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .badge.ok {
+      background: #a9f0d6;
+      color: #053b2e;
+    }
+
+    .badge.warn {
+      background: #ffe680;
+      color: #513e00;
+    }
+
+    .badge.err {
+      background: #ffc2c2;
+      color: #5c0000;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* ===== Coverage Results Grid ===== */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(33.3%, 1fr));
-  gap: 12px;
-  margin-top: 12px;
-}
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
 
-.product-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 10px 12px;
-  transition: all .2s ease;
-}
+    @media (max-width: 560px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
-.product-card:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.08);
-}
+    .product-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 10px 12px;
+      transition: all .2s ease;
+    }
 
-.product-card h5 {
-  margin: 0 0 4px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #f5f7fb;
-}
+    .product-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.08);
+    }
 
-.product-card small {
-  color: #9fb0c6;
-  font-size: 12px;
-}
+    .product-card h5 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #f5f7fb;
+    }
 
-.product-card p {
-  margin: 2px 0 0;
-  font-size: 13px;
-  color: #d8d8d8;
-}
+    .product-card small {
+      color: #9fb0c6;
+      font-size: 12px;
+    }
 
+    .product-card p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: #d8d8d8;
+    }
   </style>
 </head>
 
@@ -203,8 +394,7 @@
 
   <main class="container">
     <h1 class="mb-3">Afrieta Fibre Packages</h1>
-    <p class="subtext">Say goodbye to buffering. Check coverage in seconds to discover the Afrieta Fibre packages
-      available at this address.</p>
+    <p class="subtext">Say goodbye to buffering. Check coverage in seconds to discover the Afrieta Fibre packages available at this address.</p>
     <div><button id="openCoverage" class="btn btn-dark">Check coverage</button></div>
 
     <!-- WebConnect -->
@@ -225,10 +415,11 @@
       <div class="grid" id="grid-fibreconnect"></div>
     </section>
 
-    <!-- Toasts + embedded Cognito -->
+    <!-- Toasts + embedded area (now custom signup form, hidden by default) -->
     <div id="af-toast"></div>
     <div id="embed" class="embed-wrap hidden">
-      <iframe id="cognitoFrame" title="Cognito Form"></iframe>
+      <!-- Custom Signup Form will be injected here -->
+      <div id="signupFormContainer"></div>
     </div>
   </main>
 
@@ -239,51 +430,51 @@
         <div id="modalTitle" class="af-modal__title">Check coverage</div>
       </header>
       <div class="af-modal__body">
-       <form id="coverageForm">
-         <div class="af-grid-2">
-           <div class="af-field">
-             <label for="houseNumber">House number</label>
-             <input id="houseNumber" name="houseNumber" placeholder="e.g., 12" required />
-           </div>
-           <div class="af-field">
-             <label for="streetName">Street name</label>
-             <input id="streetName" name="streetName" placeholder="e.g., Example St" required />
-           </div>
-         </div>
- <div class="af-grid-2">
+        <form id="coverageForm">
+          <div class="af-grid-2">
+            <div class="af-field">
+              <label for="houseNumber">House number</label>
+              <input id="houseNumber" name="houseNumber" placeholder="e.g., 12" required />
+            </div>
+            <div class="af-field">
+              <label for="streetName">Street name</label>
+              <input id="streetName" name="streetName" placeholder="e.g., Example St" required />
+            </div>
+          </div>
 
-   <div class="af-field">
-     <label for="buildingName">Building name / Building number (optional)</label>
-     <input id="buildingName" name="buildingName" placeholder="e.g., Kings Tower" />
-   </div>
+          <div class="af-grid-2">
+            <div class="af-field">
+              <label for="buildingName">Building name / Building number (optional)</label>
+              <input id="buildingName" name="buildingName" placeholder="e.g., Kings Tower" />
+            </div>
 
-   <div class="af-field">
-     <label for="floorNumber">Floor number (optional)</label>
-     <input id="floorNumber" name="floorNumber" placeholder="e.g., 3rd Floor" />
-   </div>
- </div>
+            <div class="af-field">
+              <label for="floorNumber">Floor number (optional)</label>
+              <input id="floorNumber" name="floorNumber" placeholder="e.g., 3rd Floor" />
+            </div>
+          </div>
 
-         <div class="af-grid-2">
-           <div class="af-field">
-             <label for="suburbName">Suburb name</label>
-             <input id="suburbName" name="suburbName" placeholder="e.g., Rosebank" required />
-           </div>
-           <div class="af-field">
-             <label for="province">Province</label>
-             <input id="province" name="province" placeholder="e.g., Gauteng" required />
-           </div>
-         </div>
+          <div class="af-grid-2">
+            <div class="af-field">
+              <label for="suburbName">Suburb name</label>
+              <input id="suburbName" name="suburbName" placeholder="e.g., Rosebank" required />
+            </div>
+            <div class="af-field">
+              <label for="province">Province</label>
+              <input id="province" name="province" placeholder="e.g., Gauteng" required />
+            </div>
+          </div>
 
-           <div class="af-field">
-             <label for="postalCode">Postal code</label>
-             <input id="postalCode" name="postalCode" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="e.g., 2196" required />
-           </div>
+          <div class="af-field">
+            <label for="postalCode">Postal code</label>
+            <input id="postalCode" name="postalCode" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="e.g., 2196" required />
+          </div>
 
-         <div class="af-actions">
-           <button type="button" class="btn btn-dark" id="cancelBtn">Cancel</button>
-           <button type="submit" class="btn btn-primary" id="submitBtn">Check availability</button>
-         </div>
-       </form>
+          <div class="af-actions">
+            <button type="button" class="btn btn-dark" id="cancelBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Check availability</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -295,29 +486,83 @@
 
   <script>
     /* ---------- Afrieta prices ---------- */
-    const WEB_CONNECT = [
-      { speed: "10 / 10 Mbps", price: 379, tag: "Popular", cat: "WebConnect" },
-      { speed: "20 / 10 Mbps", price: 449, cat: "WebConnect" },
-      { speed: "40 / 20 Mbps", price: 509, cat: "WebConnect" }
+    const WEB_CONNECT = [{
+        speed: "10 / 10 Mbps",
+        price: 379,
+        tag: "Popular",
+        cat: "WebConnect"
+      },
+      {
+        speed: "20 / 10 Mbps",
+        price: 449,
+        cat: "WebConnect"
+      },
+      {
+        speed: "40 / 20 Mbps",
+        price: 509,
+        cat: "WebConnect"
+      }
     ];
-    const WEB_STREAM = [
-      { speed: "25 / 25 Mbps", price: 639, cat: "WebStream" },
-      { speed: "50 / 25 Mbps", price: 799, tag: "Popular", cat: "WebStream" },
-      { speed: "100 / 50 Mbps", price: 959, cat: "WebStream" },
-      { speed: "200 / 100 Mbps", price: 1099, cat: "WebStream" },
-      { speed: "300 / 150 Mbps", price: 1209, cat: "WebStream" },
-      { speed: "500 / 250 Mbps", price: 1309, cat: "WebStream" }
+    const WEB_STREAM = [{
+        speed: "25 / 25 Mbps",
+        price: 639,
+        cat: "WebStream"
+      },
+      {
+        speed: "50 / 25 Mbps",
+        price: 799,
+        tag: "Popular",
+        cat: "WebStream"
+      },
+      {
+        speed: "100 / 50 Mbps",
+        price: 959,
+        cat: "WebStream"
+      },
+      {
+        speed: "200 / 100 Mbps",
+        price: 1099,
+        cat: "WebStream"
+      },
+      {
+        speed: "300 / 150 Mbps",
+        price: 1209,
+        cat: "WebStream"
+      },
+      {
+        speed: "500 / 250 Mbps",
+        price: 1309,
+        cat: "WebStream"
+      }
     ];
-    const FIBRE_CONNECT = [
-      { speed: "50 / 50 Mbps", price: 750, cat: "FibreConnect" },
-      { speed: "100 / 100 Mbps", price: 819, cat: "FibreConnect" },
-      { speed: "300 / 150 Mbps", price: 1045, cat: "FibreConnect" },
-      { speed: "500 / 250 Mbps", price: 1299, tag: "Best value", cat: "FibreConnect" },
-      { speed: "500 / 250 Mbps (Premium)", price: 1550, cat: "FibreConnect" }
+    const FIBRE_CONNECT = [{
+        speed: "50 / 50 Mbps",
+        price: 750,
+        cat: "FibreConnect"
+      },
+      {
+        speed: "100 / 100 Mbps",
+        price: 819,
+        cat: "FibreConnect"
+      },
+      {
+        speed: "300 / 150 Mbps",
+        price: 1045,
+        cat: "FibreConnect"
+      },
+      {
+        speed: "500 / 250 Mbps",
+        price: 1299,
+        tag: "Best value",
+        cat: "FibreConnect"
+      },
+      {
+        speed: "500 / 250 Mbps (Premium)",
+        price: 1550,
+        cat: "FibreConnect"
+      }
     ];
     const ALL_PACKAGES = [...WEB_CONNECT, ...WEB_STREAM, ...FIBRE_CONNECT];
-
-    const COGNITO_FORM_URL = "https://www.cognitoforms.com/AfrietaAdmin/RegisterForFibre";
 
     const toRand = v => "R" + v.toLocaleString("en-ZA");
 
@@ -346,7 +591,7 @@
     const form = document.getElementById("coverageForm");
     const cancelBtn = document.getElementById("cancelBtn");
     const embedWrap = document.getElementById("embed");
-    const frame = document.getElementById("cognitoFrame");
+    const signupFormContainer = document.getElementById("signupFormContainer");
     const submitBtn = document.getElementById("submitBtn");
     const modalBody = document.querySelector(".af-modal__body");
     const modalTitle = document.getElementById("modalTitle");
@@ -376,7 +621,7 @@
       modalTitle.textContent = "Check coverage";
       backdrop.style.display = "flex";
       backdrop.removeAttribute("aria-hidden");
-      setTimeout(() => document.getElementById("address1").focus(), 30);
+      setTimeout(() => document.getElementById("houseNumber").focus(), 30);
     }
 
     function closeModal() {
@@ -386,30 +631,20 @@
     }
     openBtn.addEventListener("click", openModal);
     cancelBtn.addEventListener("click", closeModal);
-    backdrop.addEventListener("click", e => { if (e.target === backdrop) closeModal(); });
-    document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
-
-    /* ---------- Build Cognito URL with prefill ---------- */
-function buildCognitoUrl(address) {
-const params = new URLSearchParams({
-HouseNumber: address.houseNumber || "",
-StreetName: address.streetName || "",
-BuildingName: address.buildingName || "",
-FloorNumber: address.floorNumber || "",
-Suburb: address.suburbName || "",
-Province: address.province || "",
-PostalCode: address.postalCode || "",
-Catalogue: ALL_PACKAGES.map(p => `${p.cat}: ${p.speed} – ${toRand(p.price)}`).join(" | ")
-});
-return `${COGNITO_FORM_URL}?${params.toString()}`;
-}
+    backdrop.addEventListener("click", e => {
+      if (e.target === backdrop) closeModal();
+    });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeModal();
+    });
 
     /* ---------- Backend coverage call ---------- */
     async function checkCoverage(address) {
-      // Use your running backend URL (ngrok example kept from your code)
-      const res = await fetch('https://d38399ad85f6.ngrok-free.app/openserve/product-qualification', {
+      const res = await fetch('https://02db6512dc7a.ngrok-free.app/openserve/product-qualification', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(address)
       });
       if (!res.ok) {
@@ -419,38 +654,183 @@ return `${COGNITO_FORM_URL}?${params.toString()}`;
       return res.json();
     }
 
+    /* ---------- Render custom signup form (replaces Cognito) ---------- */
+    function renderSignupForm(result, address) {
+      const {
+        AddressInfo = {}, ftthProductInfo = []
+      } = result || {};
+      const building = address.buildingName || AddressInfo.LR_BUILDING_NAME || "";
+      const floor = address.floorNumber || AddressInfo.LR_FLOOR || "";
+      const packageOptions = ftthProductInfo.map(p => {
+        const text = `${p.ProductName} (${p.downstreamSpeed} / ${p.upstreamSpeed})`;
+        // Include code in value to help backend
+        return `<option value="${p.ProductCode}">${text}</option>`;
+      }).join("");
+
+      signupFormContainer.innerHTML = `
+        <form id="signupForm">
+          <h2 style="color:#fff; margin: 0 0 12px;">Afrieta Fibre Sign-up</h2>
+          <div class="af-grid-2">
+            <div class="af-field"><label>Title</label><input id="title" required /></div>
+            <div class="af-field"><label>First name</label><input id="firstName" required /></div>
+          </div>
+          <div class="af-grid-2">
+            <div class="af-field"><label>Last name</label><input id="lastName" required /></div>
+            <div class="af-field"><label>Email Address</label><input id="email" type="email" required /></div>
+          </div>
+          <div class="af-grid-2">
+            <div class="af-field"><label>Phone Number</label><input id="phone" type="tel" required /></div>
+            <div class="af-field"><label>WhatsApp Number</label><input id="whatsapp" type="tel" required /></div>
+          </div>
+
+          <h3 style="color:#fff; margin:14px 0 8px;">Address</h3>
+          <div class="af-grid-2">
+            <div class="af-field"><label>House number</label><input id="addr_house" value="${address.houseNumber}" readonly /></div>
+            <div class="af-field"><label>Street name</label><input id="addr_street" value="${address.streetName}" readonly /></div>
+          </div>
+          <div class="af-grid-2">
+            ${building ? `<div class="af-field"><label>Building name/number</label><input id="addr_building" value="${building}" readonly /></div>` : ""}
+            ${floor ? `<div class="af-field"><label>Floor number</label><input id="addr_floor" value="${floor}" readonly /></div>` : ""}
+          </div>
+          <div class="af-grid-2">
+            <div class="af-field"><label>Suburb</label><input id="addr_suburb" value="${address.suburbName}" readonly /></div>
+            <div class="af-field"><label>Province</label><input id="addr_province" value="${address.province}" readonly /></div>
+          </div>
+          <div class="af-field"><label>Postal code</label><input id="addr_postal" value="${address.postalCode}" readonly /></div>
+
+          <h3 style="color:#fff; margin:14px 0 8px;">Connection Details</h3>
+          <div class="af-grid-2">
+            <div class="af-field">
+              <label>Select your package</label>
+              <select id="packageCode" required>
+                <option value="">-- Select --</option>
+                ${packageOptions}
+              </select>
+            </div>
+            <div class="af-field"><label>WiFi Name (SSID)</label><input id="wifiName" required /></div>
+          </div>
+          <div class="af-grid-2">
+            <div class="af-field"><label>WiFi Password</label><input id="wifiPassword" type="password" required /></div>
+            <div class="af-field"><label>Identity Number/Passport Number</label><input id="idNumber" required /></div>
+          </div>
+
+          <h3 style="color:#fff; margin:14px 0 8px;">Authorisation</h3>
+          <div class="af-grid-2">
+            <div class="af-field"><label>Signature</label><input id="signature" placeholder="Type full name" required /></div>
+            <div class="af-field"><label>Date</label><input id="dateSigned" type="date" placeholder="Signed on" required /></div>
+          </div>
+          <div class="af-field"><label>Place</label><input id="place" value="${address.suburbName}, ${address.province}" readonly /></div>
+
+          <label style="display:flex; gap:8px; align-items:flex-start; margin-top:10px;">
+            <input type="checkbox" id="acceptTerms" required />
+            <span>By submitting this form, the customer agrees to the full Afrieta T&Cs, and the customer agrees to be bound thereto. The customer is recommended to refer to full T&Cs on the Afrieta website.</span>
+          </label>
+
+          <div class="af-actions" style="margin-top:16px;">
+            <button type="submit" class="btn btn-primary" id="signupSubmitBtn">Submit Application</button>
+          </div>
+        </form>
+      `;
+
+      // Submit handler (POST JSON to backend)
+      const signupForm = document.getElementById("signupForm");
+      const signupSubmitBtn = document.getElementById("signupSubmitBtn");
+      signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!signupForm.reportValidity()) return;
+
+        signupSubmitBtn.disabled = true;
+        const prevText = signupSubmitBtn.textContent;
+        signupSubmitBtn.textContent = "Submitting…";
+
+        const payload = {
+          title: document.getElementById("title").value.trim(),
+          firstName: document.getElementById("firstName").value.trim(),
+          lastName: document.getElementById("lastName").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          phone: document.getElementById("phone").value.trim(),
+          whatsapp: document.getElementById("whatsapp").value.trim(),
+          idNumber: document.getElementById("idNumber").value.trim(),
+          wifiName: document.getElementById("wifiName").value.trim(),
+          wifiPassword: document.getElementById("wifiPassword").value.trim(),
+          signature: document.getElementById("signature").value.trim(),
+          dateSigned: document.getElementById("dateSigned").value,
+          place: document.getElementById("place").value,
+          packageCode: document.getElementById("packageCode").value,
+          address: {
+            houseNumber: address.houseNumber,
+            streetName: address.streetName,
+            buildingName: building || undefined,
+            floorNumber: floor || undefined,
+            suburbName: address.suburbName,
+            province: address.province,
+            postalCode: address.postalCode
+          },
+          // Optional: include returned products for context/audit
+          ftthProductInfo: (result && result.ftthProductInfo) ? result.ftthProductInfo : []
+        };
+
+        try {
+          const res = await fetch("https://02db6512dc7a.ngrok-free.app/api/register-fibre", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) {
+            const t = await res.text().catch(() => "");
+            throw new Error(t || "Registration failed");
+          }
+          showToast("success", "Application submitted successfully!");
+          signupForm.reset();
+        } catch (err) {
+          console.error(err);
+          showToast("error", "Unable to submit application. Please try again.");
+        } finally {
+          signupSubmitBtn.disabled = false;
+          signupSubmitBtn.textContent = prevText;
+        }
+      });
+    }
+
     /* ---------- Render result INSIDE the modal ---------- */
     function renderResult(result, address) {
-      const { FTTH_Status, MDU_Verification, AddressInfo = {}, ftthProductInfo = [] } = result || {};
-      const status = (FTTH_Status).toLowerCase();
+      const {
+        FTTH_Status,
+        AddressInfo = {},
+        ftthProductInfo = []
+      } = result || {};
+      const status = (FTTH_Status || "").toLowerCase();
       const isAvailable = status === "working";
 
       const badgeClass = isAvailable ? "ok" : (status ? "warn" : "err");
-      const badgeText = isAvailable ? 'Available' : 'Not Available' || "No status";
+      const badgeText = isAvailable ? 'Available' : 'Not Available';
 
       modalTitle.textContent = "Coverage results";
       modalBody.innerHTML = `
         <div class="result-block">
           ${isAvailable ? `
-          div
           <p><strong>Status:</strong> <span class="badge ${badgeClass}">${badgeText}</span></p>
           <p><strong>AMID:</strong> ${AddressInfo.AMID || "—"}</p>
           <div class="addr" style="margin-top:8px;">
-            <p><strong>Address:</strong> ${AddressInfo.LR_Address || `${address.address1}, ${address.suburb}`}</p>
+            <p><strong>Address:</strong> ${AddressInfo.LR_Address || `${address.houseNumber} ${address.streetName}, ${address.suburbName}`}</p>
             <p>${[AddressInfo.LR_SUBURB, AddressInfo.LR_TOWN, AddressInfo.LR_PROVINCE].filter(Boolean).join(", ")}</p>
           </div>
           <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
           <div>
             <h4>Available Products:</h4>
-              <ul class="product-grid" style="list-style:none; padding:0;">
-                ${ftthProductInfo.map(p => `
-                  <li class="product-card">
-                    <div style="font-weight:800;">${p.ProductName} <span style="opacity:.7; font-weight:600;">(${p.ProductCode})</span></div>
-                    <div style="font-size:14px; opacity:.9;">Download Speed: ${p.downstreamSpeed} &nbsp;|&nbsp; Upload Speed: ${p.upstreamSpeed}</div>
-                  </li>`).join("")}
-              </ul>
+            <ul class="product-grid" style="list-style:none; padding:0; margin:0;">
+              ${ftthProductInfo.map(p => `
+                <li class="product-card">
+                  <div style="font-weight:800;">${p.ProductName} <span style="opacity:.7; font-weight:600;">(${p.ProductCode})</span></div>
+                  <div style="font-size:14px; opacity:.9;">Download: ${p.downstreamSpeed} &nbsp;|&nbsp; Upload: ${p.upstreamSpeed}</div>
+                </li>`).join("")}
+            </ul>
           </div>
-        </div>` : `<h5 style="margin-bottom: 30px; font-size: 18px;" >We are sorry, OpenServe Fibre is not available in this area.</h5>`}
+          ` : `
+          <h5 style="margin-bottom: 30px; font-size: 18px;">We are sorry, OpenServe Fibre is not available in this area.</h5>
+          `}
           <div class="af-actions" style="margin-top:16px;">
             <button type="button" class="btn btn-dark" id="backBtn">Back</button>
             ${isAvailable ? `<button type="button" class="btn btn-primary" id="continueBtn">Continue</button>` : `<button type="button" class="btn btn-primary" id="tryAgainBtn">Try another address</button>`}
@@ -463,29 +843,32 @@ return `${COGNITO_FORM_URL}?${params.toString()}`;
         modalTitle.textContent = "Check coverage";
         modalBody.innerHTML = "";
         modalBody.appendChild(form);
-        setTimeout(() => document.getElementById("address1").focus(), 20);
+        setTimeout(() => document.getElementById("houseNumber").focus(), 20);
       });
 
       // Continue (only shown when available)
       const continueBtn = document.getElementById("continueBtn");
       if (continueBtn) {
         continueBtn.addEventListener("click", () => {
-          const url = buildCognitoUrl(address);
-          frame.src = url;
+          // Inject and show custom signup form (replacing Cognito)
+          renderSignupForm(result, address);
           embedWrap.classList.remove("hidden");
           closeModal();
-          embedWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+          embedWrap.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
         });
       }
 
-      // If not available, offer to try again (focus back to address field)
+      // If not available, try again
       const tryAgainBtn = document.getElementById("tryAgainBtn");
       if (tryAgainBtn) {
         tryAgainBtn.addEventListener("click", () => {
           modalTitle.textContent = "Check coverage";
           modalBody.innerHTML = "";
           modalBody.appendChild(form);
-          setTimeout(() => document.getElementById("address1").focus(), 20);
+          setTimeout(() => document.getElementById("houseNumber").focus(), 20);
         });
       }
     }
@@ -495,18 +878,18 @@ return `${COGNITO_FORM_URL}?${params.toString()}`;
       e.preventDefault();
       if (!form.reportValidity()) return;
 
- const address = {
- houseNumber: form.houseNumber.value.trim(),
- streetName: form.streetName.value.trim(),
- buildingName: form.buildingName.value.trim(),
- floorNumber: form.floorNumber.value.trim(),
- suburbName: form.suburbName.value.trim(),
- province: form.province.value.trim(),
- postalCode: form.postalCode.value.trim()
- };
-
+      const address = {
+        houseNumber: form.houseNumber.value.trim(),
+        streetName: form.streetName.value.trim(),
+        buildingName: form.buildingName.value.trim(),
+        floorNumber: form.floorNumber.value.trim(),
+        suburbName: form.suburbName.value.trim(),
+        province: form.province.value.trim(),
+        postalCode: form.postalCode.value.trim()
+      };
 
       submitBtn.textContent = 'Checking availability…';
+      submitBtn.disabled = true;
       openBtn && (openBtn.disabled = true);
 
       try {
@@ -520,6 +903,7 @@ return `${COGNITO_FORM_URL}?${params.toString()}`;
       } finally {
         openBtn && (openBtn.disabled = false);
         submitBtn.textContent = 'Check availability';
+        submitBtn.disabled = false;
       }
     });
   </script>
@@ -531,4 +915,5 @@ return `${COGNITO_FORM_URL}?${params.toString()}`;
   <!-- Your site-wide JS (if any) -->
   <!-- <script src="./assets/js/script.js"></script> -->
 </body>
+
 </html>

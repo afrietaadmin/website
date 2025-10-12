@@ -29,7 +29,7 @@
     }
 
     section {
-      padding: 20px !important;
+      padding: 20px 0 !important;
     }
 
     .header {
@@ -86,23 +86,6 @@
 
     .hidden {
       display: none !important
-    }
-
-    .embed-wrap {
-      width: 800px;
-      margin-top: 20px;
-      background: #101a26;
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 14px;
-      padding: 16px
-    }
-
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: 0;
-      border-radius: 10px;
-      background: #fff
     }
 
     /* ===== Afrieta modal (namespaced) ===== */
@@ -187,12 +170,34 @@
       font-size: 14px;
       color: var(--af-muted);
     }
+     #signupForm {
+          padding: 40px;
+          box-shadow: var(--shadow-2);
+          border-radius: var(--radius-6);
+     }
+          #signupForm .af-field>label {
+            color: unset;
+          }
+    #signupForm .af-field>input,
+     #signupForm .af-field>select {
+    background: transparent;
+    border: 1px solid #424141;
+    color: unset;
+    border-radius: 10px;
+    padding: 10px 12px;
+    outline: none;
+    height: 49.19px;
+    }
+
+     #signupForm .af-field>input::placeholder {
+     color: #1b1b1b;
+     }
 
     .af-field>input,
     .af-field>select {
       background: #0b121b;
       border: 1px solid var(--af-border);
-      color: var(--af-text);
+      color: unset;
       border-radius: 10px;
       padding: 10px 12px;
       outline: none;
@@ -224,7 +229,16 @@
       box-shadow: 0 0 0 2px rgba(236, 5, 236, .35);
       border-color: rgba(236, 5, 236, .55);
     }
+     #signupForm .af-field>input:focus {
+      box-shadow: 0 0 0 2px #424141;
+      border-color: #424141;
+    }
 
+    #signupForm .af-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    }
     /* ====== Toasts ====== */
     #af-toast {
       position: fixed;
@@ -640,7 +654,7 @@
 
     /* ---------- Backend coverage call ---------- */
     async function checkCoverage(address) {
-      const res = await fetch('https://02db6512dc7a.ngrok-free.app/openserve/product-qualification', {
+      const res = await fetch('https://api.afrieta.com/openserve/product-qualification', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -669,21 +683,20 @@
 
       signupFormContainer.innerHTML = `
         <form id="signupForm">
-          <h2 style="color:#fff; margin: 0 0 12px;">Afrieta Fibre Sign-up</h2>
-          <div class="af-grid-2">
+          <h2>Afrieta Fibre Sign-up</h2>
+          <div class="af-grid-3">
             <div class="af-field"><label>Title</label><input id="title" required /></div>
             <div class="af-field"><label>First name</label><input id="firstName" required /></div>
-          </div>
-          <div class="af-grid-2">
             <div class="af-field"><label>Last name</label><input id="lastName" required /></div>
-            <div class="af-field"><label>Email Address</label><input id="email" type="email" required /></div>
           </div>
-          <div class="af-grid-2">
+          <div class="af-grid-3">
+            <div class="af-field"><label>Email Address</label><input id="email" type="email" required /></div>
             <div class="af-field"><label>Phone Number</label><input id="phone" type="tel" required /></div>
             <div class="af-field"><label>WhatsApp Number</label><input id="whatsapp" type="tel" required /></div>
           </div>
+       <div class="af-field"><label>Identity Number/Passport Number</label><input id="idNumber" required /></div>
 
-          <h3 style="color:#fff; margin:14px 0 8px;">Address</h3>
+          <h3>Address</h3>
           <div class="af-grid-2">
             <div class="af-field"><label>House number</label><input id="addr_house" value="${address.houseNumber}" readonly /></div>
             <div class="af-field"><label>Street name</label><input id="addr_street" value="${address.streetName}" readonly /></div>
@@ -692,14 +705,14 @@
             ${building ? `<div class="af-field"><label>Building name/number</label><input id="addr_building" value="${building}" readonly /></div>` : ""}
             ${floor ? `<div class="af-field"><label>Floor number</label><input id="addr_floor" value="${floor}" readonly /></div>` : ""}
           </div>
-          <div class="af-grid-2">
+          <div class="af-grid-3">
             <div class="af-field"><label>Suburb</label><input id="addr_suburb" value="${address.suburbName}" readonly /></div>
             <div class="af-field"><label>Province</label><input id="addr_province" value="${address.province}" readonly /></div>
+            <div class="af-field"><label>Postal code</label><input id="addr_postal" value="${address.postalCode}" readonly /></div>
           </div>
-          <div class="af-field"><label>Postal code</label><input id="addr_postal" value="${address.postalCode}" readonly /></div>
 
-          <h3 style="color:#fff; margin:14px 0 8px;">Connection Details</h3>
-          <div class="af-grid-2">
+          <h3>Connection Details</h3>
+          <div class="af-grid-3">
             <div class="af-field">
               <label>Select your package</label>
               <select id="packageCode" required>
@@ -708,18 +721,15 @@
               </select>
             </div>
             <div class="af-field"><label>WiFi Name (SSID)</label><input id="wifiName" required /></div>
-          </div>
-          <div class="af-grid-2">
             <div class="af-field"><label>WiFi Password</label><input id="wifiPassword" type="password" required /></div>
-            <div class="af-field"><label>Identity Number/Passport Number</label><input id="idNumber" required /></div>
           </div>
 
-          <h3 style="color:#fff; margin:14px 0 8px;">Authorisation</h3>
+          <!-- <h3>Authorisation</h3>
+          <div class="af-field"><label>Signature</label><input id="signature" placeholder="Type full name" required /></div>
           <div class="af-grid-2">
-            <div class="af-field"><label>Signature</label><input id="signature" placeholder="Type full name" required /></div>
             <div class="af-field"><label>Date</label><input id="dateSigned" type="date" placeholder="Signed on" required /></div>
-          </div>
-          <div class="af-field"><label>Place</label><input id="place" value="${address.suburbName}, ${address.province}" readonly /></div>
+            <div class="af-field"><label>Place</label><input id="place" value="${address.suburbName}, ${address.province}" readonly /></div>
+          </div> -->
 
           <label style="display:flex; gap:8px; align-items:flex-start; margin-top:10px;">
             <input type="checkbox" id="acceptTerms" required />
@@ -727,7 +737,7 @@
           </label>
 
           <div class="af-actions" style="margin-top:16px;">
-            <button type="submit" class="btn btn-primary" id="signupSubmitBtn">Submit Application</button>
+            <button type="submit" class="btn btn-dark" id="signupSubmitBtn">Submit Application</button>
           </div>
         </form>
       `;
@@ -771,7 +781,7 @@
         };
 
         try {
-          const res = await fetch("https://02db6512dc7a.ngrok-free.app/api/register-fibre", {
+          const res = await fetch("https://api.afrieta.com/api/register-fibre", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"

@@ -669,21 +669,21 @@
     }
 
     const allPackages = [
-  { name: "Afrieta Fibre Premium OFC 500Mbs/250Mbs", price: 1550 },
-  { name: "Afrieta Fibre Premium OFC 300Mbs/150Mbs", price: 1299 },
-  { name: "Afrieta Fibre Premium OFC 100Mbs/100Mbs", price: 1045 },
-  { name: "Afrieta Fibre Premium OFC 100Mbs/50Mbs", price: 919 },
-  { name: "Afrieta Fibre Premium OFC 50Mbs/50Mbs", price: 819 },
-  { name: "Afrieta Fibre Premium OFC 50Mbs/25Mbs", price: 750 },
-  { name: "Afrieta Fibre OWS 500Mbps/250Mbps", price: 1399 },
-  { name: "Afrieta Fibre OWS 300Mbps/150Mbps", price: 1209 },
-  { name: "Afrieta Fibre OWS 200Mbps/100Mbps", price: 1099 },
-  { name: "Afrieta Fibre OWS 100Mbps/50Mbps", price: 959 },
-  { name: "Afrieta Fibre OWS 50Mbps/25Mbps", price: 799 },
-  { name: "Afrieta Fibre OWS 25Mbps/25Mbps", price: 639 },
-  { name: "Afrieta Fibre OWC 40Mbps/20Mbps", price: 509 },
-  { name: "Afrieta Fibre OWC 20Mbps/10Mbps", price: 449 },
-  { name: "Afrieta Fibre OWC 10Mbps/10Mbps", price: 379 }
+    { name: "Afrieta Fibre OWC 10Mbps/10Mbps", price: 379 },
+    { name: "Afrieta Fibre OWC 20Mbps/10Mbps", price: 449 },
+    { name: "Afrieta Fibre OWC 40Mbps/20Mbps", price: 509 },
+    { name: "Afrieta Fibre OWS 25Mbps/25Mbps", price: 639 },
+    { name: "Afrieta Fibre OWS 50Mbps/25Mbps", price: 799 },
+    { name: "Afrieta Fibre OWS 100Mbps/50Mbps", price: 959 },
+    { name: "Afrieta Fibre OWS 200Mbps/100Mbps", price: 1099 },
+    { name: "Afrieta Fibre OWS 300Mbps/150Mbps", price: 1209 },
+    { name: "Afrieta Fibre OWS 500Mbps/250Mbps", price: 1399 },
+    { name: "Afrieta Fibre Premium OFC 50Mbs/25Mbs", price: 750 },
+    { name: "Afrieta Fibre Premium OFC 50Mbs/50Mbs", price: 819 },
+    { name: "Afrieta Fibre Premium OFC 100Mbs/50Mbs", price: 919 },
+    { name: "Afrieta Fibre Premium OFC 100Mbs/100Mbs", price: 1045 },
+    { name: "Afrieta Fibre Premium OFC 300Mbs/150Mbs", price: 1299 },
+    { name: "Afrieta Fibre Premium OFC 500Mbs/250Mbs", price: 1550 },
 ];
     /* ---------- Render custom signup form (replaces Cognito) ---------- */
     function renderSignupForm(result, address) {
@@ -846,6 +846,9 @@ const packageOptions = ftthProductInfo.map(product => {
         AddressInfo = {},
         ftthProductInfo = []
       } = result || {};
+      
+// Define the product order
+const productOrder = ["OWC", "OWS", "OFC"];
       const status = (FTTH_Status || "").toLowerCase();
       const isAvailable = status === "working";
 
@@ -866,39 +869,41 @@ const packageOptions = ftthProductInfo.map(product => {
           <div>
     <h4>Available Products:</h4>
     <ul class="product-grid" style="list-style:none; padding:0; margin:0;">
-      ${ftthProductInfo.map(p => {
-        // Match packages to product code
-        const relatedPackages = allPackages.filter(pkg =>
-          pkg.name.includes(p.ProductCode)
-        );
+  ${ftthProductInfo
+    // Sort product categories first (OWC → OWS → OFC)
+    .sort((a, b) => productOrder.indexOf(a.ProductCode) - productOrder.indexOf(b.ProductCode))
+    .map(p => {
+      // Match packages to product code
+      const relatedPackages = allPackages
+        .filter(pkg => pkg.name.includes(p.ProductCode))
+        // Sort packages by price ascending
+        .sort((a, b) => a.price - b.price);
 
-        // Convert product naming to Afrieta format
-        const afrietaName = p.ProductCode === "OFC"
-          ? "Afrieta Fibre Premium"
-          : "Afrieta Fibre";
+      // Convert product naming to Afrieta format
+      const afrietaName = p.ProductCode === "OFC"
+        ? "Afrieta Fibre Premium"
+        : "Afrieta Fibre";
 
-        // Render packages as name–value pairs
-        return `
-          <li class="product-card" style="margin-bottom:16px;">
-            <h3 style="font-weight:800; margin-bottom:12px;">
-              ${afrietaName} (${p.ProductCode})
-            </h3>
-            ${relatedPackages.map(pkg => {
-              const match = pkg.name.match(/(\d+M[bB]s)\/(\d+M[bB]s)/);
-              const planName = pkg.name.replace(/Afrieta Fibre (Premium )?${p.ProductCode}\s*/,'').trim();
-
-              return `
-                <div style="font-size:15px; opacity:.9; display:flex; flex-direction:column; margin-bottom:6px;">
-                  <div><strong>Name:</strong> ${planName}</div>
-                  <div><strong>Price:</strong> R${pkg.price.toLocaleString()}</div>
-                </div>
-                <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
-              `;
-            }).join("")}
-          </li>
-        `;
-      }).join("")}
-    </ul>
+      // Render packages as name–value pairs
+      return `
+        <li class="product-card" style="margin-bottom:16px;">
+          <h3 style="font-weight:800; margin-bottom:12px;">
+            ${afrietaName} (${p.ProductCode})
+          </h3>
+          ${relatedPackages.map(pkg => {
+            const planName = pkg.name.replace(/Afrieta Fibre (Premium )?${p.ProductCode}\s*/,'').trim();
+            return `
+              <div style="font-size:15px; opacity:.9; display:flex; flex-direction:column; margin-bottom:6px;">
+                <div><strong>Name:</strong> ${planName}</div>
+                <div><strong>Price:</strong> R${pkg.price.toLocaleString()}</div>
+              </div>
+              <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
+            `;
+          }).join("")}
+        </li>
+      `;
+    }).join("")}
+</ul>
   </div>
           ` : `
           <h5 style="margin-bottom: 30px; font-size: 18px;">We are sorry, OpenServe Fibre is not available in this area.</h5>

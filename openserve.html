@@ -678,12 +678,12 @@
     { name: "Afrieta Fibre OWS 200Mbps/100Mbps", price: 1099 },
     { name: "Afrieta Fibre OWS 300Mbps/150Mbps", price: 1209 },
     { name: "Afrieta Fibre OWS 500Mbps/250Mbps", price: 1399 },
-    { name: "Afrieta Fibre Premium OFC 50Mbs/25Mbs", price: 750 },
-    { name: "Afrieta Fibre Premium OFC 50Mbs/50Mbs", price: 819 },
-    { name: "Afrieta Fibre Premium OFC 100Mbs/50Mbs", price: 919 },
-    { name: "Afrieta Fibre Premium OFC 100Mbs/100Mbs", price: 1045 },
-    { name: "Afrieta Fibre Premium OFC 300Mbs/150Mbs", price: 1299 },
-    { name: "Afrieta Fibre Premium OFC 500Mbs/250Mbs", price: 1550 },
+    { name: "Afrieta Premium Fibre OFC 50Mbs/25Mbs", price: 750 },
+    { name: "Afrieta Premium Fibre OFC 50Mbs/50Mbs", price: 819 },
+    { name: "Afrieta Premium Fibre OFC 100Mbs/50Mbs", price: 919 },
+    { name: "Afrieta Premium Fibre OFC 100Mbs/100Mbs", price: 1045 },
+    { name: "Afrieta Premium Fibre OFC 300Mbs/150Mbs", price: 1299 },
+    { name: "Afrieta Premium Fibre OFC 500Mbs/250Mbs", price: 1550 },
 ];
     /* ---------- Render custom signup form (replaces Cognito) ---------- */
     function renderSignupForm(result, address) {
@@ -708,9 +708,19 @@ const packageOptions = ftthProductInfo.map(product => {
       return `<option value="${product.ProductCode}">${text}</option>`;
     })
     .join("");
+    let label;
+
+    if (product.ProductName == 'Openserve Fibre Connect') {
+      label = 'Afrieta Premium Fibre OFC'
+    } else if(product.ProductName == 'Openserve Web Connect') {
+      label = 'Afrieta Fibre OWC'
+    }
+    else if(product.ProductName == 'Openserve Webstream'){
+      label = 'Afrieta Fibre OWS'
+    }
 
   return `
-    <optgroup label="${product.ProductName}">
+    <optgroup label="${label}">
       ${options}
     </optgroup>
   `;

@@ -766,7 +766,7 @@ const packageOptions = ftthProductInfo.map(product => {
               </select>
             </div>
             <div class="af-field"><label>WiFi Name (SSID)</label><input id="wifiName" required /></div>
-            <div class="af-field"><label>WiFi Password</label><input id="wifiPassword" type="password" required /></div>
+            <div class="af-field"><label>WiFi Password</label><input id="wifiPassword" type="text" required /></div>
           </div>
 
           <!-- <h3>Authorisation</h3>
@@ -826,7 +826,7 @@ const packageOptions = ftthProductInfo.map(product => {
         };
 
         try {
-          const res = await fetch("https://api.afrieta.com/api/register-fibre", {
+          const res = await fetch("https://api.afrieta.com/api/provision-fibre", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"

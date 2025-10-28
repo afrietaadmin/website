@@ -847,8 +847,7 @@ const packageOptions = ftthProductInfo.map(product => {
 showToast("success", "Application submitted successfully!");
 
 // Show quote modal
-showQuoteModal(data.quote);
-
+        showQuoteModal(data.quote, payload.packageCode);
 // Reset form
 signupForm.reset();
 
@@ -974,7 +973,7 @@ const productOrder = ["OWC", "OWS", "OFC"];
     }
 
     /* ---------- Quote Modal ---------- */
-function showQuoteModal(quote) {
+function showQuoteModal(quote, selectedPackage) {
   if (!quote) return;
 
   const backdrop = document.getElementById("backdrop");
@@ -995,9 +994,9 @@ function showQuoteModal(quote) {
 
       <div style="margin-bottom:20px;">
         <h4 style="margin-bottom:6px;">Quote Summary</h4>
-        <p><strong>Package:</strong> ${quote.items[0]?.name || "Selected Fibre Package"}</p>
+        <p><strong>Package:</strong> ${quote.items[0]?.name || selectedPackage}</p>
         <p><strong>Amount:</strong> <b style="font-size:18px;color:#ee06ee;">R${quote.summary?.grandTotal?.toLocaleString("en-ZA")}</b></p>
-        <p><strong>Created:</strong> ${new Date(quote.createdAt).toLocaleString()}</p>
+        <p><strong>Generated At:</strong> ${new Date(quote.createdAt).toLocaleString()}</p>
       </div>
 
       <div style="margin-bottom:20px;">
@@ -1022,7 +1021,7 @@ function showQuoteModal(quote) {
   backdrop.removeAttribute("aria-hidden");
 
   document.getElementById("closeQuoteBtn").addEventListener("click", () => {
-signupFormContainer.style.display = 'none';
+    signupFormContainer.style.display = 'none';
 
     backdrop.style.display = "none";
     backdrop.setAttribute("aria-hidden", "true");

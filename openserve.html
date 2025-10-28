@@ -354,6 +354,9 @@
       font-size: 13px;
       color: #d8d8d8;
     }
+    .result-block h4 {
+      font-size: 18px;
+    }
   </style>
 </head>
 
@@ -654,7 +657,7 @@
 
     /* ---------- Backend coverage call ---------- */
     async function checkCoverage(address) {
-      const res = await fetch('https://api.afrieta.com/openserve/product-qualification', {
+      const res = await fetch('https://40607a439578.ngrok-free.app/openserve/product-qualification', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -705,7 +708,7 @@ const packageOptions = ftthProductInfo.map(product => {
   const options = relatedPackages
     .map(pkg => {
       const text = `${pkg.name} = R${pkg.price.toLocaleString()}`;
-      return `<option value="${product.ProductCode}">${text}</option>`;
+      return `<option value="${text}">${text}</option>`;
     })
     .join("");
     let label;
@@ -791,6 +794,7 @@ const packageOptions = ftthProductInfo.map(product => {
       const signupForm = document.getElementById("signupForm");
       const signupSubmitBtn = document.getElementById("signupSubmitBtn");
       signupForm.addEventListener("submit", async (e) => {
+        console.log('Logged')
         e.preventDefault();
         if (!signupForm.reportValidity()) return;
 
@@ -808,10 +812,10 @@ const packageOptions = ftthProductInfo.map(product => {
           idNumber: document.getElementById("idNumber").value.trim(),
           wifiName: document.getElementById("wifiName").value.trim(),
           wifiPassword: document.getElementById("wifiPassword").value.trim(),
-          signature: document.getElementById("signature").value.trim(),
-          dateSigned: document.getElementById("dateSigned").value,
-          place: document.getElementById("place").value,
-          packageCode: document.getElementById("packageCode").value,
+          //signature: document.getElementById("signature").value.trim(),
+          //dateSigned: document.getElementById("dateSigned").value,
+          //place: document.getElementById("place").value,
+          packageCode: document.getElementById("packageCode").value.trim(),
           address: {
             houseNumber: address.houseNumber,
             streetName: address.streetName,
@@ -826,7 +830,7 @@ const packageOptions = ftthProductInfo.map(product => {
         };
 
         try {
-          const res = await fetch("https://api.afrieta.com/api/provision-fibre", {
+          const res = await fetch("https://40607a439578.ngrok-free.app/provision-fibre", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -837,8 +841,17 @@ const packageOptions = ftthProductInfo.map(product => {
             const t = await res.text().catch(() => "");
             throw new Error(t || "Registration failed");
           }
-          showToast("success", "Application submitted successfully!");
-          signupForm.reset();
+         const data = await res.json();
+
+// Show toast
+showToast("success", "Application submitted successfully!");
+
+// Show quote modal
+showQuoteModal(data.quote);
+
+// Reset form
+signupForm.reset();
+
         } catch (err) {
           console.error(err);
           showToast("error", "Unable to submit application. Please try again.");
@@ -959,6 +972,62 @@ const productOrder = ["OWC", "OWS", "OFC"];
         });
       }
     }
+
+    /* ---------- Quote Modal ---------- */
+function showQuoteModal(quote) {
+  if (!quote) return;
+
+  const backdrop = document.getElementById("backdrop");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalBody = document.querySelector(".af-modal__body");
+
+  // Populate modal with quote info
+  modalTitle.textContent = "Your Afrieta Quote";
+  modalBody.innerHTML = `
+    <div class="result-block">
+      <h3 style="margin-bottom: 10px;">Thank you for your application!</h3>
+      <p style="font-size:16px; margin-bottom:20px;">Your quote <strong>${quote.number}</strong> has been generated successfully.</p>
+
+   <blockquote style="border-left: 4px solid #ee06ee; padding-left: 10px; color: #9be6d2; font-style: italic;">
+“Connectivity is not a luxury; it’s the heartbeat of opportunity.” – Afrieta
+</blockquote>
+
+
+      <div style="margin-bottom:20px;">
+        <h4 style="margin-bottom:6px;">Quote Summary</h4>
+        <p><strong>Package:</strong> ${quote.items[0]?.name || "Selected Fibre Package"}</p>
+        <p><strong>Amount:</strong> <b style="font-size:18px;color:#ee06ee;">R${quote.summary?.grandTotal?.toLocaleString("en-ZA")}</b></p>
+        <p><strong>Created:</strong> ${new Date(quote.createdAt).toLocaleString()}</p>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <h4 style="margin-bottom:6px;">Payment Details</h4>
+        <p><strong>${quote.organization.payment.bankAccountName}</strong></p>
+        <p>${quote.organization.payment.detail1}</p>
+        <p>${quote.organization.payment.detail2}</p>
+      </div>
+
+      <p style="margin-bottom:12px;">Please make payment to activate installation. Once payment is confirmed, installation will be scheduled within <strong>2–3 working days</strong>.</p>
+      <p style="margin-bottom:24px; font-weight:600;">A copy of this quote has been sent to your email.</p>
+
+      <div class="af-actions" style="margin-top:16px;">
+        <button type="button" class="btn btn-primary" id="closeQuoteBtn" style="background: #f5f5f5; color: #111;
+">Close</button>
+      </div>
+    </div>
+  `;
+
+  // Show modal
+  backdrop.style.display = "flex";
+  backdrop.removeAttribute("aria-hidden");
+
+  document.getElementById("closeQuoteBtn").addEventListener("click", () => {
+signupFormContainer.style.display = 'none';
+
+    backdrop.style.display = "none";
+    backdrop.setAttribute("aria-hidden", "true");
+  });
+}
 
     /* ---------- Form submit → replace modal content with results ---------- */
     form.addEventListener("submit", async (e) => {

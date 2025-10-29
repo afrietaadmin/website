@@ -657,7 +657,7 @@
 
     /* ---------- Backend coverage call ---------- */
     async function checkCoverage(address) {
-      const res = await fetch('https://40607a439578.ngrok-free.app/openserve/product-qualification', {
+      const res = await fetch('https://api.afrieta.com/openserve/product-qualification', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -830,7 +830,7 @@ const packageOptions = ftthProductInfo.map(product => {
         };
 
         try {
-          const res = await fetch("https://40607a439578.ngrok-free.app/provision-fibre", {
+          const res = await fetch("https://api.afrieta.com/provision-fibre", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"

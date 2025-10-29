@@ -113,8 +113,6 @@
 
     .af-modal {
       width: min(70%, 100%);
-      height: 650px;
-      overflow: auto !important;
       background: radial-gradient(1200px 600px at 70% -10%, #262626 0%, var(--af-panel) 55%);
       border: 1px solid var(--af-border);
       border-radius: 18px;
@@ -124,6 +122,11 @@
       transform: translateY(10px) scale(.98);
       opacity: 0;
       transition: transform .18s ease, opacity .18s ease;
+    }
+
+    .af-modal .content {
+          height: 650px;
+          overflow: auto !important;
     }
 
     .af-backdrop[style*="display: flex"] .af-modal {
@@ -152,12 +155,23 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
+    .af-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
 
     @media (max-width: 560px) {
-      .af-grid-2 {
+      .af-grid-2, .af-grid-3 {
         grid-template-columns: 1fr;
       }
     }
+.mdu-only {
+transition: opacity 0.25s ease;
+}
+.mdu-only[style*="display: none"] {
+opacity: 0;
+}
 
     .af-field {
       display: flex;
@@ -313,9 +327,10 @@
     /* ===== Coverage Results Grid ===== */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 12px;
       margin-top: 12px;
+      width: 100%;
     }
 
     @media (max-width: 560px) {
@@ -447,51 +462,74 @@
         <div id="modalTitle" class="af-modal__title">Check coverage</div>
       </header>
       <div class="af-modal__body">
-        <form id="coverageForm">
-          <div class="af-grid-2">
-            <div class="af-field">
-              <label for="houseNumber">House number</label>
-              <input id="houseNumber" name="houseNumber" placeholder="e.g., 12" required />
-            </div>
-            <div class="af-field">
-              <label for="streetName">Street name</label>
-              <input id="streetName" name="streetName" placeholder="e.g., Example St" required />
-            </div>
-          </div>
+      <form id="coverageForm">
+        <div class="af-field">
+          <label for="dwellingType">Dwelling Type</label>
+          <select id="dwellingType" name="dwellingType" required>
+            <option value="">-- Select Dwelling Type --</option>
+            <option value="SDU">Single Dwelling Unit (House)</option>
+            <option value="MDU">Multi Dwelling Unit (Flat, Apartment, Complex)</option>
+          </select>
+        </div>
 
-          <div class="af-grid-2">
-            <div class="af-field">
-              <label for="buildingName">Building name / Building number (optional)</label>
-              <input id="buildingName" name="buildingName" placeholder="e.g., Kings Tower" />
-            </div>
-
-            <div class="af-field">
-              <label for="floorNumber">Floor number (optional)</label>
-              <input id="floorNumber" name="floorNumber" placeholder="e.g., 3rd Floor" />
-            </div>
-          </div>
-
-          <div class="af-grid-2">
-            <div class="af-field">
-              <label for="suburbName">Suburb name</label>
-              <input id="suburbName" name="suburbName" placeholder="e.g., Rosebank" required />
-            </div>
-            <div class="af-field">
-              <label for="province">Province</label>
-              <input id="province" name="province" placeholder="e.g., Gauteng" required />
-            </div>
-          </div>
-
+        <div class="af-grid-2">
           <div class="af-field">
-            <label for="postalCode">Postal code</label>
-            <input id="postalCode" name="postalCode" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="e.g., 2196" required />
+            <label for="houseNumber">Street Number</label>
+            <input id="houseNumber" name="houseNumber" placeholder="e.g., 303" required />
           </div>
+          <div class="af-field">
+            <label for="streetName">Street Name</label>
+            <input id="streetName" name="streetName" placeholder="e.g., Onyx Street" required />
+          </div>
+        </div>
 
-          <div class="af-actions">
-            <button type="button" class="btn btn-dark" id="cancelBtn">Cancel</button>
-            <button type="submit" class="btn btn-primary" id="submitBtn">Check availability</button>
+        <!-- MDU ONLY -->
+        <div class="af-grid-3 mdu-only">
+          <div class="af-field">
+            <label for="buildingName">Building Name / Number</label>
+            <input id="buildingName" name="buildingName" placeholder="e.g., Westlake Estate or 33" />
           </div>
-        </form>
+          <div class="af-field">
+            <label for="unitNumber">Unit / Flat / Apartment Number</label>
+            <input id="unitNumber" name="unitNumber" placeholder="e.g., 324" />
+          </div>
+          <div class="mdu-only">
+            <div class="af-field">
+              <label for="floorNumber">Floor Number</label>
+              <input id="floorNumber" name="floorNumber" placeholder="e.g., 1" />
+            </div>
+          </div>
+        </div>
+
+
+        <div class="af-grid-2">
+          <div class="af-field">
+            <label for="suburbName">Suburb Name</label>
+            <input id="suburbName" name="suburbName" placeholder="e.g., Laudium" required />
+          </div>
+          <div class="af-field">
+            <label for="cityName">Town / City</label>
+            <input id="cityName" name="cityName" placeholder="e.g., Pretoria" required />
+          </div>
+        </div>
+
+        <div class="af-grid-2">
+          <div class="af-field">
+            <label for="province">Province</label>
+            <input id="province" name="province" placeholder="e.g., Gauteng" required />
+          </div>
+          <div class="af-field">
+            <label for="postalCode">Postal Code</label>
+            <input id="postalCode" name="postalCode" inputmode="numeric" maxlength="4" placeholder="e.g., 0037" required />
+          </div>
+        </div>
+
+        <div class="af-actions">
+          <button type="button" class="btn btn-dark" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">Check Availability</button>
+        </div>
+      </form>
+
       </div>
     </div>
   </div>
@@ -648,12 +686,35 @@
     }
     openBtn.addEventListener("click", openModal);
     cancelBtn.addEventListener("click", closeModal);
+
+    // Disable closing modal by clicking outside
     backdrop.addEventListener("click", e => {
-      if (e.target === backdrop) closeModal();
+    const modal = backdrop.querySelector(".af-modal");
+    const isInsideModal = modal && modal.contains(e.target);
+    if (!isInsideModal) {
+    // Prevent accidental closure
+    e.stopPropagation();
+    e.preventDefault();
+    }
     });
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") closeModal();
-    });
+
+    const dwellingSelect = document.getElementById("dwellingType");
+    const mduFields = document.querySelectorAll(".mdu-only");
+
+    function updateFieldVisibility() {
+    const isMDU = dwellingSelect.value === "MDU";
+    mduFields.forEach(f => f.style.display = isMDU ? "grid" : "none");
+
+    // toggle required attributes dynamically
+    document.getElementById("buildingName").required = isMDU;
+    document.getElementById("unitNumber").required = isMDU;
+    document.getElementById("floorNumber").required = isMDU;
+    }
+
+    dwellingSelect.addEventListener("change", updateFieldVisibility);
+    updateFieldVisibility(); // run on load
+
+
 
     /* ---------- Backend coverage call ---------- */
     async function checkCoverage(address) {
@@ -880,59 +941,61 @@ const productOrder = ["OWC", "OWS", "OFC"];
       modalTitle.textContent = "Coverage results";
       modalBody.innerHTML = `
         <div class="result-block">
-          ${isAvailable ? `
-          <p><strong>Status:</strong> <span class="badge ${badgeClass}">${badgeText}</span></p>
-          <p><strong>AMID:</strong> ${AddressInfo.AMID || "—"}</p>
-          <div class="addr" style="margin-top:8px;">
-            <p><strong>Address:</strong> ${AddressInfo.LR_Address || `${address.houseNumber} ${address.streetName}, ${address.suburbName}`}</p>
-            <p>${[AddressInfo.LR_SUBURB, AddressInfo.LR_TOWN, AddressInfo.LR_PROVINCE].filter(Boolean).join(", ")}</p>
-          </div>
-          <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
-          <div>
-    <h4>Available Products:</h4>
-    <ul class="product-grid" style="list-style:none; padding:0; margin:0;">
-  ${ftthProductInfo
-    // Sort product categories first (OWC → OWS → OFC)
-    .sort((a, b) => productOrder.indexOf(a.ProductCode) - productOrder.indexOf(b.ProductCode))
-    .map(p => {
-      // Match packages to product code
-      const relatedPackages = allPackages
+          <div class="content">
+    ${isAvailable ? `
+    <p><strong>Status:</strong> <span class="badge ${badgeClass}">${badgeText}</span></p>
+    <p><strong>AMID:</strong> ${AddressInfo.AMID || "—"}</p>
+    <div class="addr" style="margin-top:8px;">
+      <p><strong>Address:</strong> ${AddressInfo.LR_Address || `${address.houseNumber} ${address.streetName}, ${address.suburbName}`}</p>
+      <p>${[AddressInfo.LR_SUBURB, AddressInfo.LR_TOWN, AddressInfo.LR_PROVINCE].filter(Boolean).join(", ")}</p>
+    </div>
+    <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
+    <div>
+      <h4>Available Products:</h4>
+      <ul class="product-grid" style="list-style:none; padding:0; margin:0;">
+        ${ftthProductInfo
+        // Sort product categories first (OWC → OWS → OFC)
+        .sort((a, b) => productOrder.indexOf(a.ProductCode) - productOrder.indexOf(b.ProductCode))
+        .map(p => {
+        // Match packages to product code
+        const relatedPackages = allPackages
         .filter(pkg => pkg.name.includes(p.ProductCode))
         // Sort packages by price ascending
         .sort((a, b) => a.price - b.price);
 
-      // Convert product naming to Afrieta format
-      const afrietaName = p.ProductCode === "OFC"
+        // Convert product naming to Afrieta format
+        const afrietaName = p.ProductCode === "OFC"
         ? "Afrieta Fibre Premium"
         : "Afrieta Fibre";
 
-      // Render packages as name–value pairs
-      return `
+        // Render packages as name–value pairs
+        return `
         <li class="product-card" style="margin-bottom:16px;">
           <h3 style="font-weight:800; margin-bottom:12px;">
             ${afrietaName} (${p.ProductCode})
           </h3>
           ${relatedPackages.map(pkg => {
-            const planName = pkg.name.replace(/Afrieta Fibre (Premium )?${p.ProductCode}\s*/,'').trim();
-            return `
-              <div style="font-size:15px; opacity:.9; display:flex; flex-direction:column; margin-bottom:6px;">
-                <div><strong>Name:</strong> ${planName}</div>
-                <div><strong>Price:</strong> R${pkg.price.toLocaleString()}</div>
-              </div>
-              <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
-            `;
+          const planName = pkg.name.replace(/Afrieta Fibre (Premium )?${p.ProductCode}\s*/,'').trim();
+          return `
+          <div style="font-size:15px; opacity:.9; display:flex; flex-direction:column; margin-bottom:6px;">
+            <div><strong>Name:</strong> ${planName}</div>
+            <div><strong>Price:</strong> R${pkg.price.toLocaleString()}</div>
+          </div>
+          <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
+          `;
           }).join("")}
         </li>
-      `;
-    }).join("")}
-</ul>
-  </div>
-          ` : `
-          <h5 style="margin-bottom: 30px; font-size: 18px;">We are sorry, OpenServe Fibre is not available in this area.</h5>
-          `}
+        `;
+        }).join("")}
+      </ul>
+    </div>
+    ` : `
+    <h5 style="margin-bottom: 30px; font-size: 18px;">We are sorry, OpenServe Fibre is not available in this area.</h5>
+    `}
+          </div>
           <div class="af-actions" style="margin-top:16px;">
             <button type="button" class="btn btn-dark" id="backBtn">Back</button>
-            ${isAvailable ? `<button type="button" class="btn btn-primary" id="continueBtn">Continue</button>` : `<button type="button" class="btn btn-primary" id="tryAgainBtn">Try another address</button>`}
+            ${isAvailable ? `<button type="button" class="btn btn-primary" id="continueBtn">Signup Now</button>` : `<button type="button" class="btn btn-primary" id="tryAgainBtn">Try another address</button>`}
           </div>
         </div>
       `;
@@ -982,39 +1045,40 @@ function showQuoteModal(quote, selectedPackage) {
 
   // Populate modal with quote info
   modalTitle.textContent = "Your Afrieta Quote";
-  modalBody.innerHTML = `
-    <div class="result-block">
-      <h3 style="margin-bottom: 10px;">Thank you for your application!</h3>
-      <p style="font-size:16px; margin-bottom:20px;">Your quote <strong>${quote.number}</strong> has been generated successfully.</p>
+ modalBody.innerHTML = `
+ <div class="result-block">
+   <h3 style="margin-bottom: 10px;">Thank you for your application!</h3>
+   <p style="font-size:16px; margin-bottom:20px;">Your quote <strong>${quote.number}</strong> has been generated successfully.</p>
 
    <blockquote style="border-left: 4px solid #ee06ee; padding-left: 10px; color: #9be6d2; font-style: italic;">
-“Connectivity is not a luxury; it’s the heartbeat of opportunity.” – Afrieta
-</blockquote>
+     “Connectivity is not a luxury; it’s the heartbeat of opportunity.” – Afrieta
+   </blockquote>
 
 
-      <div style="margin-bottom:20px;">
-        <h4 style="margin-bottom:6px;">Quote Summary</h4>
-        <p><strong>Package:</strong> ${quote.items[0]?.name || selectedPackage}</p>
-        <p><strong>Amount:</strong> <b style="font-size:18px;color:#ee06ee;">R${quote.summary?.grandTotal?.toLocaleString("en-ZA")}</b></p>
-        <p><strong>Generated At:</strong> ${new Date(quote.createdAt).toLocaleString()}</p>
-      </div>
+   <div style="margin-bottom:20px;">
+     <h4 style="margin-bottom:6px;">Quote Summary</h4>
+     <p><strong>Package:</strong> ${quote.items[0]?.name || selectedPackage}</p>
+     <p><strong>Amount:</strong> <b style="font-size:18px;color:#ee06ee;">R${quote.summary?.grandTotal?.toLocaleString("en-ZA")}</b></p>
+     <p><strong>Payment Reference:</strong> CID${quote.client?.cid} </p>
+     <p><strong>Generated At:</strong> ${new Date(quote.createdAt).toLocaleString()}</p>
+   </div>
 
-      <div style="margin-bottom:20px;">
-        <h4 style="margin-bottom:6px;">Payment Details</h4>
-        <p><strong>${quote.organization.payment.bankAccountName}</strong></p>
-        <p>${quote.organization.payment.detail1}</p>
-        <p>${quote.organization.payment.detail2}</p>
-      </div>
+   <div style="margin-bottom:20px;">
+     <h4 style="margin-bottom:6px;">Payment Details</h4>
+     <p><strong>${quote.organization.payment.bankAccountName}</strong></p>
+     <p>${quote.organization.payment.detail1}</p>
+     <p>${quote.organization.payment.detail2}</p>
+   </div>
 
-      <p style="margin-bottom:12px;">Please make payment to activate installation. Once payment is confirmed, installation will be scheduled within <strong>2–3 working days</strong>.</p>
-      <p style="margin-bottom:24px; font-weight:600;">A copy of this quote has been sent to your email.</p>
+   <p style="margin-bottom:12px;">Please make payment using your payment reference, to activate installation. Once payment is confirmed, installation will be scheduled within <strong>5–7 working days</strong>.</p>
+   <p style="margin-bottom:24px; font-weight:600;">A copy of this quote has been sent to your email.</p>
 
-      <div class="af-actions" style="margin-top:16px;">
-        <button type="button" class="btn btn-primary" id="closeQuoteBtn" style="background: #f5f5f5; color: #111;
+   <div class="af-actions" style="margin-top:16px;">
+     <button type="button" class="btn btn-primary" id="closeQuoteBtn" style="background: #f5f5f5; color: #111;
 ">Close</button>
-      </div>
-    </div>
-  `;
+   </div>
+ </div>
+ `;
 
   // Show modal
   backdrop.style.display = "flex";
@@ -1033,15 +1097,23 @@ function showQuoteModal(quote, selectedPackage) {
       e.preventDefault();
       if (!form.reportValidity()) return;
 
-      const address = {
-        houseNumber: form.houseNumber.value.trim(),
-        streetName: form.streetName.value.trim(),
-        buildingName: form.buildingName.value.trim(),
-        floorNumber: form.floorNumber.value.trim(),
-        suburbName: form.suburbName.value.trim(),
-        province: form.province.value.trim(),
-        postalCode: form.postalCode.value.trim()
-      };
+const dwellingType = form.dwellingType.value;
+const address = {
+dwellingType,
+houseNumber: form.houseNumber.value.trim(),
+streetName: form.streetName.value.trim(),
+suburbName: form.suburbName.value.trim(),
+cityName: form.cityName.value.trim(),
+province: form.province.value.trim(),
+postalCode: form.postalCode.value.trim()
+};
+
+if (dwellingType === "MDU") {
+address.buildingName = form.buildingName.value.trim();
+address.unitNumber = form.unitNumber.value.trim();
+address.floorNumber = form.floorNumber.value.trim();
+}
+
 
       submitBtn.textContent = 'Checking availability…';
       submitBtn.disabled = true;

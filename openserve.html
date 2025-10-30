@@ -27,7 +27,10 @@
     main {
       padding: 50px 0;
     }
-
+.terms {
+  text-decoration: underline;
+  color: #ee06ee
+}
     section {
       padding: 20px 0 !important;
     }
@@ -125,7 +128,7 @@
     }
 
     .af-modal .content {
-          height: 650px;
+          height: 450px;
           overflow: auto !important;
     }
 
@@ -363,7 +366,17 @@ opacity: 0;
       color: #9fb0c6;
       font-size: 12px;
     }
+.error-text {
+color: #ff6b6b !important;
+font-size: 13px;
+margin-top: -4px;
+min-height: 18px; /* reserve space even when hidden */
+}
 
+.af-field.invalid input {
+border-color: #ff6b6b !important;
+box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.25) !important;
+}
     .product-card p {
       margin: 2px 0 0;
       font-size: 13px;
@@ -372,6 +385,19 @@ opacity: 0;
     .result-block h4 {
       font-size: 18px;
     }
+    #signupForm .af-field.invalid > input,
+    #signupForm .af-field.invalid > select,
+    #signupForm .af-field.invalid > textarea {
+    border-color: #ff6b6b !important;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.25) !important;
+    }
+#signupForm .error-text {
+color: #ff6b6b !important;
+font-size: 13px;
+margin-top: 4px;
+font-weight: 500;
+}
+
   </style>
 </head>
 
@@ -755,6 +781,7 @@ opacity: 0;
         AddressInfo = {}, ftthProductInfo = []
       } = result || {};
       const building = address.buildingName || AddressInfo.LR_BUILDING_NAME || "";
+      const unit = address.unitNumber || AddressInfo.LR_UNIT || "";
       const floor = address.floorNumber || AddressInfo.LR_FLOOR || "";
 
 // Generate dropdown options grouped by Product
@@ -791,28 +818,49 @@ const packageOptions = ftthProductInfo.map(product => {
 }).join("");
 
       signupFormContainer.innerHTML = `
-        <form id="signupForm">
+        <form id="signupForm" novalidate>
           <h2>Afrieta Fibre Sign-up</h2>
           <div class="af-grid-3">
             <div class="af-field"><label>Title</label><input id="title" required /></div>
-            <div class="af-field"><label>First name</label><input id="firstName" required /></div>
-            <div class="af-field"><label>Last name</label><input id="lastName" required /></div>
+            <div class="af-field">
+              <label>First name</label>
+              <input id="firstName" required minlength="3" maxlength="16" pattern="[A-Za-z]+" />
+              <small class="error-text" id="error-firstName"></small>
+            </div>
+            <div class="af-field">
+              <label>Last name</label>
+              <input id="lastName" required minlength="3" maxlength="16" pattern="[A-Za-z]+" />
+              <small class="error-text" id="error-lastName"></small>
+            </div>
           </div>
           <div class="af-grid-3">
-            <div class="af-field"><label>Email Address</label><input id="email" type="email" required /></div>
-            <div class="af-field"><label>Phone Number</label><input id="phone" type="tel" required /></div>
-            <div class="af-field"><label>WhatsApp Number</label><input id="whatsapp" type="tel" required /></div>
+            <div class="af-field"><label>Email Address</label><input id="email" type="email" required /><small class="error-text" id="error-email"></small></div>
+            <div class="af-field">
+              <label>Phone Number</label>
+              <input id="phone" type="tel" required minlength="4" maxlength="15" pattern="^(\\+|0)[0-9]{3,14}$" />
+              <small class="error-text" id="error-phone"></small>
+            </div>
+            <div class="af-field">
+              <label>WhatsApp Number (optional)</label>
+              <input id="whatsapp" type="tel" minlength="4" maxlength="15" pattern="^(\\+|0)?[0-9]{3,14}$" />
+              <small class="error-text" id="error-whatsapp"></small>
+            </div>
           </div>
-       <div class="af-field"><label>Identity Number/Passport Number</label><input id="idNumber" required /></div>
+          <div class="af-field">
+            <label>Identity Number / Passport Number</label>
+            <input id="idNumber" required minlength="4" maxlength="17" pattern="[A-Za-z0-9]+" />
+            <small class="error-text" id="error-idNumber"></small>
+          </div>
 
           <h3>Address</h3>
           <div class="af-grid-2">
             <div class="af-field"><label>House number</label><input id="addr_house" value="${address.houseNumber}" readonly /></div>
             <div class="af-field"><label>Street name</label><input id="addr_street" value="${address.streetName}" readonly /></div>
           </div>
-          <div class="af-grid-2">
-            ${building ? `<div class="af-field"><label>Building name/number</label><input id="addr_building" value="${building}" readonly /></div>` : ""}
+          <div class="af-grid-3">
+            ${unit ? `<div class="af-field"><label>Unit number</label><input id="addr_building" value="${unit}" readonly /></div>` : ""}
             ${floor ? `<div class="af-field"><label>Floor number</label><input id="addr_floor" value="${floor}" readonly /></div>` : ""}
+            ${building ? `<div class="af-field"><label>Building name/number</label><input id="addr_building" value="${building}" readonly /></div>` : ""}
           </div>
           <div class="af-grid-3">
             <div class="af-field"><label>Suburb</label><input id="addr_suburb" value="${address.suburbName}" readonly /></div>
@@ -828,9 +876,10 @@ const packageOptions = ftthProductInfo.map(product => {
                 <option value="">-- Select --</option>
                 ${packageOptions}
               </select>
+              <small class="error-text" id="error-packageCode"></small>
             </div>
-            <div class="af-field"><label>WiFi Name (SSID)</label><input id="wifiName" required /></div>
-            <div class="af-field"><label>WiFi Password</label><input id="wifiPassword" type="text" required /></div>
+            <div class="af-field"><label>WiFi Name (SSID)</label><input id="wifiName" required /><small class="error-text" id="error-wifiName"></small></div>
+            <div class="af-field"><label>WiFi Password</label><input id="wifiPassword" type="text" required /><small class="error-text" id="error-wifiPassword"></small></div>
           </div>
 
           <!-- <h3>Authorisation</h3>
@@ -842,7 +891,7 @@ const packageOptions = ftthProductInfo.map(product => {
 
           <label style="display:flex; gap:8px; align-items:flex-start; margin-top:10px;">
             <input type="checkbox" id="acceptTerms" required />
-            <span>By submitting this form, the customer agrees to the full Afrieta T&Cs, and the customer agrees to be bound thereto. The customer is recommended to refer to full T&Cs on the Afrieta website.</span>
+            <span>By submitting this form, the customer agrees to the full Afrieta T&Cs, and the customer agrees to be bound thereto. The customer is recommended to refer to full <a class="terms" href="https://docs.google.com/document/d/1nRHtXq0SEHRiPWy29gBuNZIKBHXE-VnK/edit?usp=sharing&ouid=104873229657710158273&rtpof=true&sd=true">Terms & Conditions</a>.</span>
           </label>
 
           <div class="af-actions" style="margin-top:16px;">
@@ -854,11 +903,84 @@ const packageOptions = ftthProductInfo.map(product => {
       // Submit handler (POST JSON to backend)
       const signupForm = document.getElementById("signupForm");
       const signupSubmitBtn = document.getElementById("signupSubmitBtn");
+      signupForm.querySelectorAll("input, select").forEach(el => {
+      el.addEventListener("input", () => {
+      const errorEl = el.parentElement.querySelector(".error-text");
+      el.parentElement.classList.remove("invalid");
+      if (errorEl) errorEl.textContent = "";
+      });
+      });
       signupForm.addEventListener("submit", async (e) => {
         console.log('Logged')
         e.preventDefault();
-        if (!signupForm.reportValidity()) return;
+         // Clear old errors
+         signupForm.querySelectorAll(".error-text").forEach(el => (el.textContent = ""));
+         signupForm.querySelectorAll(".af-field").forEach(el => el.classList.remove("invalid"));
 
+         // Validation patterns
+         const nameRegex = /^[A-Za-z\s'-]{3,16}$/;
+         const phoneRegex = /^(\+|0)[0-9]{3,14}$/;
+         const idRegex = /^[A-Za-z0-9]{4,17}$/;
+      // Get field values
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const whatsapp = document.getElementById("whatsapp").value.trim();
+      const idNumber = document.getElementById("idNumber").value.trim();
+      const packageCode = document.getElementById("packageCode").value.trim();
+      const wifiName = document.getElementById("wifiName").value.trim();
+      const wifiPassword = document.getElementById("wifiPassword").value.trim();
+
+      // Inline validation
+      let valid = true;
+
+      function showError(id, message) {
+      const input = document.getElementById(id);
+      const errorEl = input.parentElement.querySelector(".error-text");
+      if (errorEl) errorEl.textContent = message;
+      input.parentElement.classList.add("invalid");
+      valid = false;
+      }
+
+      if (!nameRegex.test(firstName)) {
+      showError("firstName", "First name must be 3–16 letters only.");
+      }
+
+      if (!nameRegex.test(lastName)) {
+      showError("lastName", "Last name must be 3–16 letters only.");
+      }
+
+      if (!phoneRegex.test(phone)) {
+      showError("phone", "Enter a valid phone number (starts with 0 or +, 4–15 digits).");
+      }
+
+      if (whatsapp && !phoneRegex.test(whatsapp)) {
+      showError("whatsapp", "Invalid WhatsApp number format.");
+      }
+
+      if (!idRegex.test(idNumber)) {
+      showError("idNumber", "ID or Passport must be 4–17 letters/numbers.");
+      }
+
+      // Validate dwelling type
+      if (!packageCode.value) {
+      showError("packageCode", "Please select a package.");
+      }
+      // Validate dwelling type
+      if (!email.value) {
+      showError("email", "Please select a package.");
+      }
+      // Validate dwelling type
+      if (!wifiName.value) {
+      showError("wifiName", "Please enter the name you want your WIFI to be called.");
+      }
+
+      // Validate dwelling type
+      if (!wifiPassword.value) {
+      showError("wifiPassword", "Please enter a password for your WIFI.");
+      }
+         if (!valid) return;
         signupSubmitBtn.disabled = true;
         const prevText = signupSubmitBtn.textContent;
         signupSubmitBtn.textContent = "Submitting…";
@@ -881,13 +1003,12 @@ const packageOptions = ftthProductInfo.map(product => {
             houseNumber: address.houseNumber,
             streetName: address.streetName,
             buildingName: building || undefined,
+            unitNumber: unit || undefined,
             floorNumber: floor || undefined,
             suburbName: address.suburbName,
             province: address.province,
             postalCode: address.postalCode
           },
-          // Optional: include returned products for context/audit
-          ftthProductInfo: (result && result.ftthProductInfo) ? result.ftthProductInfo : []
         };
 
         try {
@@ -1034,6 +1155,13 @@ const productOrder = ["OWC", "OWS", "OFC"];
         });
       }
     }
+form.querySelectorAll("input, select").forEach(el => {
+  el.addEventListener("input", () => {
+    const errorEl = el.parentElement.querySelector(".error-text");
+    el.parentElement.classList.remove("invalid");
+    if (errorEl) errorEl.textContent = "";
+  });
+});
 
     /* ---------- Quote Modal ---------- */
 function showQuoteModal(quote, selectedPackage) {
@@ -1094,45 +1222,109 @@ function showQuoteModal(quote, selectedPackage) {
 
     /* ---------- Form submit → replace modal content with results ---------- */
     form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
+    e.preventDefault();
 
-const dwellingType = form.dwellingType.value;
-const address = {
-dwellingType,
-houseNumber: form.houseNumber.value.trim(),
-streetName: form.streetName.value.trim(),
-suburbName: form.suburbName.value.trim(),
-cityName: form.cityName.value.trim(),
-province: form.province.value.trim(),
-postalCode: form.postalCode.value.trim()
-};
+    // Clear previous validation messages
+    form.querySelectorAll(".error-text").forEach(el => (el.textContent = ""));
+    form.querySelectorAll(".af-field").forEach(el => el.classList.remove("invalid"));
 
-if (dwellingType === "MDU") {
-address.buildingName = form.buildingName.value.trim();
-address.unitNumber = form.unitNumber.value.trim();
-address.floorNumber = form.floorNumber.value.trim();
-}
+    // Built-in HTML validity first
+    if (!form.reportValidity()) return;
 
+    const dwellingType = form.dwellingType.value;
+    const address = {
+    dwellingType,
+    houseNumber: form.houseNumber.value.trim(),
+    streetName: form.streetName.value.trim(),
+    suburbName: form.suburbName.value.trim(),
+    cityName: form.cityName.value.trim(),
+    province: form.province.value.trim(),
+    postalCode: form.postalCode.value.trim()
+    };
 
-      submitBtn.textContent = 'Checking availability…';
-      submitBtn.disabled = true;
-      openBtn && (openBtn.disabled = true);
+    if (dwellingType === "MDU") {
+    address.buildingName = form.buildingName.value.trim();
+    address.unitNumber = form.unitNumber.value.trim();
+    address.floorNumber = form.floorNumber.value.trim();
+    }
 
-      try {
-        const result = await checkCoverage(address);
-        showToast('success', 'Coverage information received.');
-        // Replace modal contents with the result view (do NOT close modal)
-        renderResult(result, address);
-      } catch (err) {
-        console.error(err);
-        showToast('error', 'Unable to complete coverage check. Please try again.');
-      } finally {
-        openBtn && (openBtn.disabled = false);
-        submitBtn.textContent = 'Check availability';
-        submitBtn.disabled = false;
-      }
+    // ==== Inline field validation ====
+    let valid = true;
+
+    const nameRegex = /^[A-Za-z0-9\s-]{3,50}$/;
+    const numberRegex = /^[0-9]+$/;
+    const postalRegex = /^[0-9]{4}$/;
+    const dwellingSelect = form.dwellingType;
+
+    function showError(inputId, message) {
+    const input = form[inputId];
+    const errorEl = input.parentElement.querySelector(".error-text");
+    if (errorEl) errorEl.textContent = message;
+    input.parentElement.classList.add("invalid");
+    valid = false;
+    }
+
+    // Validate dwelling type
+    if (!dwellingSelect.value) {
+    showError("dwellingType", "Please select a dwelling type.");
+    }
+
+    // Validate house and street
+  
+    if (!nameRegex.test(form.streetName.value.trim())) {
+    showError("streetName", "Please enter a valid street name (min 3 chars).");
+    }
+
+    // Validate city, suburb, province
+    if (!nameRegex.test(form.suburbName.value.trim())) {
+    showError("suburbName", "Enter a valid suburb name.");
+    }
+    if (!nameRegex.test(form.cityName.value.trim())) {
+    showError("cityName", "Enter a valid city name.");
+    }
+    if (!nameRegex.test(form.province.value.trim())) {
+    showError("province", "Enter a valid province name.");
+    }
+
+    // Validate postal code
+    if (!postalRegex.test(form.postalCode.value.trim())) {
+    showError("postalCode", "Postal code must be 4 digits.");
+    }
+
+    // Validate MDU fields only when selected
+    if (dwellingType === "MDU") {
+    if (!form.buildingName.value.trim()) {
+    showError("buildingName", "Building name is required for MDU.");
+    }
+    if (!form.unitNumber.value.trim()&& !numberRegex.test(form.floorNumber.value.trim())) {
+    showError("unitNumber", "Unit number is required for MDU.");
+    }
+    if (form.floorNumber.value.trim() && !numberRegex.test(form.floorNumber.value.trim())) {
+    showError("floorNumber", "Floor number must be numeric.");
+    }
+    }
+
+    if (!valid) return;
+
+    // ==== Continue coverage check ====
+    submitBtn.textContent = 'Checking availability…';
+    submitBtn.disabled = true;
+    if (openBtn) openBtn.disabled = true;
+
+    try {
+    const result = await checkCoverage(address);
+    showToast('success', 'Coverage information received.');
+    renderResult(result, address); // render results in modal
+    } catch (err) {
+    console.error(err);
+    showToast('error', 'Unable to complete coverage check. Please try again.');
+    } finally {
+    if (openBtn) openBtn.disabled = false;
+    submitBtn.textContent = 'Check availability';
+    submitBtn.disabled = false;
+    }
     });
+
   </script>
 
   <!-- Ionicons (for icons used in header buttons) -->

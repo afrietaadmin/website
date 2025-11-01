@@ -168,6 +168,9 @@
       .af-grid-2, .af-grid-3 {
         grid-template-columns: 1fr;
       }
+      .af-modal {
+      width: min(90%, 100%);
+      }
     }
 .mdu-only {
 transition: opacity 0.25s ease;
@@ -404,7 +407,7 @@ font-weight: 500;
 <body>
   <header class="header" data-header>
     <div class="container">
-      <a href="#" class="logo">
+      <a href="/" class="logo">
         <img src="./assets/images/logo-white.png" width="150" height="80" alt="Adex home" class="logo-light" />
         <img src="./assets/images/logo.png" width="150" height="80" alt="Adex home" class="logo-dark" />
       </a>
@@ -488,73 +491,75 @@ font-weight: 500;
         <div id="modalTitle" class="af-modal__title">Check coverage</div>
       </header>
       <div class="af-modal__body">
-      <form id="coverageForm">
-        <!-- <div class="af-field">
-          <label for="dwellingType">Dwelling Type</label>
-          <select id="dwellingType" name="dwellingType" required>
-            <option value="">-- Select Dwelling Type --</option>
-            <option value="SDU">Single Dwelling Unit (House)</option>
-            <option value="MDU">Multi Dwelling Unit (Flat, Apartment, Complex)</option>
-          </select>
-        </div> -->
-
-        <div class="af-grid-2">
-          <div class="af-field">
-            <label for="houseNumber">Street Number</label>
-            <input id="houseNumber" name="houseNumber" placeholder="e.g., 303" required />
-          </div>
-          <div class="af-field">
-            <label for="streetName">Street Name</label>
-            <input id="streetName" name="streetName" placeholder="e.g., Onyx Street" required />
-          </div>
-        </div>
-
-        <!-- MDU ONLY -->
-        <div class="af-grid-3 mdu-only">
-          <div class="af-field">
-            <label for="unitNumber">Unit / Flat / Apartment Number</label>
-            <input id="unitNumber" name="unitNumber" placeholder="e.g., 324" />
-          </div>
-          <div class="mdu-only">
-            <div class="af-field">
-              <label for="floorNumber">Floor Number</label>
-              <input id="floorNumber" name="floorNumber" placeholder="e.g., 1" />
+        <div class="content">
+          <form id="coverageForm">
+            <!-- <div class="af-field">
+              <label for="dwellingType">Dwelling Type</label>
+              <select id="dwellingType" name="dwellingType" required>
+                <option value="">-- Select Dwelling Type --</option>
+                <option value="SDU">Single Dwelling Unit (House)</option>
+                <option value="MDU">Multi Dwelling Unit (Flat, Apartment, Complex)</option>
+              </select>
+            </div> -->
+    
+            <div class="af-grid-2">
+              <div class="af-field">
+                <label for="houseNumber">Street Number</label>
+                <input id="houseNumber" name="houseNumber" placeholder="e.g., 303" required />
+              </div>
+              <div class="af-field">
+                <label for="streetName">Street Name</label>
+                <input id="streetName" name="streetName" placeholder="e.g., Onyx Street" required />
+              </div>
             </div>
-          </div>
-          <div class="af-field">
-            <label for="buildingName">Building Name / Number</label>
-            <input id="buildingName" name="buildingName" placeholder="e.g., Westlake Estate or 33" />
-          </div>
+    
+            <!-- MDU ONLY -->
+            <div class="af-grid-3 mdu-only">
+              <div class="af-field">
+                <label for="unitNumber">Unit / Flat / Apartment Number</label>
+                <input id="unitNumber" name="unitNumber" placeholder="e.g., 324" />
+              </div>
+              <div class="mdu-only">
+                <div class="af-field">
+                  <label for="floorNumber">Floor Number</label>
+                  <input id="floorNumber" name="floorNumber" placeholder="e.g., 1" />
+                </div>
+              </div>
+              <div class="af-field">
+                <label for="buildingName">Building Name / Number</label>
+                <input id="buildingName" name="buildingName" placeholder="e.g., Westlake Estate or 33" />
+              </div>
+            </div>
+    
+    
+            <div class="af-grid-2">
+              <div class="af-field">
+                <label for="suburbName">Suburb Name</label>
+                <input id="suburbName" name="suburbName" placeholder="e.g., Laudium" required />
+              </div>
+              <div class="af-field">
+                <label for="cityName">Town / City</label>
+                <input id="cityName" name="cityName" placeholder="e.g., Pretoria" required />
+              </div>
+            </div>
+    
+            <div class="af-grid-2">
+              <div class="af-field">
+                <label for="province">Province</label>
+                <input id="province" name="province" placeholder="e.g., Gauteng" required />
+              </div>
+              <div class="af-field">
+                <label for="postalCode">Postal Code</label>
+                <input id="postalCode" name="postalCode" inputmode="numeric" maxlength="4" placeholder="e.g., 0037" required />
+              </div>
+            </div>
+    
+            <div class="af-actions">
+              <button type="button" class="btn btn-dark" id="cancelBtn">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="submitBtn">Check Availability</button>
+            </div>
+          </form>
         </div>
-
-
-        <div class="af-grid-2">
-          <div class="af-field">
-            <label for="suburbName">Suburb Name</label>
-            <input id="suburbName" name="suburbName" placeholder="e.g., Laudium" required />
-          </div>
-          <div class="af-field">
-            <label for="cityName">Town / City</label>
-            <input id="cityName" name="cityName" placeholder="e.g., Pretoria" required />
-          </div>
-        </div>
-
-        <div class="af-grid-2">
-          <div class="af-field">
-            <label for="province">Province</label>
-            <input id="province" name="province" placeholder="e.g., Gauteng" required />
-          </div>
-          <div class="af-field">
-            <label for="postalCode">Postal Code</label>
-            <input id="postalCode" name="postalCode" inputmode="numeric" maxlength="4" placeholder="e.g., 0037" required />
-          </div>
-        </div>
-
-        <div class="af-actions">
-          <button type="button" class="btn btn-dark" id="cancelBtn">Cancel</button>
-          <button type="submit" class="btn btn-primary" id="submitBtn">Check Availability</button>
-        </div>
-      </form>
 
       </div>
     </div>
@@ -566,6 +571,7 @@ font-weight: 500;
   </footer>
 
   <script>
+
     /* ---------- Afrieta prices ---------- */
     const WEB_CONNECT = [{
         speed: "10 / 10 Mbps",
@@ -891,7 +897,7 @@ const packageOptions = ftthProductInfo.map(product => {
 
           <label style="display:flex; gap:8px; align-items:flex-start; margin-top:10px;">
             <input type="checkbox" id="acceptTerms" required />
-            <span>By submitting this form, the customer agrees to the full Afrieta T&Cs, and the customer agrees to be bound thereto. The customer is recommended to refer to the full <a class="terms" href="openserve-terms.html">Terms & Conditions</a>.</span>
+            <p>By submitting this form, the customer agrees to the full Afrieta T&Cs, and the customer agrees to be bound thereto. The customer is recommended to refer to the full <a class="terms" style="display: inline;" href="openserve-terms.html">Terms & Conditions</a>.</p>
           </label>
 
           <div class="af-actions" style="margin-top:16px;">
@@ -1059,6 +1065,14 @@ const productOrder = ["OWC", "OWS", "OFC"];
       const badgeClass = isAvailable ? "ok" : (status ? "warn" : "err");
       const badgeText = isAvailable ? 'Available' : 'Not Available';
 
+      let Address = [
+    address.houseNumber,
+    address.streetName,
+  ];
+  if (address.buildingName) Address.unshift(address.buildingName);
+  if (address.floorNumber) Address.unshift(`Floor ${address.floorNumber} `);
+  if (address.unitNumber) Address.unshift(`Unit ${address.unitNumber} `);
+
       modalTitle.textContent = "Coverage results";
       modalBody.innerHTML = `
         <div class="result-block">
@@ -1067,8 +1081,8 @@ const productOrder = ["OWC", "OWS", "OFC"];
     <p><strong>Status:</strong> <span class="badge ${badgeClass}">${badgeText}</span></p>
     <p><strong>AMID:</strong> ${AddressInfo.AMID || "—"}</p>
     <div class="addr" style="margin-top:8px;">
-      <p><strong>Address:</strong> ${`${address.houseNumber} ${address.streetName}, ${address.unitNumber} ${address.floorNumber} ${address.buildingName}, ${address.suburbName}, ${(address.city)} ${(address.province)}, ${(address.postalCode)} ` || AddressInfo.LR_Address}</p>
-      <p>${[AddressInfo.LR_SUBURB, AddressInfo.LR_TOWN, AddressInfo.LR_PROVINCE].filter(Boolean).join(", ")}</p>
+      <p><strong>Address:</strong> <span style="text-transform: uppercase; display: inline;">${Address || AddressInfo.LR_Address}</span></p>
+      <p>${[AddressInfo.LR_SUBURB, AddressInfo.LR_TOWN, AddressInfo.LR_PROVINCE, address.postalCode].filter(Boolean).join(", ")}</p>
     </div>
     <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
     <div>
@@ -1335,7 +1349,40 @@ const address = {
     submitBtn.disabled = false;
     }
     });
+    const addEventOnElements = function (elements, eventType, callback) {
+    for (let i = 0, len = elements.length; i
 
+    < len; i++) { elements[i].addEventListener(eventType, callback); } };
+    /**
+    * NAVBAR TOGGLE FOR MOBILE
+    */
+
+    const navbar = document.querySelector("[data-navbar]");
+    const navTogglers = document.querySelectorAll("[data-nav-toggler]");
+    const overlay = document.querySelector("[data-overlay]");
+
+    const toggleNavbar = function () {
+    navbar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("nav-active");
+    };
+
+    addEventOnElements(navTogglers, "click", toggleNavbar);
+
+    /**
+    * HEADER
+    * active header when window scroll down to 100px
+    */
+
+    const header = document.querySelector("[data-header]");
+
+    window.addEventListener("scroll", function () {
+    if (window.scrollY > 100) {
+    header.classList.add("active");
+    } else {
+    header.classList.remove("active");
+    }
+    });
   </script>
 
   <!-- Ionicons (for icons used in header buttons) -->

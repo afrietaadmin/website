@@ -318,7 +318,7 @@ body.nav-active {
   padding-block: 20px;
   box-shadow: var(--shadow-1);
   position: relative;
-  z-index: 1;
+  z-index: 999;
 }
 
 .header.active {

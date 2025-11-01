@@ -489,14 +489,14 @@ font-weight: 500;
       </header>
       <div class="af-modal__body">
       <form id="coverageForm">
-        <div class="af-field">
+        <!-- <div class="af-field">
           <label for="dwellingType">Dwelling Type</label>
           <select id="dwellingType" name="dwellingType" required>
             <option value="">-- Select Dwelling Type --</option>
             <option value="SDU">Single Dwelling Unit (House)</option>
             <option value="MDU">Multi Dwelling Unit (Flat, Apartment, Complex)</option>
           </select>
-        </div>
+        </div> -->
 
         <div class="af-grid-2">
           <div class="af-field">
@@ -512,10 +512,6 @@ font-weight: 500;
         <!-- MDU ONLY -->
         <div class="af-grid-3 mdu-only">
           <div class="af-field">
-            <label for="buildingName">Building Name / Number</label>
-            <input id="buildingName" name="buildingName" placeholder="e.g., Westlake Estate or 33" />
-          </div>
-          <div class="af-field">
             <label for="unitNumber">Unit / Flat / Apartment Number</label>
             <input id="unitNumber" name="unitNumber" placeholder="e.g., 324" />
           </div>
@@ -524,6 +520,10 @@ font-weight: 500;
               <label for="floorNumber">Floor Number</label>
               <input id="floorNumber" name="floorNumber" placeholder="e.g., 1" />
             </div>
+          </div>
+          <div class="af-field">
+            <label for="buildingName">Building Name / Number</label>
+            <input id="buildingName" name="buildingName" placeholder="e.g., Westlake Estate or 33" />
           </div>
         </div>
 
@@ -724,21 +724,21 @@ font-weight: 500;
     }
     });
 
-    const dwellingSelect = document.getElementById("dwellingType");
-    const mduFields = document.querySelectorAll(".mdu-only");
+   // const dwellingSelect = document.getElementById("dwellingType");
+    //const mduFields = document.querySelectorAll(".mdu-only");
 
-    function updateFieldVisibility() {
-    const isMDU = dwellingSelect.value === "MDU";
-    mduFields.forEach(f => f.style.display = isMDU ? "grid" : "none");
+     //function updateFieldVisibility() {
+     //const isMDU = dwellingSelect.value === "MDU";
+     //mduFields.forEach(f => f.style.display = isMDU ? "grid" : "none");
 
     // toggle required attributes dynamically
-    document.getElementById("buildingName").required = isMDU;
-    document.getElementById("unitNumber").required = isMDU;
-    document.getElementById("floorNumber").required = isMDU;
-    }
+    // document.getElementById("buildingName").required = isMDU;
+     //document.getElementById("unitNumber").required = isMDU;
+     //document.getElementById("floorNumber").required = isMDU;
+    // }
 
-    dwellingSelect.addEventListener("change", updateFieldVisibility);
-    updateFieldVisibility(); // run on load
+     //dwellingSelect.addEventListener("change", updateFieldVisibility);
+    // updateFieldVisibility(); // run on load
 
 
 
@@ -891,7 +891,7 @@ const packageOptions = ftthProductInfo.map(product => {
 
           <label style="display:flex; gap:8px; align-items:flex-start; margin-top:10px;">
             <input type="checkbox" id="acceptTerms" required />
-            <span>By submitting this form, the customer agrees to the full Afrieta T&Cs, and the customer agrees to be bound thereto. The customer is recommended to refer to the full <a class="terms" href="https://docs.google.com/document/d/1nRHtXq0SEHRiPWy29gBuNZIKBHXE-VnK/edit?usp=sharing&ouid=104873229657710158273&rtpof=true&sd=true" target="_blank">Terms & Conditions</a>.</span>
+            <span>By submitting this form, the customer agrees to the full Afrieta T&Cs, and the customer agrees to be bound thereto. The customer is recommended to refer to the full <a class="terms" href="openserve-terms.html">Terms & Conditions</a>.</span>
           </label>
 
           <div class="af-actions" style="margin-top:16px;">
@@ -1067,7 +1067,7 @@ const productOrder = ["OWC", "OWS", "OFC"];
     <p><strong>Status:</strong> <span class="badge ${badgeClass}">${badgeText}</span></p>
     <p><strong>AMID:</strong> ${AddressInfo.AMID || "—"}</p>
     <div class="addr" style="margin-top:8px;">
-      <p><strong>Address:</strong> ${AddressInfo.LR_Address || `${address.houseNumber} ${address.streetName}, ${address.suburbName}`}</p>
+      <p><strong>Address:</strong> ${`${address.houseNumber} ${address.streetName}, ${address.unitNumber} ${address.floorNumber} ${address.buildingName}, ${address.suburbName}, ${(address.city)} ${(address.province)}, ${(address.postalCode)} ` || AddressInfo.LR_Address}</p>
       <p>${[AddressInfo.LR_SUBURB, AddressInfo.LR_TOWN, AddressInfo.LR_PROVINCE].filter(Boolean).join(", ")}</p>
     </div>
     <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
@@ -1231,22 +1231,33 @@ function showQuoteModal(quote, selectedPackage) {
     // Built-in HTML validity first
     if (!form.reportValidity()) return;
 
-    const dwellingType = form.dwellingType.value;
-    const address = {
-    dwellingType,
-    houseNumber: form.houseNumber.value.trim(),
-    streetName: form.streetName.value.trim(),
-    suburbName: form.suburbName.value.trim(),
-    cityName: form.cityName.value.trim(),
-    province: form.province.value.trim(),
-    postalCode: form.postalCode.value.trim()
-    };
+    //const dwellingType = form.dwellingType.value;
+    //const address = {
+//dwellingType,
+//houseNumber: form.houseNumber.value.trim(),
+//streetName: form.streetName.value.trim(),
+//suburbName: form.suburbName.value.trim(),
+//cityName: form.cityName.value.trim(),
+//province: form.province.value.trim(),
+//postalCode: form.postalCode.value.trim()
+//};
 
-    if (dwellingType === "MDU") {
-    address.buildingName = form.buildingName.value.trim();
-    address.unitNumber = form.unitNumber.value.trim();
-    address.floorNumber = form.floorNumber.value.trim();
-    }
+//if (dwellingType === "MDU") {
+//address.buildingName = form.buildingName.value.trim();
+//address.unitNumber = form.unitNumber.value.trim();
+//address.floorNumber = form.floorNumber.value.trim();
+//}
+const address = {
+  houseNumber: form.houseNumber.value.trim(),
+  streetName: form.streetName.value.trim(),
+  buildingName: form.buildingName.value.trim() || undefined,
+  unitNumber: form.unitNumber?.value.trim() || undefined,
+  floorNumber: form.floorNumber?.value.trim() || undefined,
+  suburbName: form.suburbName.value.trim(),
+  cityName: form.cityName.value.trim(),
+  province: form.province.value.trim(),
+  postalCode: form.postalCode.value.trim()
+};
 
     // ==== Inline field validation ====
     let valid = true;
@@ -1254,7 +1265,7 @@ function showQuoteModal(quote, selectedPackage) {
     const nameRegex = /^[A-Za-z0-9\s-]{3,50}$/;
     const numberRegex = /^[0-9]+$/;
     const postalRegex = /^[0-9]{4}$/;
-    const dwellingSelect = form.dwellingType;
+    //const dwellingSelect = form.dwellingType;
 
     function showError(inputId, message) {
     const input = form[inputId];
@@ -1265,9 +1276,9 @@ function showQuoteModal(quote, selectedPackage) {
     }
 
     // Validate dwelling type
-    if (!dwellingSelect.value) {
-    showError("dwellingType", "Please select a dwelling type.");
-    }
+    //if (!dwellingSelect.value) {
+   // showError("dwellingType", "Please select a dwelling type.");
+   // }
 
     // Validate house and street
   
@@ -1292,17 +1303,17 @@ function showQuoteModal(quote, selectedPackage) {
     }
 
     // Validate MDU fields only when selected
-    if (dwellingType === "MDU") {
-    if (!form.buildingName.value.trim()) {
-    showError("buildingName", "Building name is required for MDU.");
-    }
-    if (!form.unitNumber.value.trim()&& !numberRegex.test(form.floorNumber.value.trim())) {
-    showError("unitNumber", "Unit number is required for MDU.");
-    }
-    if (form.floorNumber.value.trim() && !numberRegex.test(form.floorNumber.value.trim())) {
-    showError("floorNumber", "Floor number must be numeric.");
-    }
-    }
+    //if (dwellingType === "MDU") {
+ //if (!form.buildingName.value.trim()) {
+// showError("buildingName", "Building name is required for MDU.");
+// }
+// if (!form.unitNumber.value.trim()&& !numberRegex.test(form.floorNumber.value.trim())) {
+// showError("unitNumber", "Unit number is required for MDU.");
+// }
+// if (form.floorNumber.value.trim() && !numberRegex.test(form.floorNumber.value.trim())) {
+// showError("floorNumber", "Floor number must be numeric.");
+// }
+    //}
 
     if (!valid) return;
 

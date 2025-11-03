@@ -400,7 +400,9 @@ font-size: 13px;
 margin-top: 4px;
 font-weight: 500;
 }
-
+.invalid input[type="checkbox"] {
+  outline: 2px solid #ff6b6b;
+}
   </style>
 </head>
 
@@ -896,9 +898,17 @@ const packageOptions = ftthProductInfo.map(product => {
           </div> -->
 
           <label style="display:flex; gap:8px; align-items:flex-start; margin-top:10px;">
-            <input type="checkbox" id="acceptTerms" required />
-            <p>By submitting this form, the customer agrees to the full Afrieta T&Cs, and the customer agrees to be bound thereto. The customer is recommended to refer to the full <a class="terms" style="display: inline;" href="openserve-terms.html">Terms & Conditions</a>.</p>
-          </label>
+  <input type="checkbox" id="acceptTerms" required />
+  <div>
+  <p>
+    By submitting this form, the customer agrees to the full Afrieta T&Cs,
+    and the customer agrees to be bound thereto. The customer is recommended
+    to refer to the full <a class="terms" style="display: inline;" href="openserve-terms.html">Terms & Conditions</a>
+  </p>
+  <small class="error-text" id="error-acceptTerms"></small>
+</div>
+</label>
+
 
           <div class="af-actions" style="margin-top:16px;">
             <button type="submit" class="btn btn-dark" id="signupSubmitBtn">Submit Application</button>
@@ -969,23 +979,25 @@ const packageOptions = ftthProductInfo.map(product => {
       showError("idNumber", "ID or Passport must be 4–17 letters/numbers.");
       }
 
-      // Validate dwelling type
-      if (!packageCode.value) {
-      showError("packageCode", "Please select a package.");
-      }
-      // Validate dwelling type
-      if (!email.value) {
-      showError("email", "Please select a package.");
-      }
-      // Validate dwelling type
-      if (!wifiName.value) {
-      showError("wifiName", "Please enter the name you want your WIFI to be called.");
-      }
+   if (!packageCode) {
+  showError("packageCode", "Please select a package.");
+}
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(email)) {
+  showError("email", "Please enter a valid email address.");
+}
+if (!wifiName) {
+  showError("wifiName", "Please enter the name you want your WIFI to be called.");
+}
+if (!wifiPassword) {
+  showError("wifiPassword", "Please enter a password for your WIFI.");
+}
+const acceptTerms = document.getElementById("acceptTerms");
 
-      // Validate dwelling type
-      if (!wifiPassword.value) {
-      showError("wifiPassword", "Please enter a password for your WIFI.");
-      }
+if (!acceptTerms.checked) {
+  showError("acceptTerms", "You must agree to the terms before submitting.");
+}
+
          if (!valid) return;
         signupSubmitBtn.disabled = true;
         const prevText = signupSubmitBtn.textContent;

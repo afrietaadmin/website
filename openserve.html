@@ -1214,7 +1214,7 @@ function showQuoteModal(quote, selectedPackage) {
      <h4 style="margin-bottom:6px;">Quote Summary</h4>
      <p><strong>Package:</strong> ${quote.items[0]?.name || selectedPackage}</p>
      <p><strong>Amount:</strong> <b style="font-size:18px;color:#ee06ee;">R${quote.summary?.grandTotal?.toLocaleString("en-ZA")}</b></p>
-     <p><strong>Payment Reference:</strong> CID${quote.client?.cid} </p>
+     <p><strong>Payment Reference:</strong> OID${quote.client?.cid} </p>
      <p><strong>Generated At:</strong> ${new Date(quote.createdAt).toLocaleString()}</p>
    </div>
 

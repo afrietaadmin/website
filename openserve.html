@@ -516,21 +516,12 @@ font-weight: 500;
             </div>
     
             <!-- MDU ONLY -->
-            <div class="af-grid-3 mdu-only">
-              <div class="af-field">
-                <label for="unitNumber">Unit / Flat / Apartment Number</label>
-                <input id="unitNumber" name="unitNumber" placeholder="e.g., 324" />
-              </div>
-              <div class="mdu-only">
-                <div class="af-field">
-                  <label for="floorNumber">Floor Number</label>
-                  <input id="floorNumber" name="floorNumber" placeholder="e.g., 1" />
-                </div>
-              </div>
-              <div class="af-field">
-                <label for="buildingName">Building Name / Number</label>
-                <input id="buildingName" name="buildingName" placeholder="e.g., Westlake Estate or 33" />
-              </div>
+            <div class=" mdu-only">
+          <div class="af-field">
+  <label for="buildingName">Building Name (if applicable)</label>
+  <input id="buildingName" name="buildingName" placeholder="e.g., MOUILLE SANDS" />
+</div>
+
             </div>
     
     
@@ -1053,8 +1044,8 @@ showToast("success", "Application submitted successfully!");
 signupForm.reset();
 
         } catch (err) {
-          console.error(err);
-          showToast("error", "Unable to submit application. Please try again.");
+         console.error(err);
+  showToast("error", err.response?.data || err.message);
         } finally {
           signupSubmitBtn.disabled = false;
           signupSubmitBtn.textContent = prevText;
@@ -1063,125 +1054,208 @@ signupForm.reset();
     }
 
     /* ---------- Render result INSIDE the modal ---------- */
-    function renderResult(result, address) {
-      const {
-        FTTH_Status,
-        AddressInfo = {},
-        ftthProductInfo = []
-      } = result || {};
-      
-// Define the product order
-const productOrder = ["OWC", "OWS", "OFC"];
-      const status = (FTTH_Status || "").toLowerCase();
-      const isAvailable = status === "working";
+  function renderResult(result, address) {
+  const { FTTH_Status, AddressInfo = {}, ftthProductInfo = [] } = result || {};
 
-      const badgeClass = isAvailable ? "ok" : (status ? "warn" : "err");
-      const badgeText = isAvailable ? 'Available' : 'Not Available';
+  const productOrder = ["OWC", "OWS", "OFC"];
+  const status = (FTTH_Status || "").toLowerCase();
+  const isAvailable = status === "working";
+  const badgeClass = isAvailable ? "ok" : (status ? "warn" : "err");
+  const badgeText = isAvailable ? "Available" : "Not Available";
 
-      let Address = [
-    address.houseNumber,
-    address.streetName,
-  ];
-  if (address.buildingName) Address.unshift(address.buildingName);
-  if (address.floorNumber) Address.unshift(`Floor ${address.floorNumber} `);
-  if (address.unitNumber) Address.unshift(`Unit ${address.unitNumber} `);
+  const buildingList = AddressInfo.buildingNumberInfo?.buildingInfo || [];
 
-      modalTitle.textContent = "Coverage results";
-      modalBody.innerHTML = `
-        <div class="result-block">
-          <div class="content">
-    ${isAvailable ? `
-    <p><strong>Status:</strong> <span class="badge ${badgeClass}">${badgeText}</span></p>
-    <p><strong>AMID:</strong> ${AddressInfo.AMID || "—"}</p>
-    <div class="addr" style="margin-top:8px;">
-      <p><strong>Address:</strong> <span style="text-transform: uppercase; display: inline;">${Address || AddressInfo.LR_Address}</span></p>
-      <p>${[AddressInfo.LR_SUBURB, AddressInfo.LR_TOWN, AddressInfo.LR_PROVINCE, address.postalCode].filter(Boolean).join(", ")}</p>
+  modalTitle.textContent = "Coverage results";
+  modalBody.innerHTML = `
+    <div class="result-block">
+      <div class="content">
+        ${
+          isAvailable
+            ? `
+        <p><strong>Status:</strong> <span class="badge ${badgeClass}">${badgeText}</span></p>
+        <p><strong>AMID:</strong> ${AddressInfo.AMID || "—"}</p>
+        <div class="addr" style="margin-top:8px;">
+          <p><strong>Address:</strong> 
+            <span style="text-transform: uppercase; display: inline;">
+              ${AddressInfo.LR_Address || `${address.houseNumber} ${address.streetName}`}
+            </span>
+          </p>
+          <p>${[AddressInfo.LR_SUBURB, AddressInfo.LR_TOWN, AddressInfo.LR_PROVINCE, address.postalCode]
+            .filter(Boolean)
+            .join(", ")}</p>
+        </div>
+        <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
+        ${
+          buildingList.length > 0
+            ? `
+          <div class="af-field">
+            <label for="unitSelect">This is a multi-dwelling unit (MDU),
+            please select your unit to view available products:</label>
+            <select id="unitSelect" required>
+              <option value="">-- Select Unit --</option>
+              ${buildingList
+                .map(b => {
+                  const floorLabel =
+                    b.FLOOR.toLowerCase().includes("ground")
+                      ? "Ground floor"
+                      : isNaN(parseInt(b.FLOOR))
+                      ? b.FLOOR
+                      : `${getOrdinal(parseInt(b.FLOOR))} floor`;
+                  return `<option value="${b.NUM}|${b.FLOOR}|${b.BUILDING_NAME}">
+                    Unit ${b.NUM}, ${floorLabel}
+                  </option>`;
+                })
+                .join("")}
+            </select>
+            <small class="error-text" id="error-unitSelect"></small>
+          </div>
+          <div id="productList" style="display:none; margin-top:20px;"></div>
+          `
+            : `
+          <div id="productList" style="margin-top:20px;"></div>
+          `
+        }
+      `
+            : `
+        <h5 style="margin-bottom: 30px; font-size: 18px;">
+          We are sorry, OpenServe Fibre is not available in this area.
+        </h5>
+      `
+        }
+      </div>
+      <div class="af-actions" style="margin-top:16px;">
+        <button type="button" class="btn btn-dark" id="backBtn">Back</button>
+        ${
+          isAvailable
+            ? `<button type="button" class="btn btn-primary" id="continueBtn" ${buildingList.length > 0 ? "disabled" : ""}>Signup Now</button>`
+            : `<button type="button" class="btn btn-primary" id="tryAgainBtn">Try another address</button>`
+        }
+      </div>
     </div>
-    <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
-    <div>
+  `;
+
+  // Helper: add ordinal suffix (1 → 1st, 2 → 2nd)
+  function getOrdinal(n) {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
+
+  // --- BACK BUTTON ---
+  document.getElementById("backBtn").addEventListener("click", () => {
+    modalTitle.textContent = "Check coverage";
+    modalBody.innerHTML = "";
+    modalBody.appendChild(form);
+    setTimeout(() => document.getElementById("houseNumber").focus(), 20);
+  });
+
+  // --- TRY AGAIN BUTTON ---
+  const tryAgainBtn = document.getElementById("tryAgainBtn");
+  if (tryAgainBtn) {
+    tryAgainBtn.addEventListener("click", () => {
+      modalTitle.textContent = "Check coverage";
+      modalBody.innerHTML = "";
+      modalBody.appendChild(form);
+      setTimeout(() => document.getElementById("houseNumber").focus(), 20);
+    });
+  }
+
+  // --- PRODUCT RENDERER ---
+  const productList = document.getElementById("productList");
+  const continueBtn = document.getElementById("continueBtn");
+  const unitSelect = document.getElementById("unitSelect");
+
+  function renderProducts() {
+    productList.innerHTML = `
       <h4>Available Products:</h4>
       <ul class="product-grid" style="list-style:none; padding:0; margin:0;">
         ${ftthProductInfo
-        // Sort product categories first (OWC → OWS → OFC)
-        .sort((a, b) => productOrder.indexOf(a.ProductCode) - productOrder.indexOf(b.ProductCode))
-        .map(p => {
-        // Match packages to product code
-        const relatedPackages = allPackages
-        .filter(pkg => pkg.name.includes(p.ProductCode))
-        // Sort packages by price ascending
-        .sort((a, b) => a.price - b.price);
+          .sort(
+            (a, b) =>
+              productOrder.indexOf(a.ProductCode) -
+              productOrder.indexOf(b.ProductCode)
+          )
+          .map(p => {
+            const relatedPackages = allPackages
+              .filter(pkg => pkg.name.includes(p.ProductCode))
+              .sort((a, b) => a.price - b.price);
+            const afrietaName =
+              p.ProductCode === "OFC"
+                ? "Afrieta Fibre Premium"
+                : "Afrieta Fibre";
 
-        // Convert product naming to Afrieta format
-        const afrietaName = p.ProductCode === "OFC"
-        ? "Afrieta Fibre Premium"
-        : "Afrieta Fibre";
-
-        // Render packages as name–value pairs
-        return `
-        <li class="product-card" style="margin-bottom:16px;">
-          <h3 style="font-weight:800; margin-bottom:12px;">
-            ${afrietaName} (${p.ProductCode})
-          </h3>
-          ${relatedPackages.map(pkg => {
-          const planName = pkg.name.replace(/Afrieta Fibre (Premium )?${p.ProductCode}\s*/,'').trim();
-          return `
-          <div style="font-size:15px; opacity:.9; display:flex; flex-direction:column; margin-bottom:6px;">
-            <div><strong>Name:</strong> ${planName}</div>
-            <div><strong>Price:</strong> R${pkg.price.toLocaleString()}</div>
-          </div>
-          <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
-          `;
-          }).join("")}
-        </li>
-        `;
-        }).join("")}
+            return `
+              <li class="product-card" style="margin-bottom:16px;">
+                <h3 style="font-weight:800; margin-bottom:12px;">
+                  ${afrietaName} (${p.ProductCode})
+                </h3>
+                ${relatedPackages
+                  .map(pkg => {
+                    const planName = pkg.name
+                      .replace(/Afrieta Fibre (Premium )?${p.ProductCode}\s*/, "")
+                      .trim();
+                    return `
+                      <div style="font-size:15px; opacity:.9; display:flex; flex-direction:column; margin-bottom:6px;">
+                        <div><strong>Name:</strong> ${planName}</div>
+                        <div><strong>Price:</strong> R${pkg.price.toLocaleString()}</div>
+                      </div>
+                      <hr style="margin:12px 0; border-color:rgba(255,255,255,0.1)">
+                    `;
+                  })
+                  .join("")}
+              </li>
+            `;
+          })
+          .join("")}
       </ul>
-    </div>
-    ` : `
-    <h5 style="margin-bottom: 30px; font-size: 18px;">We are sorry, OpenServe Fibre is not available in this area.</h5>
-    `}
-          </div>
-          <div class="af-actions" style="margin-top:16px;">
-            <button type="button" class="btn btn-dark" id="backBtn">Back</button>
-            ${isAvailable ? `<button type="button" class="btn btn-primary" id="continueBtn">Signup Now</button>` : `<button type="button" class="btn btn-primary" id="tryAgainBtn">Try another address</button>`}
-          </div>
-        </div>
-      `;
+    `;
+  }
 
-      // Back → restore original form
-      document.getElementById("backBtn").addEventListener("click", () => {
-        modalTitle.textContent = "Check coverage";
-        modalBody.innerHTML = "";
-        modalBody.appendChild(form);
-        setTimeout(() => document.getElementById("houseNumber").focus(), 20);
+  // --- SDU (Single Dwelling) ---
+  if (isAvailable && buildingList.length === 0) {
+    renderProducts();
+    continueBtn.disabled = false;
+  }
+
+  // --- MDU (Multi-Dwelling) ---
+  if (unitSelect) {
+    unitSelect.addEventListener("change", () => {
+      if (unitSelect.value) {
+        productList.style.display = "block";
+        renderProducts();
+        continueBtn.disabled = false;
+      } else {
+        productList.style.display = "none";
+        productList.innerHTML = "";
+        continueBtn.disabled = true;
+      }
+    });
+  }
+
+  // --- CONTINUE (Signup) ---
+  if (continueBtn) {
+    continueBtn.addEventListener("click", () => {
+      let selectedUnit, selectedFloor, buildingName;
+      if (unitSelect && unitSelect.value) {
+        const [num, floor, bname] = unitSelect.value.split("|");
+        selectedUnit = num;
+        selectedFloor = floor;
+        buildingName = bname;
+      }
+
+      renderSignupForm(result, {
+        ...address,
+        buildingName: buildingName || address.buildingName,
+        unitNumber: selectedUnit,
+        floorNumber: selectedFloor
       });
 
-      // Continue (only shown when available)
-      const continueBtn = document.getElementById("continueBtn");
-      if (continueBtn) {
-        continueBtn.addEventListener("click", () => {
-          // Inject and show custom signup form (replacing Cognito)
-          renderSignupForm(result, address);
-          embedWrap.classList.remove("hidden");
-          closeModal();
-          embedWrap.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        });
-      }
-
-      // If not available, try again
-      const tryAgainBtn = document.getElementById("tryAgainBtn");
-      if (tryAgainBtn) {
-        tryAgainBtn.addEventListener("click", () => {
-          modalTitle.textContent = "Check coverage";
-          modalBody.innerHTML = "";
-          modalBody.appendChild(form);
-          setTimeout(() => document.getElementById("houseNumber").focus(), 20);
-        });
-      }
-    }
+      embedWrap.classList.remove("hidden");
+      closeModal();
+      embedWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+}
 form.querySelectorAll("input, select").forEach(el => {
   el.addEventListener("input", () => {
     const errorEl = el.parentElement.querySelector(".error-text");

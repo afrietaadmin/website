@@ -50,22 +50,24 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px
     }
 
     .chip {
-      display: inline-block;
+      position: absolute;
+      right: 10px;
+      top: 10px;
       font-size: 14px;
       padding: 5px 10px;
       border-radius: 999px;
-      background: rgba(236, 5, 236, 0.5);
-      color: #333;
+      background: #FFD700;
+      color: #000;
     }
 
     .speed {
       margin-top: 8px;
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 800
     }
 
@@ -171,6 +173,11 @@
       .af-modal {
       width: min(90%, 100%);
       }
+          .grid {
+      display: grid;
+      grid-template-columns:  1fr;
+      gap: 16px
+    }
     }
 .mdu-only {
 transition: opacity 0.25s ease;
@@ -344,7 +351,11 @@ opacity: 0;
         grid-template-columns: 1fr;
       }
     }
-
+.service-card {
+  background: #00A82D;
+  color: #fff;
+  position: relative;
+}
     .product-card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -403,6 +414,13 @@ font-weight: 500;
 .invalid input[type="checkbox"] {
   outline: 2px solid #ff6b6b;
 }
+.check-btn {
+  display: flex;
+  justify-content: end;
+}
+.check-btn button {
+  border: none;
+}
   </style>
 </head>
 
@@ -457,8 +475,7 @@ font-weight: 500;
 
   <main class="container">
     <h1 class="mb-3">Afrieta Fibre Packages</h1>
-    <p class="subtext">Say goodbye to buffering. Check coverage in seconds to discover the Afrieta Fibre packages available at this address.</p>
-    <div><button id="openCoverage" class="btn btn-dark">Check coverage</button></div>
+    <p class="subtext">Experience fast unlimited, uncapped fibre. No limits, Just Speed! Click to check your coverage below.</p>
 
     <!-- WebConnect -->
     <section class="section">
@@ -567,77 +584,77 @@ font-weight: 500;
 
     /* ---------- Afrieta prices ---------- */
     const WEB_CONNECT = [{
-        speed: "10 / 10 Mbps",
+        speed: "10 / 10 Mbs",
         price: 379,
+        cat: "WebConnect"
+      },
+      {
+        speed: "20 / 10 Mbs",
+        price: 449,
         tag: "Popular",
         cat: "WebConnect"
       },
       {
-        speed: "20 / 10 Mbps",
-        price: 449,
-        cat: "WebConnect"
-      },
-      {
-        speed: "40 / 20 Mbps",
+        speed: "40 / 20 Mbs",
         price: 509,
         cat: "WebConnect"
       }
     ];
     const WEB_STREAM = [{
-        speed: "25 / 25 Mbps",
+        speed: "25 / 25 Mbs",
         price: 639,
         cat: "WebStream"
       },
       {
-        speed: "50 / 25 Mbps",
+        speed: "50 / 25 Mbs",
         price: 799,
         tag: "Popular",
         cat: "WebStream"
       },
       {
-        speed: "100 / 50 Mbps",
+        speed: "100 / 50 Mbs",
         price: 959,
         cat: "WebStream"
       },
       {
-        speed: "200 / 100 Mbps",
+        speed: "200 / 100 Mbs",
         price: 1099,
         cat: "WebStream"
       },
       {
-        speed: "300 / 150 Mbps",
+        speed: "300 / 150 Mbs",
         price: 1209,
         cat: "WebStream"
       },
       {
-        speed: "500 / 250 Mbps",
+        speed: "500 / 250 Mbs",
         price: 1399,
         cat: "WebStream"
       }
     ];
     const FIBRE_CONNECT = [{
-        speed: "50 / 50 Mbps",
+        speed: "50 / 50 Mbs",
         price: 750,
         cat: "FibreConnect"
       },
       {
-        speed: "100 / 100 Mbps",
+        speed: "100 / 100 Mbs",
         price: 819,
         cat: "FibreConnect"
       },
       {
-        speed: "300 / 150 Mbps",
+        speed: "300 / 150 Mbs",
         price: 1045,
         cat: "FibreConnect"
       },
       {
-        speed: "500 / 250 Mbps",
+        speed: "500 / 250 Mbs",
         price: 1299,
         tag: "Best value",
         cat: "FibreConnect"
       },
       {
-        speed: "500 / 250 Mbps (Premium)",
+        speed: "500 / 250 Mbs (Premium)",
         price: 1550,
         cat: "FibreConnect"
       }
@@ -658,6 +675,7 @@ font-weight: 500;
           <div class="speed">${p.speed}</div>
           <div class="tier">${label}</div>
           <div class="price">${toRand(p.price)} <span class="per">per month</span></div>
+          <div class="check-btn"><button id="openCoverage" class="btn btn-dark">Check coverage</button></div>
         `;
         host.appendChild(el);
       });

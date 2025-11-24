@@ -24,6 +24,20 @@
   <link rel="preload" as="image" href="./assets/images/hero-slide-3.jpg" />
 
   <style>
+         .navbar-link {
+         color: var(--white);
+         }
+
+         .header.active .navbar-link {
+         color: var(--charcoal);
+         }
+        .nav-open-btn {
+        color: var(--white);
+        }
+
+        .header.active .nav-open-btn {
+        color: var(--charcoal);
+        }
     main {
       padding: 50px 0;
     }
@@ -441,7 +455,7 @@ font-weight: 500;
         </div>
 
         <ul class="navbar-list">
-          <li><a href="#" class="navbar-link">Home</a></li>
+          <li><a href="/" class="navbar-link">Home</a></li>
           <li><a href="#locations" class="navbar-link">Locations</a></li>
           <li><a href="#services" class="navbar-link">Services</a></li>
         </ul>
@@ -1104,8 +1118,8 @@ font-weight: 500;
             </select>
             <small class="error-text" id="error-su_packageCode"></small>
           </div>
-          <div class="af-field"><label>WiFi Name (SSID)</label><input id="su_wifiName" required /><small class="error-text" id="error-su_wifiName"></small></div>
-          <div class="af-field"><label>WiFi Password</label><input id="su_wifiPassword" type="text" required /><small class="error-text" id="error-su_wifiPassword"></small></div>
+          <div class="af-field"><label>What would you like your wifi name to be?</label><input id="su_wifiName" required /><small class="error-text" id="error-su_wifiName"></small></div>
+          <div class="af-field"><label>What would you like your password to be?</label><input id="su_wifiPassword" type="text" required /><small class="error-text" id="error-su_wifiPassword"></small></div>
         </div>
 
         <label style="display:flex; gap:8px; align-items:flex-start; margin-top:10px;">

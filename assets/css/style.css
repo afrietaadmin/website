@@ -265,6 +265,7 @@ body.nav-active {
 .btn-outline:is(:hover, :focus-visible) {
   background-color: var(--white);
   color: var(--charcoal);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .btn-dark {
@@ -356,7 +357,7 @@ body.nav-active {
 
 .nav-open-btn {
   font-size: 3.5rem;
-  color: var(--white);
+  color: var(--charcoal);
 }
 
 .header.active .nav-open-btn {
@@ -915,7 +916,7 @@ ion-icon {
   }
 
   .navbar-link {
-    color: var(--white);
+    color: var(--charcoal);
     transition: var(--transition-1);
   }
 

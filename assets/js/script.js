@@ -104,7 +104,7 @@ const initSlider = function (currentSlider) {
 for (let i = 0, len = sliders.length; i < len; i++) {
   initSlider(sliders[i]);
 }
-
+document.getElementById('current-year').textContent = new Date().getFullYear();
 /**
  * ACCORDION
  */

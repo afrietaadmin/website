@@ -1114,8 +1114,12 @@ document.getElementById('current-year').textContent = new Date().getFullYear();
             </select>
             <small class="error-text" id="error-su_packageCode"></small>
           </div>
-          <div class="af-field"><label>What would you like your wifi name to be?</label><input id="su_wifiName" required /><small class="error-text" id="error-su_wifiName"></small></div>
-          <div class="af-field"><label>What would you like your password to be?</label><input id="su_wifiPassword" type="text" required /><small class="error-text" id="error-su_wifiPassword"></small></div>
+          <div class="af-field"><label>Name of sales representative/agent?</label><input id="su_wifiName" />
+            <!-- <small class="error-text" id="error-su_wifiName"></small> -->
+          </div>
+          <div class="af-field"><label>Where did you hear about Afrieta Fibre?</label><input id="su_wifiPassword" type="text" />
+            <!-- <small class="error-text" id="error-su_wifiPassword"></small> -->
+          </div>
         </div>
 
         <label style="display:flex; gap:8px; align-items:flex-start; margin-top:10px;">
@@ -1184,8 +1188,8 @@ document.getElementById('current-year').textContent = new Date().getFullYear();
               if (!idRegex.test(idNumber)) showError('su_idNumber', 'ID or Passport must be 4–17 letters/numbers.');
               if (!packageCode) showError('su_packageCode', 'Please select a package.');
               if (!emailRegex.test(email)) showError('su_email', 'Please enter a valid email address.');
-              if (!wifiName) showError('su_wifiName', 'Please enter the name you want your WIFI to be called.');
-              if (!wifiPassword) showError('su_wifiPassword', 'Please enter a password for your WIFI.');
+              //if (!wifiName) showError('su_wifiName', 'Please enter the name you want your WIFI to be called.');
+              //if (!wifiPassword) showError('su_wifiPassword', 'Please enter a password for your WIFI.');
               if (!acceptTerms.checked) {
                 const err = document.getElementById('error-su_acceptTerms');
                 if (err) err.textContent = 'You must agree to the terms before submitting.';

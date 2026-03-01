@@ -47,13 +47,15 @@
     <style>
 
 /* Upgrade Modal - fixed panel with scrollable body */
+.modal {
+  z-index: 9999;
+}
 .upgrade-modal--fixed {
   max-width: 520px;
   width: calc(100% - 32px);
   max-height: 85vh;
   border-radius: 14px;
   overflow: hidden;
-
   /* fixed layout */
   display: flex;
   flex-direction: column;
@@ -1281,10 +1283,6 @@
 
       <!-- FOOTER (fixed) -->
       <div class="upgrade-modal__footer">
-        <button type="button" class="btn btn-outline" onclick="closeUpgradeNoticeModal()">
-          Cancel
-        </button>
-
         <a id="upgradeNowBtn" href="#" target="_blank" class="btn btn-primary">
           <div class="d-flex">
             <ion-icon name="logo-whatsapp"></ion-icon>

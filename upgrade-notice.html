@@ -65,6 +65,7 @@
         min-width: 0;
       }
 
+
       .notice-pill {
         display: inline-flex;
         align-items: center;
@@ -77,6 +78,52 @@
         font-size: 12px;
         white-space: nowrap;
       }
+      /* wrapper that contains the pill + title */
+.flex-notice {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;            /* allows wrapping instead of overflow */
+  min-width: 0;               /* important in flex layouts */
+}
+
+/* pill should never shrink awkwardly */
+.notice-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;             /* don't shrink */
+  white-space: nowrap;        /* keep "Official Notice" on one line */
+}
+
+/* title should take remaining space and wrap naturally */
+.notice-title {
+  margin: 0;
+  flex: 1 1 260px;            /* grow, shrink, with a sensible basis */
+  min-width: 0;
+  line-height: 1.35;
+  word-break: break-word;   
+  align-self: center;  /* prevents overflow on long strings */
+}
+
+/* icon alignment (optional but helps) */
+.notice-pill ion-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* mobile: stack vertically */
+@media (max-width: 600px) {
+  .flex-notice {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .notice-title {
+    flex-basis: auto;
+  }
+}
 
       .notice-title {
         margin: 0;
@@ -252,7 +299,7 @@
     <!-- CONTENT -->
     <main class="container doc">
       <div class="notice-banner">
-        <div class="left">
+        <div class="left flex-notice">
           <span class="notice-pill">
             <ion-icon name="alert-circle-outline"></ion-icon>
             Official Notice
@@ -322,7 +369,7 @@
         <div class="cta-row">
           <a href="http://wa.link/a7sfoi" target="_blank" class="btn btn-primary">
             <div class="d-flex">
-              <ion-icon name="logo-whatsapp"></ion-icon>Contact Support on WhatsApp
+              <ion-icon name="logo-whatsapp"></ion-icon>Contact Support
             </div>
           </a>
         </div>

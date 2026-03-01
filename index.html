@@ -45,20 +45,68 @@
     <link rel="preload" as="image" href="./assets/images/hero-slide-3.jpg" />
 
     <style>
-      /* Upgrade Modal */
 
-.upgrade-modal {
-  position: relative;
+/* Upgrade Modal - fixed panel with scrollable body */
+.upgrade-modal--fixed {
   max-width: 520px;
-  padding: 30px 28px;
+  width: calc(100% - 32px);
+  max-height: 85vh;
   border-radius: 14px;
-  z-index: 99;
+  overflow: hidden;
+
+  /* fixed layout */
+  display: flex;
+  flex-direction: column;
+
+  /* override your current padding on .upgrade-modal */
+  padding: 0;
+  position: relative;
+}
+
+/* Header (fixed) */
+.upgrade-modal__header {
+  background: #fff;
+  padding: 18px 18px 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .upgrade-title {
-  margin-bottom: 12px;
+  margin: 0;
 }
 
+/* Close button */
+.upgrade-modal__close {
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #333;
+  padding: 0 4px;
+}
+
+/* Body (scrollable) */
+.upgrade-modal__body {
+  padding: 14px 18px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Footer (fixed) */
+.upgrade-modal__footer {
+  background: #fff;
+  padding: 14px 18px 18px;
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  justify-content: end;
+}
+
+/* Your existing styles can stay */
 .upgrade-summary {
   background: rgba(238, 6, 238, 0.07);
   border: 1px solid rgba(238, 6, 238, 0.25);
@@ -68,17 +116,8 @@
   font-weight: 600;
 }
 
-.upgrade-summary div {
-  margin-bottom: 6px;
-}
-
-.upgrade-summary div:last-child {
-  margin-bottom: 0;
-}
-
-/* Read more text link */
 .readmore-wrapper {
-  margin-bottom: 20px;
+  margin-bottom: 6px;
 }
 
 .readmore-text {
@@ -90,24 +129,6 @@
 
 .readmore-text:hover {
   opacity: 0.75;
-}
-
-/* Buttons layout */
-.upgrade-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: end;
-}
-
-.upgrade-actions .btn {
-  flex: 1;
-  justify-content: center;
-}
-
-@media (max-width: 600px) {
-  .upgrade-actions {
-    flex-direction: column;
-  }
 }
     </style>
   </head>
@@ -1220,55 +1241,56 @@
       </article>
       <!-- Upgrade Entry Modal -->
 <div id="upgradeNoticeModal" class="modal">
-  <div class="modal-parent">
-    <div class="modal-content upgrade-modal">
+  <div class="modal-parent" onclick="closeUpgradeNoticeModal()">
+    <div class="modal-content upgrade-modal upgrade-modal--fixed" onclick="event.stopPropagation()">
 
-      <span class="close" onclick="closeUpgradeNoticeModal()">&times;</span>
-
-      <h2 class="h3 upgrade-title">
-        Upgrade of Legacy 12 Mbps Package
-      </h2>
-
-      <p>
-        At Afrieta, our priority is delivering reliable, high-performance internet
-        services that support modern household demands — including streaming,
-        remote work, online learning, and multi-device usage.
-        We are retiring the legacy <strong>12 Mbps / 12 Mbps</strong> package
-        to improve network performance and overall reliability.
-      </p>
-
-      <p>
-        During <strong>March 2026</strong>, your service will be upgraded to
-        <strong>20 Mbps / 20 Mbps</strong> at no additional cost.
-      </p>
-
-      <div class="upgrade-summary">
-        <div><strong>April 2026:</strong> R409</div>
-        <div><strong>From 1 May 2026:</strong> R449</div>
+      <!-- HEADER (fixed) -->
+      <div class="upgrade-modal__header">
+        <h2 class="h3 upgrade-title">Upgrade of Legacy 12 Mbps Package</h2>
+        <button class="upgrade-modal__close" type="button" onclick="closeUpgradeNoticeModal()" aria-label="Close">
+          &times;
+        </button>
       </div>
 
-      <!-- Read more text link -->
-      <div class="readmore-wrapper">
-        <a href="/upgrade-notice.html" class="readmore-text">
-          Read full details →
-        </a>
+      <!-- BODY (scrollable) -->
+      <div class="upgrade-modal__body">
+        <p>
+          At Afrieta, our priority is delivering reliable, high-performance internet
+          services that support modern household demands — including streaming,
+          remote work, online learning, and multi-device usage.
+          We are retiring the legacy <strong>12 Mbps / 12 Mbps</strong> package
+          to improve network performance and overall reliability.
+        </p>
+
+        <p>
+          During <strong>March 2026</strong>, your service will be upgraded to
+          <strong>20 Mbps / 20 Mbps</strong> at no additional cost.
+        </p>
+
+        <div class="upgrade-summary">
+          <div><strong>April 2026:</strong> R409</div>
+          <div><strong>From 1 May 2026:</strong> R449</div>
+        </div>
+
+        <div class="readmore-wrapper">
+          <a href="/upgrade-notice.html" class="readmore-text">
+            Read full details →
+          </a>
+        </div>
       </div>
 
-      <!-- Action buttons -->
-      <div class="upgrade-actions">
+      <!-- FOOTER (fixed) -->
+      <div class="upgrade-modal__footer">
+        <button type="button" class="btn btn-outline" onclick="closeUpgradeNoticeModal()">
+          Cancel
+        </button>
 
-        <a
-          id="upgradeNowBtn"
-          href="#"
-          target="_blank"
-          class="btn btn-primary"
-        >
+        <a id="upgradeNowBtn" href="#" target="_blank" class="btn btn-primary">
           <div class="d-flex">
             <ion-icon name="logo-whatsapp"></ion-icon>
             Upgrade Now
           </div>
         </a>
-
       </div>
 
     </div>
@@ -1331,38 +1353,36 @@
 
   const UPGRADE_MODAL_KEY = "afrieta_upgrade_notice_seen_v3";
 
-  function openUpgradeNoticeModal() {
-    const modal = document.getElementById("upgradeNoticeModal");
-    if (!modal) return;
+function openUpgradeNoticeModal() {
+  const modal = document.getElementById("upgradeNoticeModal");
+  if (!modal) return;
 
-    modal.style.display = "block";
+  modal.style.display = "block";
+  document.body.style.overflow = "hidden"; // prevents page scroll behind modal
 
-    const message = "Hello Afrieta, I want to upgrade my package.";
-    document.getElementById("upgradeNowBtn").href =
-      "https://wa.me/+15176336433?text=" + encodeURIComponent(message);
-  }
+  const message = "Hello Afrieta, I want to upgrade my package.";
+  const phone = "15176336433"; // digits only for wa.me
+  const link = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
-  function closeUpgradeNoticeModal() {
-    const modal = document.getElementById("upgradeNoticeModal");
-    if (!modal) return;
+  const btn = document.getElementById("upgradeNowBtn");
+  if (btn) btn.href = link;
+}
 
-    modal.style.display = "none";
-    //localStorage.setItem(UPGRADE_MODAL_KEY, "1");
-  }
+function closeUpgradeNoticeModal() {
+  const modal = document.getElementById("upgradeNoticeModal");
+  if (!modal) return;
 
-  window.addEventListener("click", function (event) {
-    const modal = document.getElementById("upgradeNoticeModal");
-    if (event.target === modal) {
-      closeUpgradeNoticeModal();
-    }
-  });
+  modal.style.display = "none";
+  document.body.style.overflow = ""; // restore page scroll
 
-  window.addEventListener("load", function () {
-    const seen = localStorage.getItem(UPGRADE_MODAL_KEY);
-    if (!seen) {
-      openUpgradeNoticeModal();
-    }
-  });
+  // Uncomment when you're done testing (to show only once)
+  // localStorage.setItem(UPGRADE_MODAL_KEY, "1");
+}
+
+window.addEventListener("load", function () {
+  const seen = localStorage.getItem(UPGRADE_MODAL_KEY);
+  if (!seen) openUpgradeNoticeModal();
+});
     </script>
   </body>
 </html>

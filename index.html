@@ -43,6 +43,71 @@
     <link rel="preload" as="image" href="./assets/images/hero-slide-1.jpg" />
     <link rel="preload" as="image" href="./assets/images/hero-slide-2.jpg" />
     <link rel="preload" as="image" href="./assets/images/hero-slide-3.jpg" />
+
+    <style>
+      /* Upgrade Modal */
+
+.upgrade-modal {
+  max-width: 520px;
+  padding: 30px 28px;
+  border-radius: 14px;
+}
+
+.upgrade-title {
+  margin-bottom: 12px;
+}
+
+.upgrade-summary {
+  background: rgba(238, 6, 238, 0.07);
+  border: 1px solid rgba(238, 6, 238, 0.25);
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin: 16px 0;
+  font-weight: 600;
+}
+
+.upgrade-summary div {
+  margin-bottom: 6px;
+}
+
+.upgrade-summary div:last-child {
+  margin-bottom: 0;
+}
+
+/* Read more text link */
+.readmore-wrapper {
+  margin-bottom: 20px;
+}
+
+.readmore-text {
+  font-weight: 600;
+  color: #ee06ee;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.readmore-text:hover {
+  opacity: 0.75;
+}
+
+/* Buttons layout */
+.upgrade-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: end;
+}
+
+.upgrade-actions .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .upgrade-actions {
+    flex-direction: column;
+  }
+}
+    </style>
   </head>
 
   <body>
@@ -1151,6 +1216,62 @@
           </div>
         </section>
       </article>
+      <!-- Upgrade Entry Modal -->
+<div id="upgradeNoticeModal" class="modal">
+  <div class="modal-parent">
+    <div class="modal-content upgrade-modal">
+
+      <span class="close" onclick="closeUpgradeNoticeModal()">&times;</span>
+
+      <h2 class="h3 upgrade-title">
+        Upgrade of Legacy 12 Mbps Package
+      </h2>
+
+      <p>
+        At Afrieta, our priority is delivering reliable, high-performance internet
+        services that support modern household demands — including streaming,
+        remote work, online learning, and multi-device usage.
+        We are retiring the legacy <strong>12 Mbps / 12 Mbps</strong> package
+        to improve network performance and overall reliability.
+      </p>
+
+      <p>
+        During <strong>March 2026</strong>, your service will be upgraded to
+        <strong>20 Mbps / 20 Mbps</strong> at no additional cost.
+      </p>
+
+      <div class="upgrade-summary">
+        <div><strong>April 2026:</strong> R409</div>
+        <div><strong>From 1 May 2026:</strong> R449</div>
+      </div>
+
+      <!-- Read more text link -->
+      <div class="readmore-wrapper">
+        <a href="/upgrade-notice.html" class="readmore-text">
+          Read full details →
+        </a>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="upgrade-actions">
+
+        <a
+          id="upgradeNowBtn"
+          href="#"
+          target="_blank"
+          class="btn btn-primary"
+        >
+          <div class="d-flex">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            Upgrade Now
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</div>
     </main>
 
     <!-- 
@@ -1205,9 +1326,41 @@
           element.innerText = "Read More...";
         }
       }
+
+  const UPGRADE_MODAL_KEY = "afrieta_upgrade_notice_seen_v3";
+
+  function openUpgradeNoticeModal() {
+    const modal = document.getElementById("upgradeNoticeModal");
+    if (!modal) return;
+
+    modal.style.display = "block";
+
+    const message = "Hello Afrieta, I want to upgrade my package.";
+    document.getElementById("upgradeNowBtn").href =
+      "https://wa.me/+15176336433?text=" + encodeURIComponent(message);
+  }
+
+  function closeUpgradeNoticeModal() {
+    const modal = document.getElementById("upgradeNoticeModal");
+    if (!modal) return;
+
+    modal.style.display = "none";
+    //localStorage.setItem(UPGRADE_MODAL_KEY, "1");
+  }
+
+  window.addEventListener("click", function (event) {
+    const modal = document.getElementById("upgradeNoticeModal");
+    if (event.target === modal) {
+      closeUpgradeNoticeModal();
+    }
+  });
+
+  window.addEventListener("load", function () {
+    const seen = localStorage.getItem(UPGRADE_MODAL_KEY);
+    if (!seen) {
+      openUpgradeNoticeModal();
+    }
+  });
     </script>
   </body>
 </html>
-
-<!-- Legal Page -->
-<!-- Make Lunching soon more prominent -->

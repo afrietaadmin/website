@@ -237,7 +237,7 @@ const plans = {
       link: "https://milparkmews.afrieta.com/",
     },
   ],
-  Roshnee: [
+  'Rustervaal/Roshnee': [
     {
       name: "20Mbps/20Mbps Advanced Wireless",
       price: "R449",
@@ -254,7 +254,7 @@ const plans = {
       link: "https://signup.afrieta.com/",
     },
   ],
-  Rustervaal: [
+    EdenPark: [
     {
       name: "20Mbps/20Mbps Advanced Wireless",
       price: "R449",
